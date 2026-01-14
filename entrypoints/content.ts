@@ -1,5 +1,5 @@
 import { createApp } from "vue"
-import InjectedPanel from "../components/InjectedPanel.vue"
+import IframeApp from "../components/IframeApp.vue"
 
 const IFRAME_SELECTOR = "#homeDocViewFrame"
 const ROOT_ID = "sg-erp-root"
@@ -57,6 +57,6 @@ function injectIntoIframe(iframe: HTMLIFrameElement) {
   root.id = ROOT_ID
   doc.body.appendChild(root)
 
-  createApp(InjectedPanel).mount(root)
+  createApp(IframeApp, { styleMountTarget: doc.head }).mount(root)
   console.log("[SG Helper] injected ✅")
 }
