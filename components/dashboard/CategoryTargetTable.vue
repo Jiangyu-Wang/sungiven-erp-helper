@@ -18,7 +18,6 @@
       size="small"
       :columns="columns"
       :data="filteredRows"
-      :pagination="pagination"
       :row-key="rowKey"
       :striped="true"
       :bordered="false"
@@ -134,8 +133,6 @@ const filteredRows = computed(() => {
   return data.filter((r) => statusOf(r).status !== "good")
 })
 
-const pagination = { pageSize: 8 }
-
 const rowKey = (r: any) => r.category
 
 const columns = computed(() => {
@@ -145,21 +142,21 @@ const columns = computed(() => {
       key: "category",
       sorter: "default" as const,
       fixed: "left" as const,
-      width: 120,
+      width: 90,
     },
     {
       title: "Sales",
       key: "sales",
       sorter: (a: Row, b: Row) => a.sales - b.sales,
       render: (row: Row) => money(row.sales),
-      width: 110,
+      width: 90,
     },
     {
       title: "Target",
       key: "targetSales",
       sorter: (a: Row, b: Row) => a.targetSales - b.targetSales,
       render: (row: Row) => money(row.targetSales),
-      width: 110,
+      width: 90,
     },
     {
       title: "Ach%",
@@ -172,14 +169,14 @@ const columns = computed(() => {
         const type = s.status === "bad" ? "error" : s.status === "watch" ? "warning" : "success"
         return h(NTag, { size: "small", round: true, type }, { default: () => text })
       },
-      width: 90,
+      width: 70,
     },
     {
       title: "Margin%",
       key: "marginRate",
       sorter: (a: Row, b: Row) => a.marginRate - b.marginRate,
       render: (row: Row) => pct(row.marginRate),
-      width: 95,
+      width: 80,
     },
     {
       title: "Loss%",
@@ -190,7 +187,7 @@ const columns = computed(() => {
         const type = gap > 0.01 ? "error" : gap > 0 ? "warning" : "success"
         return h(NTag, { size: "small", round: true, type }, { default: () => pct(row.lossRate) })
       },
-      width: 90,
+      width: 70,
     },
     {
       title: "Key SKUs",
@@ -210,27 +207,7 @@ const columns = computed(() => {
               ),
           },
         ),
-      width: 320,
-    },
-    {
-      title: "Key SKUs",
-      key: "keySkus",
-      render: (row: Row) =>
-        h(
-          NSpace,
-          { size: 6, wrap: true },
-          {
-            default: () =>
-              row.keySkus.map((sku) =>
-                h(
-                  NTag,
-                  { size: "small", round: true, type: "info", bordered: false },
-                  { default: () => sku },
-                ),
-              ),
-          },
-        ),
-      width: 260,
+      width: 400,
     },
     {
       title: "Status",
@@ -239,7 +216,7 @@ const columns = computed(() => {
         const s = statusOf(row)
         return h(NTag, { size: "small", round: true, type: s.tagType }, { default: () => s.label })
       },
-      width: 120,
+      width: 90,
     },
   ]
 })
