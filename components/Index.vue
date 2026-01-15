@@ -3,6 +3,7 @@
     <DashboardHeader />
     <KpiSummary />
     <CategoryTargetTable />
+    <PromoReplenishmentTable />
     <ActionList />
     <SkuFocusTable />
   </div>
@@ -12,6 +13,7 @@
 import DashboardHeader from "./dashboard/DashboardHeader.vue"
 import KpiSummary from "./dashboard/KpiSummary.vue"
 import CategoryTargetTable from "./dashboard/CategoryTargetTable.vue"
+import PromoReplenishmentTable from "./dashboard/PromoReplenishmentTable.vue"
 import ActionList from "./dashboard/ActionList.vue"
 import SkuFocusTable from "./dashboard/SkuFocusTable.vue"
 </script>
