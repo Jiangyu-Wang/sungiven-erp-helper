@@ -40,16 +40,6 @@
         </n-space>
       </div>
 
-      <div class="kpi-row">
-        <div v-for="kpi in kpis" :key="kpi.label" class="kpi-card">
-          <div class="kpi-label">{{ kpi.label }}</div>
-          <div class="kpi-value">{{ kpi.value }}</div>
-          <div class="kpi-meta">
-            <span class="kpi-sub">{{ kpi.sub }}</span>
-            <n-tag size="tiny" round :type="kpi.tagType">{{ kpi.tag }}</n-tag>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="right">
@@ -125,36 +115,6 @@ const status = computed(() => {
   return { type: "success" as const, text: "7D: Trend" }
 })
 
-const kpis = [
-  {
-    label: "Google Review",
-    value: "4.7 ★",
-    sub: "310 reviews",
-    tag: "+0.1",
-    tagType: "success" as const,
-  },
-  {
-    label: "NPS",
-    value: "62",
-    sub: "Last 30 days",
-    tag: "+4",
-    tagType: "success" as const,
-  },
-  {
-    label: "Repeat Visit",
-    value: "38%",
-    sub: "Target 35%",
-    tag: "Stable",
-    tagType: "info" as const,
-  },
-  {
-    label: "New Members",
-    value: "126",
-    sub: "This month",
-    tag: "+12%",
-    tagType: "success" as const,
-  },
-]
 </script>
 
 <style scoped>
