@@ -1,162 +1,160 @@
 <template>
-  <div class="metrics">
-    <div v-for="card in cards" :key="card.key" class="metric-card">
-      <div class="metric-top">
-        <div class="metric-icon" :style="{ backgroundColor: card.iconBg, color: card.iconColor }">
-          {{ card.icon }}
-        </div>
-        <div class="metric-delta" :class="card.deltaClass">{{ card.delta }}</div>
+  <div class="header">
+    <div class="left">
+      <div class="title-row">
+        <div class="title">Store Dashboard</div>
+        <n-tag size="small" type="info" round>ERP Helper</n-tag>
       </div>
-      <div class="metric-title">{{ card.title }}</div>
-      <div class="metric-value">{{ card.value }}</div>
+
+      <div class="controls">
+        <n-space size="small" align="center">
+          <n-select
+            v-model:value="storeCode"
+            :options="storeOptions"
+            size="small"
+            style="width: 220px"
+          />
+
+          <n-date-picker
+            v-model:value="dateRange"
+            type="daterange"
+            size="small"
+            clearable
+            style="width: 280px"
+          />
+
+          <n-button-group size="small">
+            <n-button :type="quickKey === 'today' ? 'primary' : 'default'" @click="setQuick('today')">
+              Today
+            </n-button>
+            <n-button
+              :type="quickKey === 'yesterday' ? 'primary' : 'default'"
+              @click="setQuick('yesterday')"
+            >
+              Yesterday
+            </n-button>
+            <n-button :type="quickKey === '7d' ? 'primary' : 'default'" @click="setQuick('7d')">
+              Last 7 Days
+            </n-button>
+          </n-button-group>
+        </n-space>
+      </div>
+    </div>
+
+    <div class="right">
+      <n-space size="small" align="center">
+        <n-tag size="small" :type="status.type" round>{{ status.text }}</n-tag>
+        <n-button size="small" secondary @click="refresh">Refresh</n-button>
+      </n-space>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const cards = [
-  {
-    key: "sales",
-    title: "今日销售额",
-    value: "¥45,678",
-    delta: "+12.5%",
-    deltaClass: "pos",
-    icon: "¥",
-    iconBg: "#e8f0ff",
-    iconColor: "#2f5aff",
-  },
-  {
-    key: "orders",
-    title: "订单数量",
-    value: "1,234",
-    delta: "+8.2%",
-    deltaClass: "pos",
-    icon: "🛒",
-    iconBg: "#ecfbf2",
-    iconColor: "#0b9b51",
-  },
-  {
-    key: "stock",
-    title: "库存商品",
-    value: "5,678",
-    delta: "-3.1%",
-    deltaClass: "neg",
-    icon: "📦",
-    iconBg: "#fff3e8",
-    iconColor: "#f26d21",
-  },
-  {
-    key: "basket",
-    title: "平均客单价",
-    value: "¥37",
-    delta: "+5.8%",
-    deltaClass: "pos",
-    icon: "📈",
-    iconBg: "#f2eaff",
-    iconColor: "#7c3aed",
-  },
-  {
-    key: "rating",
-    title: "Google评分",
-    value: "4.6",
-    delta: "+0.2",
-    deltaClass: "pos",
-    icon: "⭐",
-    iconBg: "#fff9e6",
-    iconColor: "#d97706",
-  },
-  {
-    key: "traffic",
-    title: "今日客流量",
-    value: "2,456",
-    delta: "+15.3%",
-    deltaClass: "pos",
-    icon: "👥",
-    iconBg: "#eef2ff",
-    iconColor: "#4f46e5",
-  },
-  {
-    key: "member",
-    title: "会员销售占比",
-    value: "68%",
-    delta: "+3.5%",
-    deltaClass: "pos",
-    icon: "💳",
-    iconBg: "#fce7f3",
-    iconColor: "#db2777",
-  },
-  {
-    key: "repeat",
-    title: "复购率",
-    value: "72%",
-    delta: "+4.2%",
-    deltaClass: "pos",
-    icon: "🔁",
-    iconBg: "#ecfeff",
-    iconColor: "#0f766e",
-  },
+import { computed, ref } from "vue"
+
+// ✅ 假数据：门店列表（后面你接真实数据再替换）
+const storeOptions = [
+  { label: "1106 • Richmond", value: "1106" },
+  { label: "1101 • Metrotown", value: "1101" },
+  { label: "1110 • Coquitlam", value: "1110" },
 ]
+
+const storeCode = ref<string>("1106")
+
+// NaiveUI date-picker 的 daterange 是 [startMs, endMs]
+const now = new Date()
+const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()
+const todayEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59).getTime()
+
+const dateRange = ref<[number, number]>([todayStart, todayEnd])
+const quickKey = ref<"today" | "yesterday" | "7d">("today")
+
+function setQuick(key: typeof quickKey.value) {
+  quickKey.value = key
+
+  const d = new Date()
+  const end = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 23, 59, 59)
+
+  if (key === "today") {
+    const start = new Date(d.getFullYear(), d.getMonth(), d.getDate())
+    dateRange.value = [start.getTime(), end.getTime()]
+    return
+  }
+
+  if (key === "yesterday") {
+    const y = new Date(d)
+    y.setDate(y.getDate() - 1)
+    const start = new Date(y.getFullYear(), y.getMonth(), y.getDate())
+    const yEnd = new Date(y.getFullYear(), y.getMonth(), y.getDate(), 23, 59, 59)
+    dateRange.value = [start.getTime(), yEnd.getTime()]
+    return
+  }
+
+  // 7d
+  const start = new Date(d)
+  start.setDate(start.getDate() - 6)
+  const startDay = new Date(start.getFullYear(), start.getMonth(), start.getDate())
+  dateRange.value = [startDay.getTime(), end.getTime()]
+}
+
+function refresh() {
+  // 先做个占位：后面你接数据时这里触发重新拉取/刷新
+  console.log("[DashboardHeader] refresh", {
+    storeCode: storeCode.value,
+    dateRange: dateRange.value,
+    quickKey: quickKey.value,
+  })
+}
+
+const status = computed(() => {
+  // ✅ 假规则：只是展示用，后面你接真实“整体达标/异常数”替换
+  if (quickKey.value === "today") return { type: "warning" as const, text: "Today: Monitoring" }
+  if (quickKey.value === "yesterday") return { type: "info" as const, text: "Yesterday: Review" }
+  return { type: "success" as const, text: "7D: Trend" }
+})
 </script>
 
 <style scoped>
-.metrics {
+.header {
   display: flex;
-  gap: 14px;
-  overflow-x: auto;
-  padding-bottom: 4px;
-}
-
-.metric-card {
-  min-width: 190px;
-  flex: 0 0 auto;
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 14px 16px 16px;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
-  border: 1px solid rgba(226, 232, 240, 0.8);
-}
-
-.metric-top {
-  display: flex;
+  align-items: flex-start;
   justify-content: space-between;
-  align-items: center;
   gap: 12px;
-  margin-bottom: 12px;
+
+  padding: 12px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
 }
 
-.metric-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 520px;
+}
+
+.title-row {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 18px;
+  gap: 8px;
+}
+
+.title {
+  font-size: 16px;
   font-weight: 700;
 }
 
-.metric-delta {
-  font-size: 13px;
-  font-weight: 600;
+.controls {
+  display: flex;
+  align-items: center;
 }
 
-.metric-delta.pos {
-  color: #16a34a;
-}
-
-.metric-delta.neg {
-  color: #dc2626;
-}
-
-.metric-title {
-  font-size: 14px;
-  color: #475569;
-  margin-bottom: 6px;
-}
-
-.metric-value {
-  font-size: 22px;
-  font-weight: 700;
-  color: #0f172a;
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 2px;
 }
 </style>
