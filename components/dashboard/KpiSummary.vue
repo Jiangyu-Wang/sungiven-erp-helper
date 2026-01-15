@@ -1,5 +1,5 @@
 <template>
-  <n-grid :cols="8" :x-gap="12" :y-gap="12" responsive="screen">
+  <n-grid :cols="6" :x-gap="12" :y-gap="12" responsive="screen">
     <n-grid-item v-for="card in cards" :key="card.key">
       <n-card size="small" :title="card.title" class="kpi-card">
         <div class="kpi-value-row">
@@ -81,12 +81,6 @@ const data = {
   nps: 62,
   npsTarget: 60,
   npsDelta: 4,
-  repeatRate: 0.38,
-  repeatTargetRate: 0.35,
-  repeatDelta: 0.02,
-  newMembers: 126,
-  newMembersTarget: 110,
-  newMembersDelta: 12,
 }
 
 const cards = computed(() => {
@@ -96,8 +90,6 @@ const cards = computed(() => {
   const lossStatus = statusForLoss(data.lossRate, data.lossTargetRate)
   const reviewStatus = statusForAch(data.googleRating / data.googleTarget)
   const npsStatus = statusForAch(data.nps / data.npsTarget)
-  const repeatStatus = statusForAch(data.repeatRate / data.repeatTargetRate)
-  const newMemberStatus = statusForAch(data.newMembers / data.newMembersTarget)
 
   return [
     {
@@ -160,26 +152,6 @@ const cards = computed(() => {
       deltaClass: data.npsDelta >= 0 ? "pos" : "neg",
       statusType: npsStatus.type,
       statusText: npsStatus.text,
-    },
-    {
-      key: "repeat-visit",
-      title: "Repeat Visit",
-      valueText: pct(data.repeatRate),
-      targetText: pct(data.repeatTargetRate),
-      deltaText: signedPct(data.repeatDelta),
-      deltaClass: data.repeatDelta >= 0 ? "pos" : "neg",
-      statusType: repeatStatus.type,
-      statusText: repeatStatus.text,
-    },
-    {
-      key: "new-members",
-      title: "New Members",
-      valueText: data.newMembers.toLocaleString(),
-      targetText: data.newMembersTarget.toLocaleString(),
-      deltaText: signedNumber(data.newMembersDelta),
-      deltaClass: data.newMembersDelta >= 0 ? "pos" : "neg",
-      statusType: newMemberStatus.type,
-      statusText: newMemberStatus.text,
     },
   ]
 })
