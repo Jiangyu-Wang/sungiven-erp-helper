@@ -1,5 +1,5 @@
 <template>
-  <n-grid :cols="4" :x-gap="12" :y-gap="12" responsive="screen">
+  <n-grid :cols="6" :x-gap="12" :y-gap="12" responsive="screen">
     <n-grid-item v-for="card in cards" :key="card.key">
       <n-card size="small" :title="card.title" class="kpi-card">
         <div class="kpi-value-row">
@@ -7,16 +7,6 @@
           <n-tag size="small" round :type="card.statusType">{{ card.statusText }}</n-tag>
         </div>
 
-        <div class="kpi-sub">
-          <div class="kpi-sub-item">
-            <span class="label">Target</span>
-            <span class="num">{{ card.targetText }}</span>
-          </div>
-          <div class="kpi-sub-item">
-            <span class="label">Δ vs Prev</span>
-            <span class="num" :class="card.deltaClass">{{ card.deltaText }}</span>
-          </div>
-        </div>
       </n-card>
     </n-grid-item>
   </n-grid>
@@ -41,6 +31,13 @@ function signedMoney(v: number) {
 function signedPct(v: number) {
   const sign = v > 0 ? "+" : v < 0 ? "-" : ""
   return `${sign}${(Math.abs(v) * 100).toFixed(1)}%`
+}
+function signedNumber(v: number) {
+  const sign = v > 0 ? "+" : v < 0 ? "-" : ""
+  return `${sign}${Math.abs(v).toLocaleString()}`
+}
+function rating(v: number) {
+  return `${v.toFixed(1)} ★`
 }
 
 function statusForAch(ach: number): { type: StatusType; text: string } {
@@ -68,9 +65,12 @@ const data = {
   lossRate: 0.042,
   lossTargetRate: 0.03,
   lossDelta: 0.006,
-  customer: 1832,
-  customerTarget: 1900,
-  customerDelta: -0.031,
+  googleRating: 4.7,
+  googleTarget: 4.6,
+  googleDelta: 0.1,
+  nps: 62,
+  npsTarget: 60,
+  npsDelta: 4,
 }
 
 const cards = computed(() => {
@@ -78,7 +78,8 @@ const cards = computed(() => {
   const achStatus = statusForAch(ach)
   const marginStatus = statusForAch(data.marginRate / data.marginTargetRate)
   const lossStatus = statusForLoss(data.lossRate, data.lossTargetRate)
-  const custStatus = statusForAch(data.customer / data.customerTarget)
+  const reviewStatus = statusForAch(data.googleRating / data.googleTarget)
+  const npsStatus = statusForAch(data.nps / data.npsTarget)
 
   return [
     {
@@ -122,17 +123,26 @@ const cards = computed(() => {
       statusType: lossStatus.type,
       statusText: lossStatus.text,
     },
-    // 如果你想要第5张卡：Customer Count
-    // {
-    //   key: "customer",
-    //   title: "Customer",
-    //   valueText: data.customer.toLocaleString(),
-    //   targetText: data.customerTarget.toLocaleString(),
-    //   deltaText: signedPct(data.customerDelta),
-    //   deltaClass: data.customerDelta >= 0 ? "pos" : "neg",
-    //   statusType: custStatus.type,
-    //   statusText: custStatus.text,
-    // },
+    {
+      key: "google-review",
+      title: "Google Review",
+      valueText: rating(data.googleRating),
+      targetText: rating(data.googleTarget),
+      deltaText: signedNumber(data.googleDelta),
+      deltaClass: data.googleDelta >= 0 ? "pos" : "neg",
+      statusType: reviewStatus.type,
+      statusText: reviewStatus.text,
+    },
+    {
+      key: "nps",
+      title: "NPS",
+      valueText: data.nps.toLocaleString(),
+      targetText: data.npsTarget.toLocaleString(),
+      deltaText: signedNumber(data.npsDelta),
+      deltaClass: data.npsDelta >= 0 ? "pos" : "neg",
+      statusType: npsStatus.type,
+      statusText: npsStatus.text,
+    },
   ]
 })
 </script>
@@ -153,29 +163,6 @@ const cards = computed(() => {
   font-size: 22px;
   font-weight: 800;
   line-height: 1.2;
-}
-
-.kpi-sub {
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  font-size: 12px;
-  opacity: 0.9;
-}
-
-.kpi-sub-item {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
-
-.label {
-  opacity: 0.75;
-}
-
-.num {
-  font-weight: 600;
 }
 
 .pos {
