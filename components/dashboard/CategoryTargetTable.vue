@@ -40,6 +40,7 @@ type Row = {
   targetMarginRate: number
   lossRate: number
   targetLossRate: number
+  keySkus: string[]
 }
 
 function pct(v: number) {
@@ -73,11 +74,56 @@ function statusOf(row: Row): { status: Status; label: string; tagType: "success"
 
 // ✅ 假数据（后面接真实数据替换）
 const rows = ref<Row[]>([
-  { category: "Produce", sales: 32000, targetSales: 35000, marginRate: 0.31, targetMarginRate: 0.32, lossRate: 0.052, targetLossRate: 0.03 },
-  { category: "Meat", sales: 28000, targetSales: 25000, marginRate: 0.29, targetMarginRate: 0.28, lossRate: 0.021, targetLossRate: 0.03 },
-  { category: "Bakery", sales: 12000, targetSales: 15000, marginRate: 0.22, targetMarginRate: 0.25, lossRate: 0.063, targetLossRate: 0.03 },
-  { category: "Grocery", sales: 45300, targetSales: 45000, marginRate: 0.27, targetMarginRate: 0.27, lossRate: 0.03, targetLossRate: 0.03 },
-  { category: "Deli", sales: 8600, targetSales: 9000, marginRate: 0.33, targetMarginRate: 0.32, lossRate: 0.038, targetLossRate: 0.03 },
+  {
+    category: "Produce",
+    sales: 32000,
+    targetSales: 35000,
+    marginRate: 0.31,
+    targetMarginRate: 0.32,
+    lossRate: 0.052,
+    targetLossRate: 0.03,
+    keySkus: ["Avocado", "Strawberry", "Spinach", "Banana", "Broccoli"],
+  },
+  {
+    category: "Meat",
+    sales: 28000,
+    targetSales: 25000,
+    marginRate: 0.29,
+    targetMarginRate: 0.28,
+    lossRate: 0.021,
+    targetLossRate: 0.03,
+    keySkus: ["Ribeye", "Chicken Breast", "Pork Belly", "Ground Beef", "Salmon"],
+  },
+  {
+    category: "Bakery",
+    sales: 12000,
+    targetSales: 15000,
+    marginRate: 0.22,
+    targetMarginRate: 0.25,
+    lossRate: 0.063,
+    targetLossRate: 0.03,
+    keySkus: ["Sourdough", "Baguette", "Croissant", "Muffin", "Whole Wheat"],
+  },
+  {
+    category: "Grocery",
+    sales: 45300,
+    targetSales: 45000,
+    marginRate: 0.27,
+    targetMarginRate: 0.27,
+    lossRate: 0.03,
+    targetLossRate: 0.03,
+    keySkus: ["Olive Oil", "Pasta", "Cereal", "Coffee", "Rice"],
+  },
+  {
+    category: "Deli",
+    sales: 8600,
+    targetSales: 9000,
+    marginRate: 0.33,
+    targetMarginRate: 0.32,
+    lossRate: 0.038,
+    targetLossRate: 0.03,
+    keySkus: ["Turkey", "Ham", "Cheddar", "Hummus", "Salad Kit"],
+  },
 ])
 
 const onlyIssues = ref(false)
@@ -147,6 +193,17 @@ const columns = computed(() => {
       width: 100,
     },
     {
+      title: "Key SKUs",
+      key: "keySkus",
+      render: (row: Row) =>
+        h(
+          "div",
+          { class: "sku-list" },
+          row.keySkus.map((sku) => h("span", { class: "sku-pill" }, sku)),
+        ),
+      width: 220,
+    },
+    {
       title: "Status",
       key: "status",
       render: (row: Row) => {
@@ -178,5 +235,19 @@ const summaryType = computed(() => {
 .hint {
   font-size: 12px;
   opacity: 0.75;
+}
+
+.sku-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sku-pill {
+  padding: 2px 6px;
+  border-radius: 999px;
+  font-size: 11px;
+  background: rgba(148, 163, 184, 0.18);
+  color: #334155;
 }
 </style>
