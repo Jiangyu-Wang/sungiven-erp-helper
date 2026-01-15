@@ -7,16 +7,6 @@
           <n-tag size="small" round :type="card.statusType">{{ card.statusText }}</n-tag>
         </div>
 
-        <div class="kpi-sub">
-          <div class="kpi-sub-item">
-            <span class="label">Target</span>
-            <span class="num">{{ card.targetText }}</span>
-          </div>
-          <div class="kpi-sub-item">
-            <span class="label">Δ vs Prev</span>
-            <span class="num" :class="card.deltaClass">{{ card.deltaText }}</span>
-          </div>
-        </div>
       </n-card>
     </n-grid-item>
   </n-grid>
@@ -173,29 +163,6 @@ const cards = computed(() => {
   font-size: 22px;
   font-weight: 800;
   line-height: 1.2;
-}
-
-.kpi-sub {
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  font-size: 12px;
-  opacity: 0.9;
-}
-
-.kpi-sub-item {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
-
-.label {
-  opacity: 0.75;
-}
-
-.num {
-  font-weight: 600;
 }
 
 .pos {
