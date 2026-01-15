@@ -1,5 +1,5 @@
 <template>
-  <n-grid :cols="4" :x-gap="12" :y-gap="12" responsive="screen">
+  <n-grid :cols="8" :x-gap="12" :y-gap="12" responsive="screen">
     <n-grid-item v-for="card in cards" :key="card.key">
       <n-card size="small" :title="card.title" class="kpi-card">
         <div class="kpi-value-row">
