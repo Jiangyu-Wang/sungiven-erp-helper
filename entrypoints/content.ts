@@ -8,17 +8,20 @@ function waitForIframe(selector: string, timeout = 15000): Promise<HTMLIFrameEle
     const found = document.querySelector(selector) as HTMLIFrameElement | null
     if (found) return resolve(found)
 
+    let timeoutId: ReturnType<typeof setTimeout>
+
     const observer = new MutationObserver(() => {
       const el = document.querySelector(selector) as HTMLIFrameElement | null
       if (el) {
         observer.disconnect()
+        clearTimeout(timeoutId)
         resolve(el)
       }
     })
 
     observer.observe(document.documentElement, { childList: true, subtree: true })
 
-    setTimeout(() => {
+    timeoutId = setTimeout(() => {
       observer.disconnect()
       reject(new Error("Iframe not found: " + selector))
     }, timeout)
@@ -57,7 +60,8 @@ export default defineContentScript({
     const root = document.createElement("div")
     root.id = ROOT_ID
     root.style.width = "100%"
-    root.style.overflow = "scroll"
+    root.style.flex = "1"
+    root.style.overflow = "auto"
 
     iframe.style.display = "none"
 
