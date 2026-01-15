@@ -145,21 +145,21 @@ const columns = computed(() => {
       key: "category",
       sorter: "default" as const,
       fixed: "left" as const,
-      width: 140,
+      width: 120,
     },
     {
       title: "Sales",
       key: "sales",
       sorter: (a: Row, b: Row) => a.sales - b.sales,
       render: (row: Row) => money(row.sales),
-      width: 120,
+      width: 110,
     },
     {
       title: "Target",
       key: "targetSales",
       sorter: (a: Row, b: Row) => a.targetSales - b.targetSales,
       render: (row: Row) => money(row.targetSales),
-      width: 120,
+      width: 110,
     },
     {
       title: "Ach%",
@@ -172,14 +172,14 @@ const columns = computed(() => {
         const type = s.status === "bad" ? "error" : s.status === "watch" ? "warning" : "success"
         return h(NTag, { size: "small", round: true, type }, { default: () => text })
       },
-      width: 100,
+      width: 90,
     },
     {
       title: "Margin%",
       key: "marginRate",
       sorter: (a: Row, b: Row) => a.marginRate - b.marginRate,
       render: (row: Row) => pct(row.marginRate),
-      width: 110,
+      width: 95,
     },
     {
       title: "Loss%",
@@ -190,7 +190,27 @@ const columns = computed(() => {
         const type = gap > 0.01 ? "error" : gap > 0 ? "warning" : "success"
         return h(NTag, { size: "small", round: true, type }, { default: () => pct(row.lossRate) })
       },
-      width: 100,
+      width: 90,
+    },
+    {
+      title: "Key SKUs",
+      key: "keySkus",
+      render: (row: Row) =>
+        h(
+          NSpace,
+          { size: 6, wrap: true },
+          {
+            default: () =>
+              row.keySkus.map((sku) =>
+                h(
+                  NTag,
+                  { size: "small", round: true, type: "info", bordered: false },
+                  { default: () => sku },
+                ),
+              ),
+          },
+        ),
+      width: 320,
     },
     {
       title: "Key SKUs",
@@ -219,7 +239,7 @@ const columns = computed(() => {
         const s = statusOf(row)
         return h(NTag, { size: "small", round: true, type: s.tagType }, { default: () => s.label })
       },
-      width: 140,
+      width: 120,
     },
   ]
 })
