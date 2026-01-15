@@ -7,8 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
-import { NButton, NCard } from "naive-ui"
 
 function onClick() {
   alert("Naive UI works in iframe 🎉")
