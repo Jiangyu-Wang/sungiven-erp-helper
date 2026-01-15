@@ -1,5 +1,5 @@
 <template>
-  <n-grid :cols="4" :x-gap="12" :y-gap="12" responsive="screen">
+  <n-grid :cols="8" :x-gap="12" :y-gap="12" responsive="screen">
     <n-grid-item v-for="card in cards" :key="card.key">
       <n-card size="small" :title="card.title" class="kpi-card">
         <div class="kpi-value-row">
@@ -42,6 +42,13 @@ function signedPct(v: number) {
   const sign = v > 0 ? "+" : v < 0 ? "-" : ""
   return `${sign}${(Math.abs(v) * 100).toFixed(1)}%`
 }
+function signedNumber(v: number) {
+  const sign = v > 0 ? "+" : v < 0 ? "-" : ""
+  return `${sign}${Math.abs(v).toLocaleString()}`
+}
+function rating(v: number) {
+  return `${v.toFixed(1)} ★`
+}
 
 function statusForAch(ach: number): { type: StatusType; text: string } {
   // 简单规则：>=100 绿，90~99 黄，<90 红
@@ -68,9 +75,18 @@ const data = {
   lossRate: 0.042,
   lossTargetRate: 0.03,
   lossDelta: 0.006,
-  customer: 1832,
-  customerTarget: 1900,
-  customerDelta: -0.031,
+  googleRating: 4.7,
+  googleTarget: 4.6,
+  googleDelta: 0.1,
+  nps: 62,
+  npsTarget: 60,
+  npsDelta: 4,
+  repeatRate: 0.38,
+  repeatTargetRate: 0.35,
+  repeatDelta: 0.02,
+  newMembers: 126,
+  newMembersTarget: 110,
+  newMembersDelta: 12,
 }
 
 const cards = computed(() => {
@@ -78,7 +94,10 @@ const cards = computed(() => {
   const achStatus = statusForAch(ach)
   const marginStatus = statusForAch(data.marginRate / data.marginTargetRate)
   const lossStatus = statusForLoss(data.lossRate, data.lossTargetRate)
-  const custStatus = statusForAch(data.customer / data.customerTarget)
+  const reviewStatus = statusForAch(data.googleRating / data.googleTarget)
+  const npsStatus = statusForAch(data.nps / data.npsTarget)
+  const repeatStatus = statusForAch(data.repeatRate / data.repeatTargetRate)
+  const newMemberStatus = statusForAch(data.newMembers / data.newMembersTarget)
 
   return [
     {
@@ -122,17 +141,46 @@ const cards = computed(() => {
       statusType: lossStatus.type,
       statusText: lossStatus.text,
     },
-    // 如果你想要第5张卡：Customer Count
-    // {
-    //   key: "customer",
-    //   title: "Customer",
-    //   valueText: data.customer.toLocaleString(),
-    //   targetText: data.customerTarget.toLocaleString(),
-    //   deltaText: signedPct(data.customerDelta),
-    //   deltaClass: data.customerDelta >= 0 ? "pos" : "neg",
-    //   statusType: custStatus.type,
-    //   statusText: custStatus.text,
-    // },
+    {
+      key: "google-review",
+      title: "Google Review",
+      valueText: rating(data.googleRating),
+      targetText: rating(data.googleTarget),
+      deltaText: signedNumber(data.googleDelta),
+      deltaClass: data.googleDelta >= 0 ? "pos" : "neg",
+      statusType: reviewStatus.type,
+      statusText: reviewStatus.text,
+    },
+    {
+      key: "nps",
+      title: "NPS",
+      valueText: data.nps.toLocaleString(),
+      targetText: data.npsTarget.toLocaleString(),
+      deltaText: signedNumber(data.npsDelta),
+      deltaClass: data.npsDelta >= 0 ? "pos" : "neg",
+      statusType: npsStatus.type,
+      statusText: npsStatus.text,
+    },
+    {
+      key: "repeat-visit",
+      title: "Repeat Visit",
+      valueText: pct(data.repeatRate),
+      targetText: pct(data.repeatTargetRate),
+      deltaText: signedPct(data.repeatDelta),
+      deltaClass: data.repeatDelta >= 0 ? "pos" : "neg",
+      statusType: repeatStatus.type,
+      statusText: repeatStatus.text,
+    },
+    {
+      key: "new-members",
+      title: "New Members",
+      valueText: data.newMembers.toLocaleString(),
+      targetText: data.newMembersTarget.toLocaleString(),
+      deltaText: signedNumber(data.newMembersDelta),
+      deltaClass: data.newMembersDelta >= 0 ? "pos" : "neg",
+      statusType: newMemberStatus.type,
+      statusText: newMemberStatus.text,
+    },
   ]
 })
 </script>
