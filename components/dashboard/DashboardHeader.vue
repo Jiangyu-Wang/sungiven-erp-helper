@@ -39,6 +39,7 @@
           </n-button-group>
         </n-space>
       </div>
+
     </div>
 
     <div class="right">
@@ -113,6 +114,7 @@ const status = computed(() => {
   if (quickKey.value === "yesterday") return { type: "info" as const, text: "Yesterday: Review" }
   return { type: "success" as const, text: "7D: Trend" }
 })
+
 </script>
 
 <style scoped>
