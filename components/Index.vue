@@ -1,14 +1,26 @@
 <template>
-  <n-card title="ERP Dashboard" size="small">
-    <n-button type="primary" @click="onClick">
-      点击测试
-    </n-button>
-  </n-card>
+  <div class="page">
+    <DashboardHeader />
+    <KpiSummary />
+    <CategoryTargetTable />
+    <ActionList />
+    <SkuFocusTable />
+  </div>
 </template>
 
 <script setup lang="ts">
-
-function onClick() {
-  alert("Naive UI works in iframe 🎉")
-}
+import DashboardHeader from "./dashboard/DashboardHeader.vue"
+import KpiSummary from "./dashboard/KpiSummary.vue"
+import CategoryTargetTable from "./dashboard/CategoryTargetTable.vue"
+import ActionList from "./dashboard/ActionList.vue"
+import SkuFocusTable from "./dashboard/SkuFocusTable.vue"
 </script>
+
+<style scoped>
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+}
+</style>

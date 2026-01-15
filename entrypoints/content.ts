@@ -1,62 +1,72 @@
 import { createApp } from "vue"
-import IframeApp from "../components/IframeApp.vue"
+import Index from "../components/Index.vue"
 
-const IFRAME_SELECTOR = "#homeDocViewFrame"
-const ROOT_ID = "sg-erp-root"
+const ROOT_ID = "sg-helper-root"
+
+function waitForIframe(selector: string, timeout = 15000): Promise<HTMLIFrameElement> {
+  return new Promise((resolve, reject) => {
+    const found = document.querySelector(selector) as HTMLIFrameElement | null
+    if (found) return resolve(found)
+
+    const observer = new MutationObserver(() => {
+      const el = document.querySelector(selector) as HTMLIFrameElement | null
+      if (el) {
+        observer.disconnect()
+        resolve(el)
+      }
+    })
+
+    observer.observe(document.documentElement, { childList: true, subtree: true })
+
+    setTimeout(() => {
+      observer.disconnect()
+      reject(new Error("Iframe not found: " + selector))
+    }, timeout)
+  })
+}
 
 export default defineContentScript({
   matches: ["https://erpvan.sungivenfoods.ca/*"],
   runAt: "document_idle",
 
-  main() {
-    if (window.top !== window.self) return // 只在顶层页面执行
+  async main() {
+    if (window.top !== window.self) return
 
-    waitForElement<HTMLIFrameElement>(IFRAME_SELECTOR, 15000, (iframe) => {
-      // iframe 可能会 reload：每次 load 都重新尝试注入
-      iframe.addEventListener("load", () => injectIntoIframe(iframe), { passive: true })
+    console.log("[SG Helper] content loaded")
 
-      // 也可能已经加载完了：先注入一次
-      injectIntoIframe(iframe)
-    })
-  },
-})
+    let iframe: HTMLIFrameElement
 
-/** 等页面出现某个元素 */
-function waitForElement<T extends Element>(
-  selector: string,
-  timeoutMs: number,
-  onFound: (el: T) => void,
-) {
-  const start = Date.now()
-
-  const timer = setInterval(() => {
-    const el = document.querySelector(selector) as T | null
-    if (el) {
-      clearInterval(timer)
-      onFound(el)
+    try {
+      iframe = await waitForIframe("iframe#homeDocViewFrame")
+    } catch (e) {
+      console.error("[SG Helper] iframe not found", e)
       return
     }
 
-    if (Date.now() - start > timeoutMs) {
-      clearInterval(timer)
-      console.warn(`[SG Helper] Timeout waiting for ${selector}`)
-    }
-  }, 200)
-}
+    const parent = iframe.parentElement
+    if (!parent) return
 
-/** 清空 iframe body，插入 root，然后挂载 Vue */
-function injectIntoIframe(iframe: HTMLIFrameElement) {
-  const doc = iframe.contentDocument
-  if (!doc?.body) return
+    // 防重复
+    if (document.getElementById(ROOT_ID)) return
 
-  // 防重复
-  if (doc.getElementById(ROOT_ID)) return
+    // 设置父容器为横向布局
+    parent.style.display = "flex"
+    parent.style.alignItems = "stretch"
 
-  doc.body.innerHTML = ""
-  const root = doc.createElement("div")
-  root.id = ROOT_ID
-  doc.body.appendChild(root)
+    // 创建 root
+    const root = document.createElement("div")
+    root.id = ROOT_ID
+    root.style.width = "100%"
+    root.style.overflow = "scroll"
 
-  createApp(IframeApp, { styleMountTarget: doc.head }).mount(root)
-  console.log("[SG Helper] injected ✅")
-}
+    iframe.style.display = "none"
+
+    // 插到 iframe 前面
+    parent.insertBefore(root, iframe)
+
+    // mount Vue
+    createApp(Index).mount(root)
+
+    console.log("[SG Helper] sidebar injected ✅")
+  },
+})

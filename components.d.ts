@@ -12,6 +12,10 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     NButton: typeof import('naive-ui')['NButton']
-    NCard: typeof import('naive-ui')['NCard']
+    NButtonGroup: typeof import('naive-ui')['NButtonGroup']
+    NDatePicker: typeof import('naive-ui')['NDatePicker']
+    NSelect: typeof import('naive-ui')['NSelect']
+    NSpace: typeof import('naive-ui')['NSpace']
+    NTag: typeof import('naive-ui')['NTag']
   }
 }
