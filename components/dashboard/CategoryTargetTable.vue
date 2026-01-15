@@ -197,11 +197,20 @@ const columns = computed(() => {
       key: "keySkus",
       render: (row: Row) =>
         h(
-          "div",
-          { class: "sku-list" },
-          row.keySkus.map((sku) => h("span", { class: "sku-pill" }, sku)),
+          NSpace,
+          { size: 6, wrap: true },
+          {
+            default: () =>
+              row.keySkus.map((sku) =>
+                h(
+                  NTag,
+                  { size: "small", round: true, type: "info", bordered: false },
+                  { default: () => sku },
+                ),
+              ),
+          },
         ),
-      width: 220,
+      width: 260,
     },
     {
       title: "Status",
@@ -237,17 +246,4 @@ const summaryType = computed(() => {
   opacity: 0.75;
 }
 
-.sku-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.sku-pill {
-  padding: 2px 6px;
-  border-radius: 999px;
-  font-size: 11px;
-  background: rgba(148, 163, 184, 0.18);
-  color: #334155;
-}
 </style>
