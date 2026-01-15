@@ -1,20 +1,26 @@
 <template>
   <div class="page">
-    <DashboardPage />
+    <DashboardHeader />
+    <KpiSummary />
+    <CategoryTargetTable />
+    <ActionList />
+    <SkuFocusTable />
   </div>
 </template>
 
 <script setup lang="ts">
-import DashboardPage from "./dashboard/DashboardPage.vue"
+import DashboardHeader from "./dashboard/DashboardHeader.vue"
+import KpiSummary from "./dashboard/KpiSummary.vue"
+import CategoryTargetTable from "./dashboard/CategoryTargetTable.vue"
+import ActionList from "./dashboard/ActionList.vue"
+import SkuFocusTable from "./dashboard/SkuFocusTable.vue"
 </script>
 
 <style scoped>
 .page {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-  color: #0f172a;
-  background: #f8fafc;
+  gap: 12px;
+  padding: 12px;
 }
 </style>
