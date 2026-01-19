@@ -336,9 +336,11 @@ onMounted(async () => {
   try {
     const res = await fetchReport(reportRequestConfig)
     const resCate = await fetchReport(categoryRequestConfig)
-    resCate.records.forEach(item => {
+    resCate.records.forEach((item: { [x: string]: any }) => {
       const targetCard = categoryCards.find((card) => card.key === item["大类名称"])
-      targetCard.value = `$${item["销售金额"]}`
+      if (targetCard) {
+        targetCard.value = `$${item["销售金额"]}`
+      }
     });
 
 
