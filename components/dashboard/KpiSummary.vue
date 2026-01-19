@@ -327,4 +327,31 @@ const categoryCards: Array<{
   background: #f0fdf9;
   border-color: #bff7e1;
 }
+
+.value-emphasis {
+  color: #7c3aed;
+}
+
+.value-warning {
+  color: #f97316;
+}
+
+.value-danger {
+  color: #e11d48;
+}
+
+.category-green {
+  background: #f0fdf4;
+  border-color: #c7f9d4;
+}
+
+.category-amber {
+  background: #fff7ed;
+  border-color: #fed7aa;
+}
+
+.category-mint {
+  background: #f0fdf9;
+  border-color: #bff7e1;
+}
 </style>
