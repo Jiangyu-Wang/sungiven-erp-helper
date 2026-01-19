@@ -15,6 +15,7 @@
     "postinstall": "wxt prepare"
   },
   "dependencies": {
+    "@vicons/ionicons5": "^0.12.0",
     "naive-ui": "^2.43.2",
     "vue": "^3.5.25"
   },

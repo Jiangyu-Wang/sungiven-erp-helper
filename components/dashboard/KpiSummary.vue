@@ -4,7 +4,12 @@
     <div class="kpi-panel">
       <div class="kpi-grid">
         <div v-for="card in kpiCards" :key="card.key" class="kpi-card">
-          <div class="kpi-card-title">{{ card.title }}</div>
+          <div class="kpi-card-title">
+            <span class="kpi-card-icon-wrap" :class="card.iconTone">
+              <NIcon :component="card.icon" class="kpi-card-icon" />
+            </span>
+            <span>{{ card.title }}</span>
+          </div>
           <div class="kpi-card-value" :class="card.valueTone">{{ card.value }}</div>
         </div>
         <div class="kpi-todo">
@@ -35,57 +40,97 @@
 </template>
 
 <script setup lang="ts">
+import { markRaw, type Component } from "vue"
+import { NIcon } from "naive-ui"
+import {
+  AlertCircleOutline,
+  CashOutline,
+  PieChartOutline,
+  PricetagOutline,
+  StorefrontOutline,
+  TrendingDownOutline,
+  TrendingUpOutline,
+  WalletOutline,
+} from "@vicons/ionicons5"
+
 type ValueTone = "value-normal" | "value-emphasis" | "value-warning" | "value-danger"
+type IconTone =
+  | "icon-cash"
+  | "icon-tag"
+  | "icon-store"
+  | "icon-wallet"
+  | "icon-pie"
+  | "icon-alert"
+  | "icon-trend-down"
+  | "icon-trend-up"
 
 const kpiCards: Array<{
   key: string
   title: string
   value: string
   valueTone?: ValueTone
+  icon: Component
+  iconTone: IconTone
 }> = [
   {
     key: "week-store-sales",
     title: "本周门店销售",
     value: "¥43.1万",
+    icon: markRaw(CashOutline),
+    iconTone: "icon-cash",
   },
   {
     key: "week-category-sales",
     title: "本周品类销售",
     value: "¥12.8万",
+    icon: markRaw(PricetagOutline),
+    iconTone: "icon-tag",
   },
   {
     key: "today-store-sales",
     title: "本日门店销售",
     value: "¥61,200",
+    icon: markRaw(StorefrontOutline),
+    iconTone: "icon-store",
   },
   {
     key: "today-category-sales",
     title: "本日品类销售",
     value: "¥18,500",
+    icon: markRaw(WalletOutline),
+    iconTone: "icon-wallet",
   },
   {
     key: "margin",
     title: "毛利率",
     value: "23.1%",
     valueTone: "value-emphasis",
+    icon: markRaw(PieChartOutline),
+    iconTone: "icon-pie",
   },
   {
     key: "daily-loss-rate",
     title: "日损耗率",
     value: "3.8%",
     valueTone: "value-warning",
+    icon: markRaw(TrendingDownOutline),
+    iconTone: "icon-trend-down",
   },
   {
     key: "weekly-loss-rate",
     title: "周损耗率",
     value: "4.2%",
     valueTone: "value-warning",
+    icon: markRaw(TrendingUpOutline),
+    iconTone: "icon-trend-up",
   },
   {
     key: "loss-amount",
     title: "损耗金额",
     value: "¥3.7万",
     valueTone: "value-danger",
+    icon: markRaw(AlertCircleOutline),
+    iconTone: "icon-alert",
   },
 ]
 
@@ -133,14 +178,70 @@ const categoryCards: Array<{
 }
 
 .kpi-card-title {
-  font-size: 13px;
+  font-size: 14px;
   color: #111111;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .kpi-card-value {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   color: #111111;
+}
+
+.kpi-card-icon-wrap {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kpi-card-icon {
+  font-size: 18px;
+}
+
+.icon-cash {
+  color: #2f6fed;
+  background-color: rgba(47, 111, 237, 0.14);
+}
+
+.icon-tag {
+  color: #6f42c1;
+  background-color: rgba(111, 66, 193, 0.14);
+}
+
+.icon-store {
+  color: #0ea5e9;
+  background-color: rgba(14, 165, 233, 0.14);
+}
+
+.icon-wallet {
+  color: #16a34a;
+  background-color: rgba(22, 163, 74, 0.14);
+}
+
+.icon-pie {
+  color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.14);
+}
+
+.icon-alert {
+  color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.14);
+}
+
+.icon-trend-down {
+  color: #d97706;
+  background-color: rgba(217, 119, 6, 0.14);
+}
+
+.icon-trend-up {
+  color: #10b981;
+  background-color: rgba(16, 185, 129, 0.14);
 }
 
 .kpi-todo {
