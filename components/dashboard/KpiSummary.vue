@@ -12,7 +12,7 @@
           </div>
           <div class="kpi-card-value" :class="card.valueTone">
             <template v-if="card.key === 'today-store-sales' && isLoading">
-              <NIcon :component="RefreshOutline" class="kpi-loading-icon" />
+              <n-skeleton height="28px" width="50%" />
             </template>
             <template v-else>{{ card.value }}</template>
           </div>
@@ -276,21 +276,6 @@ const categoryCards: Array<{
   font-size: 20px;
   font-weight: 700;
   color: #111111;
-}
-
-.kpi-loading-icon {
-  font-size: 18px;
-  color: #111111;
-  animation: kpi-spin 1s linear infinite;
-}
-
-@keyframes kpi-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .kpi-card-icon-wrap {

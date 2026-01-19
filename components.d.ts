@@ -11,11 +11,6 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    NButton: typeof import('naive-ui')['NButton']
-    NButtonGroup: typeof import('naive-ui')['NButtonGroup']
-    NDatePicker: typeof import('naive-ui')['NDatePicker']
-    NSelect: typeof import('naive-ui')['NSelect']
-    NSpace: typeof import('naive-ui')['NSpace']
-    NTag: typeof import('naive-ui')['NTag']
+    NSkeleton: typeof import('naive-ui')['NSkeleton']
   }
 }
