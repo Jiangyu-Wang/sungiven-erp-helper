@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { markRaw, onMounted, type Component } from "vue"
+import { markRaw, onMounted, ref, type Component } from "vue"
 import { NIcon } from "naive-ui"
 import {
   AlertCircleOutline,
@@ -118,11 +118,6 @@ const reportRequestConfig: ReportRequestConfig = {
   },
 }
 
-onMounted(async () => {
-  const res = await fetchReport(reportRequestConfig)
-  res.records[0].netsales;
-})
-
 type ValueTone = "value-normal" | "value-emphasis" | "value-warning" | "value-danger"
 type IconTone =
   | "icon-cash"
@@ -134,14 +129,14 @@ type IconTone =
   | "icon-trend-down"
   | "icon-trend-up"
 
-const kpiCards: Array<{
+const kpiCards = ref<Array<{
   key: string
   title: string
   value: string
   valueTone?: ValueTone
   icon: Component
   iconTone: IconTone
-}> = [
+}>>([
   {
     key: "week-store-sales",
     title: "本周门店销售",
@@ -202,7 +197,16 @@ const kpiCards: Array<{
     icon: markRaw(AlertCircleOutline),
     iconTone: "icon-alert",
   },
-]
+])
+
+onMounted(async () => {
+  const res = await fetchReport(reportRequestConfig)
+  const netsales = res.records?.[0]?.netsales ?? ""
+  const targetCard = kpiCards.value.find((card) => card.key === "today-store-sales")
+  if (targetCard) {
+    targetCard.value = `$${netsales}`
+  }
+})
 
 const categoryCards: Array<{
   key: string
