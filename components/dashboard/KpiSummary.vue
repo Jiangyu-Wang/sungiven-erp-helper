@@ -56,6 +56,8 @@ import {
 const kpiReportUrl =
   "https://erpvan.sungivenfoods.ca/h4cs-web/pasoreport/report/display/queryDisplay.hd?clientMac=18-C0-4D-4D-ED-FA&latinTC=1101"
 const kpiReportPayload = `eyJyZXBvcnRJZCI6InJlcG9ydGIwZWUxMWRhY2Y0ZTQ2NzBiYmJhNDc3NmM2MTU4YjNjIiwicGFyZW50UmVwb3J0SWQiOiJyZXBvcnRiMGVlMTFkYWNmNGU0NjcwYmJiYTQ3NzZjNjE1OGIzYyIsImRzIjp7Im5hbWUiOiLmgLvpg6jmraPlvI/njq/looMifSwiY2hhcnRzIjpbXSwiY29uZGl0aW9ucyI6W3siaWQiOiLlvIDlp4vml7bpl7QiLCJ0eXBlIjoiZml4ZWQiLCJmaWVsZCI6eyJuYW1lIjoi5byA5aeL5pe26Ze0In0sImRhdGFUeXBlIjoiZGF0ZSIsIm9wZXJhdG9yIjoiZ3RlIiwidmFsdWUiOiIyMDI2LTAxLTE4In0seyJpZCI6Iue7k+adn+aXtumXtCIsInR5cGUiOiJmaXhlZCIsImZpZWxkIjp7Im5hbWUiOiLnu5PmnZ/ml7bpl7QifSwiZGF0YVR5cGUiOiJkYXRlIiwib3BlcmF0b3IiOiJsdGUiLCJ2YWx1ZSI6IjIwMjYtMDEtMTgifSx7ImlkIjoi6Zeo5bqXIOetieS6jiIsInR5cGUiOiJmaXhlZCIsImZpZWxkIjp7Im5hbWUiOiLpl6jlupcg562J5LqOIn0sImRhdGFUeXBlIjoic3RyaW5nIiwib3BlcmF0b3IiOiJlcSIsInZhbHVlIjoiMTEwMSJ9LHsiaWQiOiLmn6Xor6LnsbvlnosiLCJ0eXBlIjoiZml4ZWQiLCJmaWVsZCI6eyJuYW1lIjoi5p+l6K+i57G75Z6LIn0sImRhdGFUeXBlIjoic3RyaW5nIiwib3BlcmF0b3IiOiJlcSIsInZhbHVlIjoi6Zu25ZSuIn1dLCJkaXNwbGF5Q29sdW1ucyI6ImFsbCIsInN1bW1hcnlDb2x1bW5zIjoiYWxsIiwicGFnaW5nTW9kZSI6InByZWNpc2UiLCJxdWVyeUNvbmRpdGlvbklzTm90QWxsTnVsbCI6ZmFsc2UsInZhbHVlUmFuZ2VMaW1pdENvbnRpZGlvbnMiOltdLCJyZXF1aXJlZFJhbmdlcyI6W10sImV4dHJhRmllbGRzIjp7ImN1cnJlbnRWZW5kb3IiOiIiLCJjdXJyZW50VGVuYW50IjoiIiwiY3VycmVudFVzZXIiOiIiLCJjdXJyZW50T3JnIjoiIiwiY3VycmVudENsaWVudCI6Ijk1NTUiLCJjdXJyZW50U2NoZW1hIjoiIiwiZXhwb3J0Q3N2IjpmYWxzZX0sInBhZ2VTaXplIjoxMDAsInBhZ2UiOjEsIm9yZGVyQnlzIjpbeyJuYW1lIjoic2NvZGUiLCJkaXJlY3Rpb24iOiJBU0MifV0sInJlcXVlc3RJZCI6ImZkZGU5YmQ2YzI1ZDZkOTg4M2YwOTM4NmM5MWIwMDRiIn0=`
+const kpiJobInstanceBaseUrl =
+  "https://erpvan.sungivenfoods.ca/h4cs-web/latin/simplejob/getJobInstance.hd?latinTC=1101&_dc=1768809686044"
 
 const fetchKpiReport = async () => {
   const response = await fetch(kpiReportUrl, {
@@ -69,6 +71,17 @@ const fetchKpiReport = async () => {
   })
   const resultText = await response.text()
   console.log("KPI Summary report response:", resultText)
+  const instanceId = resultText.replace("REPORT_QUERY:", "")
+  const jobUrl = `${kpiJobInstanceBaseUrl}&instanceId=${encodeURIComponent(instanceId)}`
+  const jobResponse = await fetch(jobUrl, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+    },
+  })
+  const jobResult = await jobResponse.text()
+  console.log("KPI Summary job response:", jobResult)
 }
 
 onMounted(() => {
