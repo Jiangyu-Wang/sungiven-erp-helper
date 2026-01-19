@@ -6,7 +6,6 @@
         <div v-for="card in kpiCards" :key="card.key" class="kpi-card" :class="card.tone">
           <div class="kpi-card-title">{{ card.title }}</div>
           <div class="kpi-card-value" :class="card.valueTone">{{ card.value }}</div>
-          <div v-if="card.meta" class="kpi-card-meta" :class="card.metaTone">{{ card.meta }}</div>
           <div v-if="card.sub" class="kpi-card-sub">{{ card.sub }}</div>
         </div>
         <div class="kpi-todo">
@@ -38,50 +37,39 @@
 
 <script setup lang="ts">
 type Tone = "tone-blue" | "tone-indigo" | "tone-mint" | "tone-cyan" | "tone-purple" | "tone-amber" | "tone-peach" | "tone-pink"
-type MetaTone = "meta-success" | "meta-warning" | "meta-danger"
 type ValueTone = "value-normal" | "value-emphasis" | "value-warning" | "value-danger"
 
 const kpiCards: Array<{
   key: string
   title: string
   value: string
-  meta?: string
   sub?: string
   tone: Tone
-  metaTone?: MetaTone
   valueTone?: ValueTone
 }> = [
   {
     key: "week-store-sales",
     title: "本周门店销售",
     value: "¥43.1万",
-    meta: "↗ +12.5%",
     tone: "tone-blue",
-    metaTone: "meta-success",
   },
   {
     key: "week-category-sales",
     title: "本周品类销售",
     value: "¥12.8万",
-    meta: "107.1%",
     tone: "tone-indigo",
-    metaTone: "meta-success",
   },
   {
     key: "today-store-sales",
     title: "本日门店销售",
     value: "¥61,200",
-    meta: "104.3%",
     tone: "tone-mint",
-    metaTone: "meta-success",
   },
   {
     key: "today-category-sales",
     title: "本日品类销售",
     value: "¥18,500",
-    meta: "108.8%",
     tone: "tone-cyan",
-    metaTone: "meta-success",
   },
   {
     key: "margin",
@@ -173,16 +161,6 @@ const categoryCards: Array<{
   font-size: 18px;
   font-weight: 700;
   color: #1f2937;
-}
-
-.kpi-card-meta {
-  align-self: flex-start;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 999px;
-  background: #e8f5e9;
-  color: #1b7d3f;
 }
 
 .kpi-card-sub {
@@ -323,19 +301,31 @@ const categoryCards: Array<{
   background: #fff1f3;
 }
 
-.meta-success {
-  background: #e6f7ec;
-  color: #1b7d3f;
+.value-emphasis {
+  color: #7c3aed;
 }
 
-.meta-warning {
-  background: #fff4e5;
-  color: #b46900;
+.value-warning {
+  color: #f97316;
 }
 
-.meta-danger {
-  background: #fdecec;
-  color: #c12f2f;
+.value-danger {
+  color: #e11d48;
+}
+
+.category-green {
+  background: #f0fdf4;
+  border-color: #c7f9d4;
+}
+
+.category-amber {
+  background: #fff7ed;
+  border-color: #fed7aa;
+}
+
+.category-mint {
+  background: #f0fdf9;
+  border-color: #bff7e1;
 }
 
 .value-emphasis {
