@@ -10,7 +10,12 @@
             </span>
             <span>{{ card.title }}</span>
           </div>
-          <div class="kpi-card-value" :class="card.valueTone">{{ card.value }}</div>
+          <div class="kpi-card-value" :class="card.valueTone">
+            <template v-if="card.key === 'today-store-sales' && isLoading">
+              <NIcon :component="RefreshOutline" class="kpi-loading-icon" />
+            </template>
+            <template v-else>{{ card.value }}</template>
+          </div>
         </div>
         <div class="kpi-todo">
           <div class="kpi-todo-icon">
@@ -40,13 +45,14 @@
 </template>
 
 <script setup lang="ts">
-import { markRaw, onMounted, type Component } from "vue"
+import { markRaw, onMounted, ref, type Component } from "vue"
 import { NIcon } from "naive-ui"
 import {
   AlertCircleOutline,
   CashOutline,
   PieChartOutline,
   PricetagOutline,
+  RefreshOutline,
   StorefrontOutline,
   TrendingDownOutline,
   TrendingUpOutline,
@@ -118,11 +124,6 @@ const reportRequestConfig: ReportRequestConfig = {
   },
 }
 
-onMounted(async () => {
-  const res = await fetchReport(reportRequestConfig)
-  res.records[0].netsales;
-})
-
 type ValueTone = "value-normal" | "value-emphasis" | "value-warning" | "value-danger"
 type IconTone =
   | "icon-cash"
@@ -134,14 +135,14 @@ type IconTone =
   | "icon-trend-down"
   | "icon-trend-up"
 
-const kpiCards: Array<{
+const kpiCards = ref<Array<{
   key: string
   title: string
   value: string
   valueTone?: ValueTone
   icon: Component
   iconTone: IconTone
-}> = [
+}>>([
   {
     key: "week-store-sales",
     title: "本周门店销售",
@@ -202,7 +203,23 @@ const kpiCards: Array<{
     icon: markRaw(AlertCircleOutline),
     iconTone: "icon-alert",
   },
-]
+])
+
+const isLoading = ref(true)
+
+onMounted(async () => {
+  isLoading.value = true
+  try {
+    const res = await fetchReport(reportRequestConfig)
+    const netsales = res.records?.[0]?.netsales ?? ""
+    const targetCard = kpiCards.value.find((card) => card.key === "today-store-sales")
+    if (targetCard) {
+      targetCard.value = `$${netsales}`
+    }
+  } finally {
+    isLoading.value = false
+  }
+})
 
 const categoryCards: Array<{
   key: string
@@ -259,6 +276,21 @@ const categoryCards: Array<{
   font-size: 20px;
   font-weight: 700;
   color: #111111;
+}
+
+.kpi-loading-icon {
+  font-size: 18px;
+  color: #111111;
+  animation: kpi-spin 1s linear infinite;
+}
+
+@keyframes kpi-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .kpi-card-icon-wrap {
