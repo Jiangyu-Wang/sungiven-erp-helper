@@ -60,8 +60,10 @@ const kpiReportPayload = `eyJyZXBvcnRJZCI6InJlcG9ydGIwZWUxMWRhY2Y0ZTQ2NzBiYmJhND
 const fetchKpiReport = async () => {
   const response = await fetch(kpiReportUrl, {
     method: "POST",
+    credentials: "include",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json;charset=utf-8",
+      "X-Requested-With": "XMLHttpRequest",
     },
     body: kpiReportPayload,
   })
