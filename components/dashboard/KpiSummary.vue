@@ -71,8 +71,7 @@ const fetchKpiReport = async () => {
   })
   const resultText = await response.text()
   console.log("KPI Summary report response:", resultText)
-  const instanceId = resultText.replace("REPORT_QUERY:", "")
-  const jobUrl = `${kpiJobInstanceBaseUrl}&instanceId=${encodeURIComponent(instanceId)}`
+  const jobUrl = `${kpiJobInstanceBaseUrl}&instanceId=${encodeURIComponent(resultText)}`
   const jobResponse = await fetch(jobUrl, {
     method: "GET",
     credentials: "include",
