@@ -1,5 +1,5 @@
 <template>
-  <NCard title="品类本周目标进度" size="small">
+  <NCard title="品类本周目标进度" size="small" class="category-target-progress">
     <NSpace vertical size="large">
       <NSpace v-for="item in progressItems" :key="item.key" vertical size="small">
         <NFlex justify="space-between" align="center">
@@ -66,3 +66,10 @@ const progressItems: Array<{
   },
 ]
 </script>
+
+<style scoped>
+.category-target-progress {
+  box-shadow: 0 0px 3px rgba(15, 23, 42, 0.3);
+  border: none;
+}
+</style>
