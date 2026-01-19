@@ -124,6 +124,115 @@ const reportRequestConfig: ReportRequestConfig = {
   },
 }
 
+const categoryRequestConfig: ReportRequestConfig = {
+  latinTC: "1101",
+  payloadSource: {
+      "reportId":"report41b213f485474a13b22156157d5d9ab6",
+      "parentReportId":"report41b213f485474a13b22156157d5d9ab6",
+      "ds":
+      {
+          "name":"总部正式环境"
+      },
+      "charts":[],
+      "conditions":[
+          {
+              "id":"bgdate",
+              "type":"fixed",
+              "field":
+              {
+                  "name":"bgdate"
+              },
+              "dataType":"date",
+              "operator":"gte",
+              "value":"2026-01-18"
+          },
+
+          {
+              "id":"eddate",
+              "type":"fixed",
+              "field":
+              {
+                  "name":"eddate"
+              },
+              "dataType":"date",
+              "operator":"lte",
+              "value":"2026-01-18"
+          },
+
+          {
+              "id":"查询类型",
+              "type":"fixed",
+              "field":
+              {
+                  "name":"查询类型"
+              },
+              "dataType":"string",
+              "operator":"eq",
+              "value":""
+          },
+
+          {
+              "id":"store",
+              "type":"fixed",
+              "field":
+              {
+                  "name":"store"
+              },
+              "dataType":"string",
+              "operator":"eq",
+              "value":"1101"
+          },
+
+          {
+              "id":"大类",
+              "type":"fixed",
+              "field":
+              {
+                  "name":"大类"
+              },
+              "dataType":"string",
+              "operator":"eq",
+              "value":"Floral,Fruit,Vegetable"
+          },
+
+          {
+              "id":"amoeba",
+              "type":"fixed",
+              "field":
+              {
+                  "name":"amoeba"
+              },
+              "dataType":"string",
+              "operator":"eq",
+              "value":""
+          }],
+      "displayColumns":"all",
+      "summaryColumns":"all",
+      "pagingMode":"precise",
+      "queryConditionIsNotAllNull":false,
+      "valueRangeLimitContidions":[],
+      "requiredRanges":[],
+      "extraFields":
+      {
+          "currentVendor":"",
+          "currentTenant":"",
+          "currentUser":"",
+          "currentOrg":"",
+          "currentClient":"9555",
+          "currentSchema":"",
+          "exportCsv":false
+      },
+      "pageSize":2000,
+      "page":1,
+      "orderBys":[
+          {
+              "name":"销售金额",
+              "direction":"DESC"
+          }],
+      "requestId":"8054dbc11af035f171edb9371f06446d"
+  }
+}
+
 type ValueTone = "value-normal" | "value-emphasis" | "value-warning" | "value-danger"
 type IconTone =
   | "icon-cash"
@@ -205,12 +314,29 @@ const kpiCards = ref<Array<{
   },
 ])
 
+const categoryCards: Array<{
+  key: string
+  title: string
+  value: string
+}> = [
+  { key: "Floral", title: "FLORAL", value: "¥18.5k" },
+  { key: "Fruit", title: "FRUIT", value: "¥13.2k" },
+  { key: "Vegetable", title: "VEGETABLE", value: "¥6.1k" },
+]
+
 const isLoading = ref(true)
 
 onMounted(async () => {
   isLoading.value = true
   try {
     const res = await fetchReport(reportRequestConfig)
+    const resCate = await fetchReport(categoryRequestConfig)
+    resCate.records.forEach(item => {
+      const targetCard = categoryCards.find((card) => card.key === item["大类名称"])
+      targetCard.value = `$${item["销售金额"]}`
+    });
+
+
     const netsales = res.records?.[0]?.netsales ?? ""
     const targetCard = kpiCards.value.find((card) => card.key === "today-store-sales")
     if (targetCard) {
@@ -221,15 +347,6 @@ onMounted(async () => {
   }
 })
 
-const categoryCards: Array<{
-  key: string
-  title: string
-  value: string
-}> = [
-  { key: "floral", title: "FLORAL", value: "¥18.5k" },
-  { key: "fruit", title: "FRUIT", value: "¥13.2k" },
-  { key: "vegetable", title: "VEGETABLE", value: "¥6.1k" },
-]
 </script>
 
 <style scoped>
