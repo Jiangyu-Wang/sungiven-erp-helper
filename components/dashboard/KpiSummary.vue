@@ -94,7 +94,7 @@ const fetchKpiReport = async () => {
     }
   }
 
-  const reportResultUrl = `${kpiReportResultBaseUrl}&instanceId=${instanceId}`
+  const reportResultUrl = `${kpiReportResultBaseUrl}&enabledTimer=false&instanceId=${instanceId}`
   const reportResultResponse = await fetch(reportResultUrl, {
     method: "GET",
     credentials: "include",
