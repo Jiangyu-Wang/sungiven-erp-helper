@@ -1,175 +1,377 @@
 <template>
-  <n-grid :cols="6" :x-gap="12" :y-gap="12" responsive="screen">
-    <n-grid-item v-for="card in cards" :key="card.key">
-      <n-card size="small" :title="card.title" class="kpi-card">
-        <div class="kpi-value-row">
-          <div class="kpi-value">{{ card.valueText }}</div>
-          <n-tag size="small" round :type="card.statusType">{{ card.statusText }}</n-tag>
+  <section class="kpi-summary">
+    <h2 class="kpi-title">业绩概览</h2>
+    <div class="kpi-panel">
+      <div class="kpi-grid">
+        <div v-for="card in kpiCards" :key="card.key" class="kpi-card" :class="card.tone">
+          <div class="kpi-card-title">{{ card.title }}</div>
+          <div class="kpi-card-value" :class="card.valueTone">{{ card.value }}</div>
+          <div v-if="card.meta" class="kpi-card-meta" :class="card.metaTone">{{ card.meta }}</div>
+          <div v-if="card.sub" class="kpi-card-sub">{{ card.sub }}</div>
         </div>
-
-      </n-card>
-    </n-grid-item>
-  </n-grid>
+        <div class="kpi-todo">
+          <div class="kpi-todo-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 16H5V5h14v14zm-8.4-2.2-3.4-3.4 1.4-1.4 2 2 5-5 1.4 1.4-6.4 6.4z"
+              />
+            </svg>
+          </div>
+          <div class="kpi-todo-title">待办事项</div>
+          <div class="kpi-todo-count">7</div>
+          <div class="kpi-todo-sub">项待处理</div>
+          <button class="kpi-todo-action" type="button">点击查看详情 →</button>
+        </div>
+      </div>
+      <div class="kpi-categories">
+        <div class="kpi-categories-title">品类本日销售</div>
+        <div class="kpi-categories-grid">
+          <div v-for="category in categoryCards" :key="category.key" class="kpi-category-card" :class="category.tone">
+            <div class="kpi-category-title">{{ category.title }}</div>
+            <div class="kpi-category-value">{{ category.value }}</div>
+            <div class="kpi-category-meta">{{ category.meta }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue"
-import { NCard, NGrid, NGridItem, NTag } from "naive-ui"
+type Tone = "tone-blue" | "tone-indigo" | "tone-mint" | "tone-cyan" | "tone-purple" | "tone-amber" | "tone-peach" | "tone-pink"
+type MetaTone = "meta-success" | "meta-warning" | "meta-danger"
+type ValueTone = "value-normal" | "value-emphasis" | "value-warning" | "value-danger"
 
-type StatusType = "success" | "warning" | "error" | "info"
+const kpiCards: Array<{
+  key: string
+  title: string
+  value: string
+  meta?: string
+  sub?: string
+  tone: Tone
+  metaTone?: MetaTone
+  valueTone?: ValueTone
+}> = [
+  {
+    key: "week-store-sales",
+    title: "本周门店销售",
+    value: "¥43.1万",
+    meta: "↗ +12.5%",
+    tone: "tone-blue",
+    metaTone: "meta-success",
+  },
+  {
+    key: "week-category-sales",
+    title: "本周品类销售",
+    value: "¥12.8万",
+    meta: "107.1%",
+    tone: "tone-indigo",
+    metaTone: "meta-success",
+  },
+  {
+    key: "today-store-sales",
+    title: "本日门店销售",
+    value: "¥61,200",
+    meta: "104.3%",
+    tone: "tone-mint",
+    metaTone: "meta-success",
+  },
+  {
+    key: "today-category-sales",
+    title: "本日品类销售",
+    value: "¥18,500",
+    meta: "108.8%",
+    tone: "tone-cyan",
+    metaTone: "meta-success",
+  },
+  {
+    key: "margin",
+    title: "毛利率",
+    value: "23.1%",
+    sub: "周22.3%",
+    tone: "tone-purple",
+    valueTone: "value-emphasis",
+  },
+  {
+    key: "daily-loss-rate",
+    title: "日损耗率",
+    value: "3.8%",
+    tone: "tone-amber",
+    valueTone: "value-warning",
+  },
+  {
+    key: "weekly-loss-rate",
+    title: "周损耗率",
+    value: "4.2%",
+    tone: "tone-peach",
+    valueTone: "value-warning",
+  },
+  {
+    key: "loss-amount",
+    title: "损耗金额",
+    value: "¥3.7万",
+    tone: "tone-pink",
+    valueTone: "value-danger",
+  },
+]
 
-function pct(v: number) {
-  return `${(v * 100).toFixed(1)}%`
-}
-function money(v: number) {
-  return `$${v.toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-}
-function signedMoney(v: number) {
-  const sign = v > 0 ? "+" : v < 0 ? "-" : ""
-  return `${sign}$${Math.abs(v).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-}
-function signedPct(v: number) {
-  const sign = v > 0 ? "+" : v < 0 ? "-" : ""
-  return `${sign}${(Math.abs(v) * 100).toFixed(1)}%`
-}
-function signedNumber(v: number) {
-  const sign = v > 0 ? "+" : v < 0 ? "-" : ""
-  return `${sign}${Math.abs(v).toLocaleString()}`
-}
-function rating(v: number) {
-  return `${v.toFixed(1)} ★`
-}
-
-function statusForAch(ach: number): { type: StatusType; text: string } {
-  // 简单规则：>=100 绿，90~99 黄，<90 红
-  if (ach >= 1) return { type: "success", text: "On Track" }
-  if (ach >= 0.9) return { type: "warning", text: "Watch" }
-  return { type: "error", text: "Behind" }
-}
-
-function statusForLoss(lossRate: number, targetLossRate: number): { type: StatusType; text: string } {
-  // 损耗越低越好：<=目标 绿，<=目标+1% 黄，>目标+1% 红
-  if (lossRate <= targetLossRate) return { type: "success", text: "Good" }
-  if (lossRate <= targetLossRate + 0.01) return { type: "warning", text: "High" }
-  return { type: "error", text: "Critical" }
-}
-
-// ✅ 假数据（后面接 API/ERP 数据时替换这里即可）
-const data = {
-  sales: 125300,
-  salesTarget: 135000,
-  salesDelta: -4200, // vs prev day/week
-  marginRate: 0.285,
-  marginTargetRate: 0.3,
-  marginDelta: -0.012,
-  lossRate: 0.042,
-  lossTargetRate: 0.03,
-  lossDelta: 0.006,
-  googleRating: 4.7,
-  googleTarget: 4.6,
-  googleDelta: 0.1,
-  nps: 62,
-  npsTarget: 60,
-  npsDelta: 4,
-}
-
-const cards = computed(() => {
-  const ach = data.sales / data.salesTarget
-  const achStatus = statusForAch(ach)
-  const marginStatus = statusForAch(data.marginRate / data.marginTargetRate)
-  const lossStatus = statusForLoss(data.lossRate, data.lossTargetRate)
-  const reviewStatus = statusForAch(data.googleRating / data.googleTarget)
-  const npsStatus = statusForAch(data.nps / data.npsTarget)
-
-  return [
-    {
-      key: "sales",
-      title: "Sales",
-      valueText: money(data.sales),
-      targetText: money(data.salesTarget),
-      deltaText: signedMoney(data.salesDelta),
-      deltaClass: data.salesDelta >= 0 ? "pos" : "neg",
-      statusType: achStatus.type,
-      statusText: `${pct(ach)}`,
-    },
-    {
-      key: "ach",
-      title: "Ach %",
-      valueText: pct(ach),
-      targetText: "100.0%",
-      deltaText: signedPct(data.salesDelta / data.salesTarget),
-      deltaClass: data.salesDelta >= 0 ? "pos" : "neg",
-      statusType: achStatus.type,
-      statusText: achStatus.text,
-    },
-    {
-      key: "margin",
-      title: "Margin %",
-      valueText: pct(data.marginRate),
-      targetText: pct(data.marginTargetRate),
-      deltaText: signedPct(data.marginDelta),
-      deltaClass: data.marginDelta <= 0 ? "neg" : "pos",
-      statusType: marginStatus.type,
-      statusText: marginStatus.text,
-    },
-    {
-      key: "loss",
-      title: "Loss %",
-      valueText: pct(data.lossRate),
-      targetText: pct(data.lossTargetRate),
-      deltaText: signedPct(data.lossDelta),
-      // 损耗上升是坏事，所以这里反过来
-      deltaClass: data.lossDelta <= 0 ? "pos" : "neg",
-      statusType: lossStatus.type,
-      statusText: lossStatus.text,
-    },
-    {
-      key: "google-review",
-      title: "Google Review",
-      valueText: rating(data.googleRating),
-      targetText: rating(data.googleTarget),
-      deltaText: signedNumber(data.googleDelta),
-      deltaClass: data.googleDelta >= 0 ? "pos" : "neg",
-      statusType: reviewStatus.type,
-      statusText: reviewStatus.text,
-    },
-    {
-      key: "nps",
-      title: "NPS",
-      valueText: data.nps.toLocaleString(),
-      targetText: data.npsTarget.toLocaleString(),
-      deltaText: signedNumber(data.npsDelta),
-      deltaClass: data.npsDelta >= 0 ? "pos" : "neg",
-      statusType: npsStatus.type,
-      statusText: npsStatus.text,
-    },
-  ]
-})
+const categoryCards: Array<{
+  key: string
+  title: string
+  value: string
+  meta: string
+  tone: "category-green" | "category-amber" | "category-mint"
+}> = [
+  { key: "meat", title: "MEAT", value: "¥18.5k", meta: "109%", tone: "category-green" },
+  { key: "seafood", title: "SEAFOOD", value: "¥13.2k", meta: "94%", tone: "category-amber" },
+  { key: "plant", title: "PLANT", value: "¥6.1k", meta: "107%", tone: "category-mint" },
+  { key: "milk", title: "MILK", value: "¥9.5k", meta: "103%", tone: "category-mint" },
+  { key: "egg", title: "EGG", value: "¥5.6k", meta: "112%", tone: "category-mint" },
+  { key: "rtc", title: "RTC", value: "¥8.3k", meta: "106%", tone: "category-mint" },
+]
 </script>
 
 <style scoped>
-.kpi-card {
-  border-radius: 12px;
+.kpi-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.kpi-value-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
+.kpi-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  color: #1f1f1f;
+}
+
+.kpi-panel {
+  background: #f5f9ff;
+  border: 2px solid #b9d5ff;
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: inset 0 0 0 1px #d9e7ff;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(160px, 0.7fr);
   gap: 10px;
 }
 
-.kpi-value {
-  font-size: 22px;
+.kpi-card {
+  border-radius: 10px;
+  padding: 12px;
+  min-height: 78px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.kpi-card-title {
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.kpi-card-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.kpi-card-meta {
+  align-self: flex-start;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #e8f5e9;
+  color: #1b7d3f;
+}
+
+.kpi-card-sub {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.kpi-todo {
+  grid-column: 5;
+  grid-row: 1 / span 2;
+  border-radius: 12px;
+  border: 2px solid #f2c94c;
+  background: #fff8d6;
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.kpi-todo-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 2px solid #f2c94c;
+  background: #fff0b5;
+}
+
+.kpi-todo-icon svg {
+  width: 28px;
+  height: 28px;
+  fill: #c77800;
+}
+
+.kpi-todo-title {
+  font-size: 14px;
+  color: #6b4a00;
+  font-weight: 600;
+}
+
+.kpi-todo-count {
+  font-size: 30px;
   font-weight: 800;
-  line-height: 1.2;
+  color: #c77800;
+  line-height: 1;
 }
 
-.pos {
-  color: #1f7a1f;
+.kpi-todo-sub {
+  font-size: 12px;
+  color: #8f6a00;
 }
 
-.neg {
+.kpi-todo-action {
+  margin-top: auto;
+  border: none;
+  background: none;
+  color: #c77800;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.kpi-categories {
+  margin-top: 10px;
+  border: 1px solid #d8e5ff;
+  background: #f2f7ff;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.kpi-categories-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.kpi-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.kpi-category-card {
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  min-height: 60px;
+}
+
+.kpi-category-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #374151;
+}
+
+.kpi-category-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f766e;
+}
+
+.kpi-category-meta {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.tone-blue {
+  background: #f0f6ff;
+}
+
+.tone-indigo {
+  background: #eef2ff;
+}
+
+.tone-mint {
+  background: #e9fbfb;
+}
+
+.tone-cyan {
+  background: #eefcf7;
+}
+
+.tone-purple {
+  background: #f6f0ff;
+}
+
+.tone-amber {
+  background: #fff6ec;
+}
+
+.tone-peach {
+  background: #fff4e9;
+}
+
+.tone-pink {
+  background: #fff1f3;
+}
+
+.meta-success {
+  background: #e6f7ec;
+  color: #1b7d3f;
+}
+
+.meta-warning {
+  background: #fff4e5;
+  color: #b46900;
+}
+
+.meta-danger {
+  background: #fdecec;
   color: #c12f2f;
+}
+
+.value-emphasis {
+  color: #7c3aed;
+}
+
+.value-warning {
+  color: #f97316;
+}
+
+.value-danger {
+  color: #e11d48;
+}
+
+.category-green {
+  background: #f0fdf4;
+  border-color: #c7f9d4;
+}
+
+.category-amber {
+  background: #fff7ed;
+  border-color: #fed7aa;
+}
+
+.category-mint {
+  background: #f0fdf9;
+  border-color: #bff7e1;
 }
 </style>
