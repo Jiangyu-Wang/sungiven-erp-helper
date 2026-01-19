@@ -5,7 +5,9 @@
       <div class="kpi-grid">
         <div v-for="card in kpiCards" :key="card.key" class="kpi-card">
           <div class="kpi-card-title">
-            <NIcon :component="card.icon" class="kpi-card-icon" :class="card.iconTone" />
+            <span class="kpi-card-icon-wrap" :class="card.iconTone">
+              <NIcon :component="card.icon" class="kpi-card-icon" />
+            </span>
             <span>{{ card.title }}</span>
           </div>
           <div class="kpi-card-value" :class="card.valueTone">{{ card.value }}</div>
@@ -176,7 +178,7 @@ const categoryCards: Array<{
 }
 
 .kpi-card-title {
-  font-size: 13px;
+  font-size: 14px;
   color: #111111;
   display: flex;
   align-items: center;
@@ -184,45 +186,62 @@ const categoryCards: Array<{
 }
 
 .kpi-card-value {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   color: #111111;
 }
 
+.kpi-card-icon-wrap {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .kpi-card-icon {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .icon-cash {
   color: #2f6fed;
+  background-color: rgba(47, 111, 237, 0.14);
 }
 
 .icon-tag {
   color: #6f42c1;
+  background-color: rgba(111, 66, 193, 0.14);
 }
 
 .icon-store {
   color: #0ea5e9;
+  background-color: rgba(14, 165, 233, 0.14);
 }
 
 .icon-wallet {
   color: #16a34a;
+  background-color: rgba(22, 163, 74, 0.14);
 }
 
 .icon-pie {
   color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.14);
 }
 
 .icon-alert {
   color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.14);
 }
 
 .icon-trend-down {
   color: #d97706;
+  background-color: rgba(217, 119, 6, 0.14);
 }
 
 .icon-trend-up {
   color: #10b981;
+  background-color: rgba(16, 185, 129, 0.14);
 }
 
 .kpi-todo {
