@@ -1,20 +1,20 @@
-export type KpiReportConfig = {
+export type ReportPayload = Record<string, unknown>
+
+export type ReportRequestConfig = {
   latinTC: string
-  payloadSource: string
+  payloadSource: ReportPayload
 }
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 const encodeBase64 = (value: string) => {
   const bytes = new TextEncoder().encode(value)
-  let binary = ""
-  bytes.forEach((byte) => {
-    binary += String.fromCharCode(byte)
-  })
+  const binary = String.fromCharCode(...bytes)
   return btoa(binary)
 }
 
-const buildKpiReportPayload = (payloadSource: string) => encodeBase64(payloadSource)
+const buildReportPayload = (payloadSource: ReportPayload) =>
+  encodeBase64(JSON.stringify(payloadSource))
 
 const buildClientMac = () => {
   const parts = Array.from({ length: 6 }, () =>
@@ -26,7 +26,7 @@ const buildClientMac = () => {
   return parts.join("-")
 }
 
-const buildKpiReportUrls = (config: KpiReportConfig) => {
+const buildReportUrls = (config: ReportRequestConfig) => {
   const clientMac = buildClientMac()
   const jobInstanceDc = Date.now().toString()
   const reportResultDc = Date.now().toString()
@@ -55,7 +55,7 @@ const buildKpiReportUrls = (config: KpiReportConfig) => {
   }
 }
 
-const pollKpiReportJob = async (jobInstanceUrl: string, instanceId: string) => {
+const pollReportJob = async (jobInstanceUrl: string, instanceId: string) => {
   let jobResult: { state?: string } | null = null
 
   while (jobResult?.state !== "completed") {
@@ -68,14 +68,14 @@ const pollKpiReportJob = async (jobInstanceUrl: string, instanceId: string) => {
       },
     })
     jobResult = await jobResponse.json()
-    console.log("KPI Summary job response:", jobResult)
+    console.log("Report job response:", jobResult)
     if (jobResult?.state !== "completed") {
       await sleep(1000)
     }
   }
 }
 
-const fetchKpiReportResult = async (reportResultUrl: string, instanceId: string) => {
+const fetchReportResult = async (reportResultUrl: string, instanceId: string) => {
   const resultUrl = `${reportResultUrl}&enabledTimer=false&instanceId=${instanceId}`
   const reportResultResponse = await fetch(resultUrl, {
     method: "GET",
@@ -87,8 +87,8 @@ const fetchKpiReportResult = async (reportResultUrl: string, instanceId: string)
   return reportResultResponse.text()
 }
 
-export const fetchKpiReport = async (config: KpiReportConfig) => {
-  const { reportUrl, jobInstanceUrl, reportResultUrl } = buildKpiReportUrls(config)
+export const fetchReport = async (config: ReportRequestConfig) => {
+  const { reportUrl, jobInstanceUrl, reportResultUrl } = buildReportUrls(config)
   const response = await fetch(reportUrl, {
     method: "POST",
     credentials: "include",
@@ -96,12 +96,10 @@ export const fetchKpiReport = async (config: KpiReportConfig) => {
       "Content-Type": "application/json;charset=utf-8",
       "X-Requested-With": "XMLHttpRequest",
     },
-    body: buildKpiReportPayload(config.payloadSource),
+    body: buildReportPayload(config.payloadSource),
   })
   const resultText = await response.text()
-  console.log("KPI Summary report response:", resultText)
   const instanceId = encodeURIComponent(resultText)
-  await pollKpiReportJob(jobInstanceUrl, instanceId)
-  const reportResultText = await fetchKpiReportResult(reportResultUrl, instanceId)
-  console.log("KPI Summary report result:", reportResultText)
+  await pollReportJob(jobInstanceUrl, instanceId)
+  await fetchReportResult(reportResultUrl, instanceId)
 }

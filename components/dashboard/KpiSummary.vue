@@ -53,15 +53,73 @@ import {
   WalletOutline,
 } from "@vicons/ionicons5"
 
-import { fetchKpiReport, type KpiReportConfig } from "@/api/requests"
+import { fetchReport, type ReportRequestConfig } from "@/api/requests"
 
-const kpiReportConfig: KpiReportConfig = {
+const reportRequestConfig: ReportRequestConfig = {
   latinTC: "1101",
-  payloadSource: `{"reportId":"reportb0ee11dacf4e4670bbba4776c6158b3c","parentReportId":"reportb0ee11dacf4e4670bbba4776c6158b3c","ds":{"name":"总部正式环境"},"charts":[],"conditions":[{"id":"开始时间","type":"fixed","field":{"name":"开始时间"},"dataType":"date","operator":"gte","value":"2026-01-18"},{"id":"结束时间","type":"fixed","field":{"name":"结束时间"},"dataType":"date","operator":"lte","value":"2026-01-18"},{"id":"门店 等于","type":"fixed","field":{"name":"门店 等于"},"dataType":"string","operator":"eq","value":"1101"},{"id":"查询类型","type":"fixed","field":{"name":"查询类型"},"dataType":"string","operator":"eq","value":"零售"}],"displayColumns":"all","summaryColumns":"all","pagingMode":"precise","queryConditionIsNotAllNull":false,"valueRangeLimitContidions":[],"requiredRanges":[],"extraFields":{"currentVendor":"","currentTenant":"","currentUser":"","currentOrg":"","currentClient":"9555","currentSchema":"","exportCsv":false},"pageSize":100,"page":1,"orderBys":[{"name":"scode","direction":"ASC"}],"requestId":"fdde9bd6c25d6d9883f09386c91b004b"}`,
+  payloadSource: {
+    reportId: "reportb0ee11dacf4e4670bbba4776c6158b3c",
+    parentReportId: "reportb0ee11dacf4e4670bbba4776c6158b3c",
+    ds: { name: "总部正式环境" },
+    charts: [],
+    conditions: [
+      {
+        id: "开始时间",
+        type: "fixed",
+        field: { name: "开始时间" },
+        dataType: "date",
+        operator: "gte",
+        value: "2026-01-18",
+      },
+      {
+        id: "结束时间",
+        type: "fixed",
+        field: { name: "结束时间" },
+        dataType: "date",
+        operator: "lte",
+        value: "2026-01-18",
+      },
+      {
+        id: "门店 等于",
+        type: "fixed",
+        field: { name: "门店 等于" },
+        dataType: "string",
+        operator: "eq",
+        value: "1101",
+      },
+      {
+        id: "查询类型",
+        type: "fixed",
+        field: { name: "查询类型" },
+        dataType: "string",
+        operator: "eq",
+        value: "零售",
+      },
+    ],
+    displayColumns: "all",
+    summaryColumns: "all",
+    pagingMode: "precise",
+    queryConditionIsNotAllNull: false,
+    valueRangeLimitContidions: [],
+    requiredRanges: [],
+    extraFields: {
+      currentVendor: "",
+      currentTenant: "",
+      currentUser: "",
+      currentOrg: "",
+      currentClient: "9555",
+      currentSchema: "",
+      exportCsv: false,
+    },
+    pageSize: 100,
+    page: 1,
+    orderBys: [{ name: "scode", direction: "ASC" }],
+    requestId: "fdde9bd6c25d6d9883f09386c91b004b",
+  },
 }
 
 onMounted(() => {
-  fetchKpiReport(kpiReportConfig)
+  fetchReport(reportRequestConfig)
 })
 
 type ValueTone = "value-normal" | "value-emphasis" | "value-warning" | "value-danger"
