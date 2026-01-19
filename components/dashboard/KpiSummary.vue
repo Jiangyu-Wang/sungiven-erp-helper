@@ -29,7 +29,6 @@
           <div v-for="category in categoryCards" :key="category.key" class="kpi-category-card" :class="category.tone">
             <div class="kpi-category-title">{{ category.title }}</div>
             <div class="kpi-category-value">{{ category.value }}</div>
-            <div class="kpi-category-meta">{{ category.meta }}</div>
           </div>
         </div>
       </div>
@@ -119,15 +118,11 @@ const categoryCards: Array<{
   key: string
   title: string
   value: string
-  meta: string
   tone: "category-green" | "category-amber" | "category-mint"
 }> = [
-  { key: "meat", title: "MEAT", value: "¥18.5k", meta: "109%", tone: "category-green" },
-  { key: "seafood", title: "SEAFOOD", value: "¥13.2k", meta: "94%", tone: "category-amber" },
-  { key: "plant", title: "PLANT", value: "¥6.1k", meta: "107%", tone: "category-mint" },
-  { key: "milk", title: "MILK", value: "¥9.5k", meta: "103%", tone: "category-mint" },
-  { key: "egg", title: "EGG", value: "¥5.6k", meta: "112%", tone: "category-mint" },
-  { key: "rtc", title: "RTC", value: "¥8.3k", meta: "106%", tone: "category-mint" },
+  { key: "floral", title: "FLORAL", value: "¥18.5k", tone: "category-green" },
+  { key: "fruit", title: "FRUIT", value: "¥13.2k", tone: "category-amber" },
+  { key: "vegetable", title: "VEGETABLE", value: "¥6.1k", tone: "category-mint" },
 ]
 </script>
 
@@ -270,7 +265,7 @@ const categoryCards: Array<{
 
 .kpi-categories-grid {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
 }
 
@@ -294,11 +289,6 @@ const categoryCards: Array<{
   font-size: 14px;
   font-weight: 700;
   color: #0f766e;
-}
-
-.kpi-category-meta {
-  font-size: 12px;
-  color: #6b7280;
 }
 
 .tone-blue {
