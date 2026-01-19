@@ -1,175 +1,268 @@
 <template>
-  <n-grid :cols="6" :x-gap="12" :y-gap="12" responsive="screen">
-    <n-grid-item v-for="card in cards" :key="card.key">
-      <n-card size="small" :title="card.title" class="kpi-card">
-        <div class="kpi-value-row">
-          <div class="kpi-value">{{ card.valueText }}</div>
-          <n-tag size="small" round :type="card.statusType">{{ card.statusText }}</n-tag>
+  <section class="kpi-summary">
+    <h2 class="kpi-title">业绩概览</h2>
+    <div class="kpi-panel">
+      <div class="kpi-grid">
+        <div v-for="card in kpiCards" :key="card.key" class="kpi-card">
+          <div class="kpi-card-title">{{ card.title }}</div>
+          <div class="kpi-card-value" :class="card.valueTone">{{ card.value }}</div>
         </div>
-
-      </n-card>
-    </n-grid-item>
-  </n-grid>
+        <div class="kpi-todo">
+          <div class="kpi-todo-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 16H5V5h14v14zm-8.4-2.2-3.4-3.4 1.4-1.4 2 2 5-5 1.4 1.4-6.4 6.4z"
+              />
+            </svg>
+          </div>
+          <div class="kpi-todo-title">待办事项</div>
+          <div class="kpi-todo-count">7</div>
+          <div class="kpi-todo-sub">项待处理</div>
+          <button class="kpi-todo-action" type="button">点击查看详情 →</button>
+        </div>
+      </div>
+      <div class="kpi-categories">
+        <div class="kpi-categories-title">品类本日销售</div>
+        <div class="kpi-categories-grid">
+          <div v-for="category in categoryCards" :key="category.key" class="kpi-category-card">
+            <div class="kpi-category-title">{{ category.title }}</div>
+            <div class="kpi-category-value">{{ category.value }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue"
-import { NCard, NGrid, NGridItem, NTag } from "naive-ui"
+type ValueTone = "value-normal" | "value-emphasis" | "value-warning" | "value-danger"
 
-type StatusType = "success" | "warning" | "error" | "info"
+const kpiCards: Array<{
+  key: string
+  title: string
+  value: string
+  valueTone?: ValueTone
+}> = [
+  {
+    key: "week-store-sales",
+    title: "本周门店销售",
+    value: "¥43.1万",
+  },
+  {
+    key: "week-category-sales",
+    title: "本周品类销售",
+    value: "¥12.8万",
+  },
+  {
+    key: "today-store-sales",
+    title: "本日门店销售",
+    value: "¥61,200",
+  },
+  {
+    key: "today-category-sales",
+    title: "本日品类销售",
+    value: "¥18,500",
+  },
+  {
+    key: "margin",
+    title: "毛利率",
+    value: "23.1%",
+    valueTone: "value-emphasis",
+  },
+  {
+    key: "daily-loss-rate",
+    title: "日损耗率",
+    value: "3.8%",
+    valueTone: "value-warning",
+  },
+  {
+    key: "weekly-loss-rate",
+    title: "周损耗率",
+    value: "4.2%",
+    valueTone: "value-warning",
+  },
+  {
+    key: "loss-amount",
+    title: "损耗金额",
+    value: "¥3.7万",
+    valueTone: "value-danger",
+  },
+]
 
-function pct(v: number) {
-  return `${(v * 100).toFixed(1)}%`
-}
-function money(v: number) {
-  return `$${v.toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-}
-function signedMoney(v: number) {
-  const sign = v > 0 ? "+" : v < 0 ? "-" : ""
-  return `${sign}$${Math.abs(v).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-}
-function signedPct(v: number) {
-  const sign = v > 0 ? "+" : v < 0 ? "-" : ""
-  return `${sign}${(Math.abs(v) * 100).toFixed(1)}%`
-}
-function signedNumber(v: number) {
-  const sign = v > 0 ? "+" : v < 0 ? "-" : ""
-  return `${sign}${Math.abs(v).toLocaleString()}`
-}
-function rating(v: number) {
-  return `${v.toFixed(1)} ★`
-}
-
-function statusForAch(ach: number): { type: StatusType; text: string } {
-  // 简单规则：>=100 绿，90~99 黄，<90 红
-  if (ach >= 1) return { type: "success", text: "On Track" }
-  if (ach >= 0.9) return { type: "warning", text: "Watch" }
-  return { type: "error", text: "Behind" }
-}
-
-function statusForLoss(lossRate: number, targetLossRate: number): { type: StatusType; text: string } {
-  // 损耗越低越好：<=目标 绿，<=目标+1% 黄，>目标+1% 红
-  if (lossRate <= targetLossRate) return { type: "success", text: "Good" }
-  if (lossRate <= targetLossRate + 0.01) return { type: "warning", text: "High" }
-  return { type: "error", text: "Critical" }
-}
-
-// ✅ 假数据（后面接 API/ERP 数据时替换这里即可）
-const data = {
-  sales: 125300,
-  salesTarget: 135000,
-  salesDelta: -4200, // vs prev day/week
-  marginRate: 0.285,
-  marginTargetRate: 0.3,
-  marginDelta: -0.012,
-  lossRate: 0.042,
-  lossTargetRate: 0.03,
-  lossDelta: 0.006,
-  googleRating: 4.7,
-  googleTarget: 4.6,
-  googleDelta: 0.1,
-  nps: 62,
-  npsTarget: 60,
-  npsDelta: 4,
-}
-
-const cards = computed(() => {
-  const ach = data.sales / data.salesTarget
-  const achStatus = statusForAch(ach)
-  const marginStatus = statusForAch(data.marginRate / data.marginTargetRate)
-  const lossStatus = statusForLoss(data.lossRate, data.lossTargetRate)
-  const reviewStatus = statusForAch(data.googleRating / data.googleTarget)
-  const npsStatus = statusForAch(data.nps / data.npsTarget)
-
-  return [
-    {
-      key: "sales",
-      title: "Sales",
-      valueText: money(data.sales),
-      targetText: money(data.salesTarget),
-      deltaText: signedMoney(data.salesDelta),
-      deltaClass: data.salesDelta >= 0 ? "pos" : "neg",
-      statusType: achStatus.type,
-      statusText: `${pct(ach)}`,
-    },
-    {
-      key: "ach",
-      title: "Ach %",
-      valueText: pct(ach),
-      targetText: "100.0%",
-      deltaText: signedPct(data.salesDelta / data.salesTarget),
-      deltaClass: data.salesDelta >= 0 ? "pos" : "neg",
-      statusType: achStatus.type,
-      statusText: achStatus.text,
-    },
-    {
-      key: "margin",
-      title: "Margin %",
-      valueText: pct(data.marginRate),
-      targetText: pct(data.marginTargetRate),
-      deltaText: signedPct(data.marginDelta),
-      deltaClass: data.marginDelta <= 0 ? "neg" : "pos",
-      statusType: marginStatus.type,
-      statusText: marginStatus.text,
-    },
-    {
-      key: "loss",
-      title: "Loss %",
-      valueText: pct(data.lossRate),
-      targetText: pct(data.lossTargetRate),
-      deltaText: signedPct(data.lossDelta),
-      // 损耗上升是坏事，所以这里反过来
-      deltaClass: data.lossDelta <= 0 ? "pos" : "neg",
-      statusType: lossStatus.type,
-      statusText: lossStatus.text,
-    },
-    {
-      key: "google-review",
-      title: "Google Review",
-      valueText: rating(data.googleRating),
-      targetText: rating(data.googleTarget),
-      deltaText: signedNumber(data.googleDelta),
-      deltaClass: data.googleDelta >= 0 ? "pos" : "neg",
-      statusType: reviewStatus.type,
-      statusText: reviewStatus.text,
-    },
-    {
-      key: "nps",
-      title: "NPS",
-      valueText: data.nps.toLocaleString(),
-      targetText: data.npsTarget.toLocaleString(),
-      deltaText: signedNumber(data.npsDelta),
-      deltaClass: data.npsDelta >= 0 ? "pos" : "neg",
-      statusType: npsStatus.type,
-      statusText: npsStatus.text,
-    },
-  ]
-})
+const categoryCards: Array<{
+  key: string
+  title: string
+  value: string
+}> = [
+  { key: "floral", title: "FLORAL", value: "¥18.5k" },
+  { key: "fruit", title: "FRUIT", value: "¥13.2k" },
+  { key: "vegetable", title: "VEGETABLE", value: "¥6.1k" },
+]
 </script>
 
 <style scoped>
-.kpi-card {
-  border-radius: 12px;
+.kpi-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.kpi-value-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
+.kpi-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  color: #1f1f1f;
+}
+
+.kpi-panel {
+  background: #f7f8fb;
+  border-radius: 16px;
+  padding: 12px;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(160px, 0.7fr);
   gap: 10px;
 }
 
-.kpi-value {
-  font-size: 22px;
+.kpi-card {
+  border-radius: 10px;
+  padding: 12px;
+  min-height: 78px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #ffffff;
+  border: none;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.kpi-card-title {
+  font-size: 13px;
+  color: #111111;
+}
+
+.kpi-card-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111111;
+}
+
+.kpi-todo {
+  grid-column: 5;
+  grid-row: 1 / span 2;
+  border-radius: 12px;
+  border: none;
+  background: #ffffff;
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.kpi-todo-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid #111111;
+  background: #ffffff;
+}
+
+.kpi-todo-icon svg {
+  width: 28px;
+  height: 28px;
+  fill: #111111;
+}
+
+.kpi-todo-title {
+  font-size: 14px;
+  color: #111111;
+  font-weight: 600;
+}
+
+.kpi-todo-count {
+  font-size: 30px;
   font-weight: 800;
-  line-height: 1.2;
+  color: #111111;
+  line-height: 1;
 }
 
-.pos {
-  color: #1f7a1f;
+.kpi-todo-sub {
+  font-size: 12px;
+  color: #111111;
 }
 
-.neg {
-  color: #c12f2f;
+.kpi-todo-action {
+  margin-top: auto;
+  border: none;
+  background: none;
+  color: #111111;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.kpi-categories {
+  margin-top: 10px;
+  border: none;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.kpi-categories-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111111;
+  margin-bottom: 8px;
+}
+
+.kpi-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.kpi-category-card {
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: none;
+  min-height: 60px;
+  background: #ffffff;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+}
+
+.kpi-category-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #111111;
+}
+
+.kpi-category-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111111;
+}
+
+.value-emphasis {
+  color: #111111;
+}
+
+.value-warning {
+  color: #111111;
+}
+
+.value-danger {
+  color: #111111;
 }
 </style>
