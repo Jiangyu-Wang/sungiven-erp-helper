@@ -1,7 +1,17 @@
 <template>
   <div class="page">
     <KpiSummary />
-    <CategoryTargetProgress />
+    <n-grid x-gap="12" :cols="3">
+      <n-gi>
+        <CategoryTargetProgress />
+      </n-gi>
+      <n-gi>
+        <div class="green" />
+      </n-gi>
+      <n-gi>
+        <div class="light-green" />
+      </n-gi>
+    </n-grid>
   </div>
 </template>
 
