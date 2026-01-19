@@ -11,6 +11,8 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    NGi: typeof import('naive-ui')['NGi']
+    NGrid: typeof import('naive-ui')['NGrid']
     NSkeleton: typeof import('naive-ui')['NSkeleton']
   }
 }
