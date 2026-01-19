@@ -36,7 +36,12 @@
         <div class="kpi-categories-grid">
           <div v-for="category in categoryCards" :key="category.key" class="kpi-category-card">
             <div class="kpi-category-title">{{ category.title }}</div>
-            <div class="kpi-category-value">{{ category.value }}</div>
+            <div class="kpi-category-value">
+              <template v-if="isLoading">
+                <n-skeleton height="18px" width="60%" />
+              </template>
+              <template v-else>{{ category.value }}</template>
+            </div>
           </div>
         </div>
       </div>
