@@ -68,7 +68,6 @@ const pollReportJob = async (jobInstanceUrl: string, instanceId: string) => {
       },
     })
     jobResult = await jobResponse.json()
-    console.log("Report job response:", jobResult)
     if (jobResult?.state !== "completed") {
       await sleep(1000)
     }
@@ -77,14 +76,13 @@ const pollReportJob = async (jobInstanceUrl: string, instanceId: string) => {
 
 const fetchReportResult = async (reportResultUrl: string, instanceId: string) => {
   const resultUrl = `${reportResultUrl}&enabledTimer=false&instanceId=${instanceId}`
-  const reportResultResponse = await fetch(resultUrl, {
+  return await fetch(resultUrl, {
     method: "GET",
     credentials: "include",
     headers: {
       "X-Requested-With": "XMLHttpRequest",
     },
   })
-  return reportResultResponse.text()
 }
 
 export const fetchReport = async (config: ReportRequestConfig) => {
@@ -101,5 +99,6 @@ export const fetchReport = async (config: ReportRequestConfig) => {
   const resultText = await response.text()
   const instanceId = encodeURIComponent(resultText)
   await pollReportJob(jobInstanceUrl, instanceId)
-  await fetchReportResult(reportResultUrl, instanceId)
+  const res = await fetchReportResult(reportResultUrl, instanceId)
+  return res.json()
 }

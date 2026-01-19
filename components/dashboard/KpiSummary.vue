@@ -118,8 +118,9 @@ const reportRequestConfig: ReportRequestConfig = {
   },
 }
 
-onMounted(() => {
-  fetchReport(reportRequestConfig)
+onMounted(async () => {
+  const res = await fetchReport(reportRequestConfig)
+  res.records[0].netsales;
 })
 
 type ValueTone = "value-normal" | "value-emphasis" | "value-warning" | "value-danger"
