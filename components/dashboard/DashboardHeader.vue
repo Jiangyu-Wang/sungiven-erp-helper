@@ -3,7 +3,7 @@
     <div class="left">
       <div class="title-row">
         <div class="title">Store Dashboard</div>
-        <n-tag size="small" type="info" round>ERP Helper</n-tag>
+        <n-tag size="small" type="info" round>Powered By Bill</n-tag>
       </div>
 
       <div class="controls">

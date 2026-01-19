@@ -114,12 +114,6 @@ const categoryCards: Array<{
   color: #1f1f1f;
 }
 
-.kpi-panel {
-  background: #f7f8fb;
-  border-radius: 16px;
-  padding: 12px;
-}
-
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(160px, 0.7fr);
@@ -135,7 +129,7 @@ const categoryCards: Array<{
   gap: 6px;
   background: #ffffff;
   border: none;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 0px 3px rgba(15, 23, 42, 0.3);
 }
 
 .kpi-card-title {
@@ -161,7 +155,7 @@ const categoryCards: Array<{
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 0px 3px rgba(15, 23, 42, 0.3);
 }
 
 .kpi-todo-icon {
@@ -214,7 +208,7 @@ const categoryCards: Array<{
   background: #ffffff;
   border-radius: 10px;
   padding: 10px;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 0px 3px rgba(15, 23, 42, 0.3);
 }
 
 .kpi-categories-title {
@@ -239,7 +233,7 @@ const categoryCards: Array<{
   border: none;
   min-height: 60px;
   background: #ffffff;
-  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 0px 3px rgba(15, 23, 42, 0.3);
 }
 
 .kpi-category-title {
