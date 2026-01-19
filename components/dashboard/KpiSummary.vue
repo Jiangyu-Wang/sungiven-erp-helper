@@ -53,61 +53,15 @@ import {
   WalletOutline,
 } from "@vicons/ionicons5"
 
-const kpiReportUrl =
-  "https://erpvan.sungivenfoods.ca/h4cs-web/pasoreport/report/display/queryDisplay.hd?clientMac=18-C0-4D-4D-ED-FA&latinTC=1101"
-const kpiReportPayload = `eyJyZXBvcnRJZCI6InJlcG9ydGIwZWUxMWRhY2Y0ZTQ2NzBiYmJhNDc3NmM2MTU4YjNjIiwicGFyZW50UmVwb3J0SWQiOiJyZXBvcnRiMGVlMTFkYWNmNGU0NjcwYmJiYTQ3NzZjNjE1OGIzYyIsImRzIjp7Im5hbWUiOiLmgLvpg6jmraPlvI/njq/looMifSwiY2hhcnRzIjpbXSwiY29uZGl0aW9ucyI6W3siaWQiOiLlvIDlp4vml7bpl7QiLCJ0eXBlIjoiZml4ZWQiLCJmaWVsZCI6eyJuYW1lIjoi5byA5aeL5pe26Ze0In0sImRhdGFUeXBlIjoiZGF0ZSIsIm9wZXJhdG9yIjoiZ3RlIiwidmFsdWUiOiIyMDI2LTAxLTE4In0seyJpZCI6Iue7k+adn+aXtumXtCIsInR5cGUiOiJmaXhlZCIsImZpZWxkIjp7Im5hbWUiOiLnu5PmnZ/ml7bpl7QifSwiZGF0YVR5cGUiOiJkYXRlIiwib3BlcmF0b3IiOiJsdGUiLCJ2YWx1ZSI6IjIwMjYtMDEtMTgifSx7ImlkIjoi6Zeo5bqXIOetieS6jiIsInR5cGUiOiJmaXhlZCIsImZpZWxkIjp7Im5hbWUiOiLpl6jlupcg562J5LqOIn0sImRhdGFUeXBlIjoic3RyaW5nIiwib3BlcmF0b3IiOiJlcSIsInZhbHVlIjoiMTEwMSJ9LHsiaWQiOiLmn6Xor6LnsbvlnosiLCJ0eXBlIjoiZml4ZWQiLCJmaWVsZCI6eyJuYW1lIjoi5p+l6K+i57G75Z6LIn0sImRhdGFUeXBlIjoic3RyaW5nIiwib3BlcmF0b3IiOiJlcSIsInZhbHVlIjoi6Zu25ZSuIn1dLCJkaXNwbGF5Q29sdW1ucyI6ImFsbCIsInN1bW1hcnlDb2x1bW5zIjoiYWxsIiwicGFnaW5nTW9kZSI6InByZWNpc2UiLCJxdWVyeUNvbmRpdGlvbklzTm90QWxsTnVsbCI6ZmFsc2UsInZhbHVlUmFuZ2VMaW1pdENvbnRpZGlvbnMiOltdLCJyZXF1aXJlZFJhbmdlcyI6W10sImV4dHJhRmllbGRzIjp7ImN1cnJlbnRWZW5kb3IiOiIiLCJjdXJyZW50VGVuYW50IjoiIiwiY3VycmVudFVzZXIiOiIiLCJjdXJyZW50T3JnIjoiIiwiY3VycmVudENsaWVudCI6Ijk1NTUiLCJjdXJyZW50U2NoZW1hIjoiIiwiZXhwb3J0Q3N2IjpmYWxzZX0sInBhZ2VTaXplIjoxMDAsInBhZ2UiOjEsIm9yZGVyQnlzIjpbeyJuYW1lIjoic2NvZGUiLCJkaXJlY3Rpb24iOiJBU0MifV0sInJlcXVlc3RJZCI6ImZkZGU5YmQ2YzI1ZDZkOTg4M2YwOTM4NmM5MWIwMDRiIn0=`
-const kpiJobInstanceBaseUrl =
-  "https://erpvan.sungivenfoods.ca/h4cs-web/latin/simplejob/getJobInstance.hd?latinTC=1101&_dc=1768809686044"
-const kpiReportResultBaseUrl =
-  "https://erpvan.sungivenfoods.ca/h4cs-web/pasoreport/report/display/getReportResult.hd?latinTC=1101&_dc=1768810946565"
+import { fetchKpiReport, type KpiReportConfig } from "@/api/requests"
 
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
-
-const fetchKpiReport = async () => {
-  const response = await fetch(kpiReportUrl, {
-    method: "POST",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json;charset=utf-8",
-      "X-Requested-With": "XMLHttpRequest",
-    },
-    body: kpiReportPayload,
-  })
-  const resultText = await response.text()
-  console.log("KPI Summary report response:", resultText)
-  const instanceId = encodeURIComponent(resultText)
-  let jobResult: { state?: string } | null = null
-
-  while (jobResult?.state !== "completed") {
-    const jobUrl = `${kpiJobInstanceBaseUrl}&instanceId=${instanceId}`
-    const jobResponse = await fetch(jobUrl, {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-      },
-    })
-    jobResult = await jobResponse.json()
-    console.log("KPI Summary job response:", jobResult)
-    if (jobResult?.state !== "completed") {
-      await sleep(1000)
-    }
-  }
-
-  const reportResultUrl = `${kpiReportResultBaseUrl}&enabledTimer=false&instanceId=${instanceId}`
-  const reportResultResponse = await fetch(reportResultUrl, {
-    method: "GET",
-    credentials: "include",
-    headers: {
-      "X-Requested-With": "XMLHttpRequest",
-    },
-  })
-  const reportResultText = await reportResultResponse.text()
-  console.log("KPI Summary report result:", reportResultText)
+const kpiReportConfig: KpiReportConfig = {
+  latinTC: "1101",
+  payloadSource: `{"reportId":"reportb0ee11dacf4e4670bbba4776c6158b3c","parentReportId":"reportb0ee11dacf4e4670bbba4776c6158b3c","ds":{"name":"总部正式环境"},"charts":[],"conditions":[{"id":"开始时间","type":"fixed","field":{"name":"开始时间"},"dataType":"date","operator":"gte","value":"2026-01-18"},{"id":"结束时间","type":"fixed","field":{"name":"结束时间"},"dataType":"date","operator":"lte","value":"2026-01-18"},{"id":"门店 等于","type":"fixed","field":{"name":"门店 等于"},"dataType":"string","operator":"eq","value":"1101"},{"id":"查询类型","type":"fixed","field":{"name":"查询类型"},"dataType":"string","operator":"eq","value":"零售"}],"displayColumns":"all","summaryColumns":"all","pagingMode":"precise","queryConditionIsNotAllNull":false,"valueRangeLimitContidions":[],"requiredRanges":[],"extraFields":{"currentVendor":"","currentTenant":"","currentUser":"","currentOrg":"","currentClient":"9555","currentSchema":"","exportCsv":false},"pageSize":100,"page":1,"orderBys":[{"name":"scode","direction":"ASC"}],"requestId":"fdde9bd6c25d6d9883f09386c91b004b"}`,
 }
 
 onMounted(() => {
-  fetchKpiReport()
+  fetchKpiReport(kpiReportConfig)
 })
 
 type ValueTone = "value-normal" | "value-emphasis" | "value-warning" | "value-danger"
