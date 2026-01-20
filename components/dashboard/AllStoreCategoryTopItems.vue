@@ -42,7 +42,8 @@
 <script setup lang="ts">
 import { NCard, NFlex, NIcon, NProgress, NSpace, NTag, NText } from "naive-ui"
 import { TrendingUpOutline } from "@vicons/ionicons5"
-
+import { onMounted, ref } from "vue"
+import { fetchReport, type ReportRequestConfig } from "@/api/requests"
 
 const reportRequestConfig: ReportRequestConfig = 
 {
@@ -127,46 +128,29 @@ const reportRequestConfig: ReportRequestConfig =
 }
 
 
-const topItems = [
-  {
-    rank: 1,
-    name: "鲜牛奶",
-    total: "12,500",
-    storeCount: "1,250",
-    storeAmount: "¥18,750",
-    progress: 10,
-  },
-  {
-    rank: 5,
-    name: "矿泉水",
-    total: "9,200",
-    storeCount: "856",
-    storeAmount: "¥2,568",
-    progress: 9.3,
-  },
-  {
-    rank: 7,
-    name: "水果",
-    total: "7,500",
-    storeCount: "632",
-    storeAmount: "¥15,800",
-    progress: 8.4,
-  },
-  {
-    rank: 7,
-    name: "方便面",
-    total: "6,200",
-    storeCount: "520",
-    storeAmount: "¥3,120",
-    progress: 8.4,
-  },
-  {
-    rank: 9,
-    name: "薯片",
-    total: "5,400",
-    storeCount: "450",
-    storeAmount: "¥4,500",
-    progress: 8.3,
-  },
-]
+type TopItem = {
+  rank: number
+  name: string | number
+  total: string | number
+  storeCount: string | number
+  storeAmount: string | number
+  progress: number
+}
+
+const topItems = ref<TopItem[]>([])
+
+onMounted(async () => {
+  const res = await fetchReport(reportRequestConfig)
+  const records = Array.isArray(res?.records) ? res.records : []
+  topItems.value = records.map((record: Record<string, unknown>, index: number) => {
+    return {
+      rank: index + 1,
+      name: (record.gname ?? "") as string,
+      total: (record.amt ?? 0) as string | number,
+      storeCount: (record.sqty ?? 0) as string | number,
+      storeAmount: (record.samt ?? 0) as string | number,
+      progress: Number(record.spro ?? 0),
+    }
+  })
+})
 </script>
