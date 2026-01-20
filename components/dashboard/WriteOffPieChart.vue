@@ -1,9 +1,18 @@
 <template>
-    <div ref="chartRef" class="pie-chart"></div>
+  <n-space
+    vertical
+    align="center"
+    size="small"
+    :style="{ minHeight: '240px' }"
+  >
+    <n-text strong>损耗原因占比</n-text>
+    <div ref="chartRef" :style="{ width: '390px', height: '220px' }"></div>
+  </n-space>
 </template>
 
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref, shallowRef } from "vue"
+import { NSpace, NText } from "naive-ui"
 import * as echarts from "echarts"
 import { fetchReport, type ReportRequestConfig } from "@/api/requests"
 
@@ -228,14 +237,3 @@ onBeforeUnmount(() => {
   chartInstance.value = null
 })
 </script>
-
-<style scoped>
-.write-off-card {
-  min-height: 240px;
-}
-
-.pie-chart {
-  width: 390px;
-  height: 220px;
-}
-</style>
