@@ -25,6 +25,8 @@
 import { NCard, NFlex, NIcon, NProgress, NSpace, NText } from "naive-ui"
 import { FlowerOutline, LeafOutline, NutritionOutline } from "@vicons/ionicons5"
 import { markRaw } from "vue"
+import { onMounted } from "vue"
+import { fetchReport, type ReportRequestConfig } from "@/api/requests"
 
 type ProgressStatus = "default" | "success" | "info" | "warning" | "error"
 
@@ -43,8 +45,8 @@ const progressItems: Array<{
   indicatorPlacement: "inside" | "outside"
 }> = [
   {
-    key: "fruit",
-    label: "水果",
+    key: "Fruit",
+    label: "Fruit",
     percent: 75,
     icon: markRaw(NutritionOutline),
     iconTone: "icon-fruit",
@@ -53,8 +55,8 @@ const progressItems: Array<{
     indicatorPlacement: "inside",
   },
   {
-    key: "vegetable",
-    label: "蔬菜",
+    key: "Vegetable",
+    label: "Vegetable",
     percent: 42,
     icon: markRaw(LeafOutline),
     iconTone: "icon-vegetable",
@@ -63,8 +65,8 @@ const progressItems: Array<{
     indicatorPlacement: "inside",
   },
   {
-    key: "flower",
-    label: "鲜花",
+    key: "Floral",
+    label: "Floral",
     percent: 90,
     icon: markRaw(FlowerOutline),
     iconTone: "icon-flower",
@@ -73,6 +75,115 @@ const progressItems: Array<{
     indicatorPlacement: "inside",
   },
 ]
+
+const reportRequestConfig: ReportRequestConfig = 
+{
+  latinTC: "1101",
+  payloadSource: {
+    "reportId": "report41b213f485474a13b22156157d5d9ab6",
+    "parentReportId": "report41b213f485474a13b22156157d5d9ab6",
+    "ds": {
+      "name": "总部正式环境"
+    },
+    "charts": [],
+    "conditions": [
+      {
+        "id": "bgdate",
+        "type": "fixed",
+        "field": { "name": "bgdate" },
+        "dataType": "date",
+        "operator": "gte",
+        "value": "2026-01-18"
+      },
+      {
+        "id": "eddate",
+        "type": "fixed",
+        "field": { "name": "eddate" },
+        "dataType": "date",
+        "operator": "lte",
+        "value": "2026-01-19"
+      },
+      {
+        "id": "查询类型",
+        "type": "fixed",
+        "field": { "name": "查询类型" },
+        "dataType": "string",
+        "operator": "eq",
+        "value": "零售"
+      },
+      {
+        "id": "store",
+        "type": "fixed",
+        "field": { "name": "store" },
+        "dataType": "string",
+        "operator": "eq",
+        "value": "1101"
+      },
+      {
+        "id": "大类",
+        "type": "fixed",
+        "field": { "name": "大类" },
+        "dataType": "string",
+        "operator": "eq",
+        "value": "Floral,Fruit,Vegetable"
+      },
+      {
+        "id": "amoeba",
+        "type": "fixed",
+        "field": { "name": "amoeba" },
+        "dataType": "string",
+        "operator": "eq",
+        "value": ""
+      }
+    ],
+    "displayColumns": "all",
+    "summaryColumns": "all",
+    "pagingMode": "precise",
+    "queryConditionIsNotAllNull": false,
+    "valueRangeLimitContidions": [],
+    "requiredRanges": [],
+    "extraFields": {
+      "currentVendor": "",
+      "currentTenant": "",
+      "currentUser": "",
+      "currentOrg": "",
+      "currentClient": "9555",
+      "currentSchema": "",
+      "exportCsv": false
+    },
+    "pageSize": 2000,
+    "page": 1,
+    "orderBys": [
+      {
+        "name": "销售金额",
+        "direction": "DESC"
+      }
+    ],
+    "requestId": "9e4c14c3542c50a5937e31a879755127"
+  }
+}
+
+const isLoading = ref(true)
+
+onMounted(async () => {
+  isLoading.value = true
+  try {
+    const res = await fetchReport(reportRequestConfig)
+    res.records.forEach((item: { [x: string]: any }) => {
+      const targetCard = progressItems.find((card) => card.key === item["大类名称"])
+      console.log(targetCard)
+      if (targetCard) {
+        targetCard.percent = 90
+      }
+    })
+
+  } finally {
+    isLoading.value = false
+  }
+
+
+})
+
 </script>
 
 <style scoped>
