@@ -24,8 +24,7 @@
 <script setup lang="ts">
 import { NCard, NFlex, NIcon, NProgress, NSpace, NText } from "naive-ui"
 import { FlowerOutline, LeafOutline, NutritionOutline } from "@vicons/ionicons5"
-import { markRaw } from "vue"
-import { onMounted } from "vue"
+import { markRaw, onMounted, ref } from "vue"
 import { fetchReport, type ReportRequestConfig } from "@/api/requests"
 
 type ProgressStatus = "default" | "success" | "info" | "warning" | "error"
@@ -34,7 +33,8 @@ type TextType = "default" | "success" | "info" | "warning" | "error"
 
 type IconTone = "icon-fruit" | "icon-vegetable" | "icon-flower"
 
-const progressItems: Array<{
+const progressItems = ref<
+  Array<{
   key: string
   label: string
   percent: number
@@ -43,7 +43,8 @@ const progressItems: Array<{
   status: ProgressStatus
   textType: TextType
   indicatorPlacement: "inside" | "outside"
-}> = [
+}>
+>([
   {
     key: "Fruit",
     label: "Fruit",
@@ -74,7 +75,7 @@ const progressItems: Array<{
     textType: "warning",
     indicatorPlacement: "inside",
   },
-]
+])
 
 const reportRequestConfig: ReportRequestConfig = 
 {
@@ -170,8 +171,9 @@ onMounted(async () => {
   try {
     const res = await fetchReport(reportRequestConfig)
     res.records.forEach((item: { [x: string]: any }) => {
-      const targetCard = progressItems.find((card) => card.key === item["大类名称"])
-      console.log(targetCard)
+      const targetCard = progressItems.value.find(
+        (card) => card.key === item["大类名称"]
+      )
       if (targetCard) {
         targetCard.percent = 90
       }
