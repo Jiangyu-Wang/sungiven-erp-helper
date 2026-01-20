@@ -219,15 +219,17 @@ const kpiCards = ref<Array<{
   },
 ])
 
-const categoryCards: Array<{
-  key: string
-  title: string
-  value: string
-}> = [
+const categoryCards = ref<
+  Array<{
+    key: string
+    title: string
+    value: string
+  }>
+>([
   { key: "Floral", title: "FLORAL", value: "¥18.5k" },
   { key: "Fruit", title: "FRUIT", value: "¥13.2k" },
   { key: "Vegetable", title: "VEGETABLE", value: "¥6.1k" },
-]
+])
 
 const isLoading = ref(true)
 
@@ -236,15 +238,49 @@ onMounted(async () => {
   try {
     const res = await fetchReport(reportRequestConfig)
 
-    const grossMarginRate = res.records?.[0]?.grossmarginrate ?? ""
-    const last3DaysShrinkAmount = res.records?.[0]?.last3daysshrinkamount ?? ""
-    const last3DaysShrinkRate = res.records?.[0]?.last3daysshrinkrate ?? ""
-    const todayCategorySales = res.records?.[0]?.todaycategorysales ?? ""
-    const todayStoreSales = res.records?.[0]?.todaystoresales ?? ""
-    const weeklyCategorySales = res.records?.[0]?.weeklycategorysales ?? ""
-    const weeklyShrinkRate = res.records?.[0]?.weeklyshrinkrate ?? ""
-    const weeklyStoreSales = res.records?.[0]?.weeklystoresales ?? ""
-    const categoryInfo = JSON.parse(res.records?.[0]?.catsalesarray)
+    const record =
+      res?.records?.[0] ??
+      res?.data?.records?.[0] ??
+      res?.data?.[0] ??
+      res?.[0] ??
+      {}
+
+    const updateCardValue = (key: string, value: string) => {
+      const target = kpiCards.value.find((card) => card.key === key)
+      if (target) {
+        target.value = value
+      }
+    }
+
+    updateCardValue("week-store-sales", record?.weeklystoresales ?? "--")
+    updateCardValue("week-category-sales", record?.weeklycategorysales ?? "--")
+    updateCardValue("today-store-sales", record?.todaystoresales ?? "--")
+    updateCardValue("today-category-sales", record?.todaycategorysales ?? "--")
+    updateCardValue("margin", record?.grossmarginrate ?? "--")
+    updateCardValue("daily-loss-rate", record?.last3daysshrinkrate ?? "--")
+    updateCardValue("weekly-loss-rate", record?.weeklyshrinkrate ?? "--")
+    updateCardValue("loss-amount", record?.last3daysshrinkamount ?? "--")
+
+    const categorySource = record?.catsalesarray
+    if (typeof categorySource === "string" && categorySource.trim()) {
+      const parsedCategories = JSON.parse(categorySource)
+      if (Array.isArray(parsedCategories)) {
+        const nextCards = parsedCategories.slice(0, 3).map((item, index) => {
+          const fallbackTitle = `分类${index + 1}`
+          const rawName = item?.name ?? fallbackTitle
+          const displayTitle =
+            typeof rawName === "string" ? rawName.toUpperCase() : String(rawName)
+          return {
+            key: String(item?.catCode ?? rawName ?? fallbackTitle),
+            title: displayTitle,
+            value: item?.sales ?? "--",
+          }
+        })
+        if (nextCards.length) {
+          categoryCards.value = nextCards
+        }
+      }
+    }
   } finally {
     isLoading.value = false
   }
