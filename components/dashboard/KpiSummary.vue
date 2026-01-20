@@ -6,7 +6,6 @@
         <n-card
           v-for="card in kpiCards"
           :key="card.key"
-          size="small"
           class="kpi-card"
           :content-style="{ display: 'flex', flexDirection: 'column', gap: '6px' }"
         >
@@ -23,7 +22,19 @@
             <n-text :type="valueToneMap[card.valueTone ?? 'value-normal']" strong>{{ card.value }}</n-text>
           </template>
         </n-card>
-        <WriteOffPieChart />
+        <n-card
+          size="small"
+          class="kpi-todo"
+          :content-style="{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '8px',
+            height: '100%',
+          }"
+        >
+          <WriteOffPieChart />
+        </n-card>
       </div>
       <n-card size="small" title="品类本日销售" style="margin-top: 10px;">
         <n-grid :cols="3" x-gap="12" y-gap="12">
@@ -361,7 +372,7 @@ onMounted(async () => {
 
 .kpi-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(160px, 0.7fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(400px, 0.7fr);
   gap: 12px;
 }
 
