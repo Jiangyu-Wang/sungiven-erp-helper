@@ -166,7 +166,7 @@ const reportRequestConfig: ReportRequestConfig =
         "currentSchema": "",
         "exportCsv": false
     },
-    "pageSize": 100,
+    "pageSize": 300,
     "page": 1,
     "orderBys": [
         {
@@ -182,39 +182,42 @@ const reportRequestConfig: ReportRequestConfig =
     }
 }
 
-const resolveReasonLabel = (record: Record<string, unknown>) => {
-  const reasonLabel =
-    (record["调损原因"] as string | undefined) ??
-    (record.reason as string | undefined) ??
-    (record["原因"] as string | undefined)
-  return reasonLabel?.trim() || "其他"
+interface RecordItem {
+  调整原因?: string;
+  成本金额?: number | string;
 }
 
-const resolveCostValue = (record: Record<string, unknown>) => {
-  const rawValue =
-    (record["成本金额"] as number | string | undefined) ??
-    (record.cost as number | string | undefined) ??
-    (record["成本"] as number | string | undefined)
-  return Math.abs(Number(rawValue ?? 0))
+interface ResultItem {
+  name: string;
+  value: number; // 百分比
 }
 
-const buildPieData = (records: Array<Record<string, unknown>>) => {
-  const totals = new Map<string, number>()
-  records.forEach((record) => {
-    const label = resolveReasonLabel(record)
-    const value = resolveCostValue(record)
-    totals.set(label, (totals.get(label) ?? 0) + value)
-  })
-  return Array.from(totals.entries())
-    .map(([name, value]) => ({ name, value }))
-    .filter((item) => item.value > 0)
-    .sort((a, b) => b.value - a.value)
+function calcLossReasonRatio(records: RecordItem[]): ResultItem[] {
+  const map: Record<string, number> = {};
+  let totalCost = 0;
+
+  records.forEach(item => {
+    const reason = item.调整原因 || "Unknown";
+    const cost = Math.abs(Number(item.成本金额 || 0));
+
+    totalCost += cost;
+
+    if (!map[reason]) {
+      map[reason] = 0;
+    }
+    map[reason] += cost;
+  });
+
+  return Object.keys(map).map(reason => ({
+    name: reason,
+    value: Number(map[reason].toFixed(2))
+  }));
 }
 
 onMounted(async () => {
   const res = await fetchReport(reportRequestConfig)
   const records = Array.isArray(res?.records) ? res.records : []
-  pieData.value = buildPieData(records)
+  pieData.value = calcLossReasonRatio(records)
   renderChart(pieData.value)
   window.addEventListener("resize", resizeChart)
 })
