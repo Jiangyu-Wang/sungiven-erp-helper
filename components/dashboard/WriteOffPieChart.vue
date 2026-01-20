@@ -10,15 +10,14 @@ import { fetchReport, type ReportRequestConfig } from "@/api/requests"
 const chartRef = ref<HTMLDivElement | null>(null)
 const chartInstance = shallowRef<echarts.ECharts | null>(null)
 
-const pieData = [
-  { value: 32, name: "报损" },
-  { value: 24, name: "盘亏" },
-  { value: 18, name: "促销赠品" },
-  { value: 14, name: "品质异常" },
-  { value: 12, name: "其他" },
-]
+type PieDatum = {
+  value: number
+  name: string
+}
 
-const renderChart = () => {
+const pieData = ref<PieDatum[]>([])
+
+const renderChart = (data: PieDatum[]) => {
   if (!chartRef.value) return
   const instance = chartInstance.value ?? echarts.init(chartRef.value)
   chartInstance.value = instance
@@ -49,7 +48,7 @@ const renderChart = () => {
           length: 12,
           length2: 10,
         },
-        data: pieData,
+        data,
       },
     ],
   })
@@ -183,8 +182,40 @@ const reportRequestConfig: ReportRequestConfig =
     }
 }
 
-onMounted(() => {
-  renderChart()
+const resolveReasonLabel = (record: Record<string, unknown>) => {
+  const reasonLabel =
+    (record["调损原因"] as string | undefined) ??
+    (record.reason as string | undefined) ??
+    (record["原因"] as string | undefined)
+  return reasonLabel?.trim() || "其他"
+}
+
+const resolveCostValue = (record: Record<string, unknown>) => {
+  const rawValue =
+    (record["成本金额"] as number | string | undefined) ??
+    (record.cost as number | string | undefined) ??
+    (record["成本"] as number | string | undefined)
+  return Math.abs(Number(rawValue ?? 0))
+}
+
+const buildPieData = (records: Array<Record<string, unknown>>) => {
+  const totals = new Map<string, number>()
+  records.forEach((record) => {
+    const label = resolveReasonLabel(record)
+    const value = resolveCostValue(record)
+    totals.set(label, (totals.get(label) ?? 0) + value)
+  })
+  return Array.from(totals.entries())
+    .map(([name, value]) => ({ name, value }))
+    .filter((item) => item.value > 0)
+    .sort((a, b) => b.value - a.value)
+}
+
+onMounted(async () => {
+  const res = await fetchReport(reportRequestConfig)
+  const records = Array.isArray(res?.records) ? res.records : []
+  pieData.value = buildPieData(records)
+  renderChart(pieData.value)
   window.addEventListener("resize", resizeChart)
 })
 
