@@ -6,7 +6,7 @@
         <CategoryTargetProgress />
       </n-gi>
       <n-gi>
-        <CategoryTopItems />
+        <AllStoreCategoryTopItems />
       </n-gi>
       <n-gi>
       </n-gi>
@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import KpiSummary from "./dashboard/KpiSummary.vue"
 import CategoryTargetProgress from "./dashboard/CategoryTargetProgress.vue"
-import CategoryTopItems from "./dashboard/CategoryTopItems.vue"
+import AllStoreCategoryTopItems from "./dashboard/AllStoreCategoryTopItems.vue"
 </script>
 
 <style scoped>
