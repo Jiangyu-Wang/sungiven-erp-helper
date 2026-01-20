@@ -40,7 +40,7 @@
             height: '100%',
           }"
         >
-          <span class="category-icon">
+          <span class="category-icon icon-todo">
             <n-icon :component="CheckmarkCircleOutline" />
           </span>
           <n-text>待办事项</n-text>
@@ -263,17 +263,6 @@ type IconTone =
   | "icon-trend-down"
   | "icon-trend-up"
 
-const iconToneMap: Record<IconTone, { color: string; background: string }> = {
-  "icon-cash": { color: "#2f6fed", background: "rgba(47, 111, 237, 0.14)" },
-  "icon-tag": { color: "#6f42c1", background: "rgba(111, 66, 193, 0.14)" },
-  "icon-store": { color: "#0ea5e9", background: "rgba(14, 165, 233, 0.14)" },
-  "icon-wallet": { color: "#16a34a", background: "rgba(22, 163, 74, 0.14)" },
-  "icon-pie": { color: "#f59e0b", background: "rgba(245, 158, 11, 0.14)" },
-  "icon-alert": { color: "#ef4444", background: "rgba(239, 68, 68, 0.14)" },
-  "icon-trend-down": { color: "#d97706", background: "rgba(217, 119, 6, 0.14)" },
-  "icon-trend-up": { color: "#10b981", background: "rgba(16, 185, 129, 0.14)" },
-}
-
 const valueToneMap: Record<ValueTone, "default" | "info" | "warning" | "error"> = {
   "value-normal": "default",
   "value-emphasis": "info",
@@ -397,6 +386,60 @@ onMounted(async () => {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(160px, 0.7fr);
   gap: 12px;
+}
+
+.category-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-cash {
+  color: #2f6fed;
+  background-color: rgba(47, 111, 237, 0.14);
+}
+
+.icon-tag {
+  color: #6f42c1;
+  background-color: rgba(111, 66, 193, 0.14);
+}
+
+.icon-store {
+  color: #0ea5e9;
+  background-color: rgba(14, 165, 233, 0.14);
+}
+
+.icon-wallet {
+  color: #16a34a;
+  background-color: rgba(22, 163, 74, 0.14);
+}
+
+.icon-pie {
+  color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.14);
+}
+
+.icon-alert {
+  color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.14);
+}
+
+.icon-trend-down {
+  color: #d97706;
+  background-color: rgba(217, 119, 6, 0.14);
+}
+
+.icon-trend-up {
+  color: #10b981;
+  background-color: rgba(16, 185, 129, 0.14);
+}
+
+.icon-todo {
+  color: #16a34a;
+  background-color: rgba(22, 163, 74, 0.14);
 }
 
 .kpi-todo {
