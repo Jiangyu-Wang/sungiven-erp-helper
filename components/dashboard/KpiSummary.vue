@@ -13,14 +13,9 @@
           <n-statistic :value="card.value">
             <template #label>
               <n-space align="center" size="small">
-                <n-avatar
-                  round
-                  size="small"
-                  :color="iconToneMap[card.iconTone].background"
-                  :style="{ color: iconToneMap[card.iconTone].color }"
-                >
+                <span class="category-icon" :class="card.iconTone">
                   <n-icon :component="card.icon" />
-                </n-avatar>
+                </span>
                 <n-text>{{ card.title }}</n-text>
               </n-space>
             </template>
@@ -45,16 +40,16 @@
             height: '100%',
           }"
         >
-          <n-avatar round size="large" color="#f5f5f5">
+          <span class="category-icon">
             <n-icon :component="CheckmarkCircleOutline" />
-          </n-avatar>
+          </span>
           <n-text>待办事项</n-text>
           <n-text strong style="font-size: 24px">7</n-text>
           <n-text depth="3">项待处理</n-text>
           <n-button text type="primary">点击查看详情 →</n-button>
         </n-card>
       </div>
-      <n-card size="small" title="品类本日销售">
+      <n-card size="small" title="品类本日销售" style="margin-top: 10px;">
         <n-grid :cols="3" x-gap="12" y-gap="12">
           <n-gi v-for="category in categoryCards" :key="category.key">
             <n-card size="small" :content-style="{ display: 'flex', flexDirection: 'column', gap: '4px' }">

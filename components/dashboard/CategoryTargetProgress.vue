@@ -76,10 +76,6 @@ const progressItems: Array<{
 </script>
 
 <style scoped>
-.category-target-progress {
-  box-shadow: 0 0px 3px rgba(15, 23, 42, 0.3);
-  border: none;
-}
 
 .category-icon {
   width: 26px;
