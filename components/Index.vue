@@ -1,15 +1,15 @@
 <template>
-  <div class="page">
+  <div class="page" style="margin-bottom: 100px;">
     <KpiSummary />
     <n-grid x-gap="12" :cols="3">
       <n-gi>
         <CategoryTargetProgress />
       </n-gi>
       <n-gi>
-        <div class="green" />
+        <CategoryTargetProgress />
       </n-gi>
       <n-gi>
-        <div class="light-green" />
+        <CategoryTargetProgress />
       </n-gi>
     </n-grid>
   </div>

@@ -10,24 +10,18 @@
           class="kpi-card"
           :content-style="{ display: 'flex', flexDirection: 'column', gap: '6px' }"
         >
-          <n-statistic :value="card.value">
-            <template #label>
-              <n-space align="center" size="small">
-                <span class="category-icon" :class="card.iconTone">
-                  <n-icon :component="card.icon" />
-                </span>
-                <n-text>{{ card.title }}</n-text>
-              </n-space>
-            </template>
-            <template #value>
-              <template v-if="card.key === 'today-store-sales' && isLoading">
-                <n-skeleton height="28px" width="50%" />
-              </template>
-              <template v-else>
-                <n-text :type="valueToneMap[card.valueTone ?? 'value-normal']" strong>{{ card.value }}</n-text>
-              </template>
-            </template>
-          </n-statistic>
+          <n-space align="center" size="small">
+            <span class="category-icon" :class="card.iconTone">
+              <n-icon :component="card.icon" />
+            </span>
+            <n-text>{{ card.title }}</n-text>
+          </n-space>
+          <template v-if="isLoading">
+            <n-skeleton height="28px" width="50%" />
+          </template>
+          <template v-else>
+            <n-text :type="valueToneMap[card.valueTone ?? 'value-normal']" strong>{{ card.value }}</n-text>
+          </template>
         </n-card>
         <n-card
           size="small"
