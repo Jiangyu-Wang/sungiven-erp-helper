@@ -76,167 +76,58 @@ import WriteOffPieChart from "@/components/dashboard/WriteOffPieChart.vue"
 const reportRequestConfig: ReportRequestConfig = {
   latinTC: "1101",
   payloadSource: {
-    reportId: "reportb0ee11dacf4e4670bbba4776c6158b3c",
-    parentReportId: "reportb0ee11dacf4e4670bbba4776c6158b3c",
-    ds: { name: "总部正式环境" },
-    charts: [],
-    conditions: [
-      {
-        id: "开始时间",
-        type: "fixed",
-        field: { name: "开始时间" },
-        dataType: "date",
-        operator: "gte",
-        value: "2026-01-18",
-      },
-      {
-        id: "结束时间",
-        type: "fixed",
-        field: { name: "结束时间" },
-        dataType: "date",
-        operator: "lte",
-        value: "2026-01-18",
-      },
-      {
-        id: "门店 等于",
-        type: "fixed",
-        field: { name: "门店 等于" },
-        dataType: "string",
-        operator: "eq",
-        value: "1101",
-      },
-      {
-        id: "查询类型",
-        type: "fixed",
-        field: { name: "查询类型" },
-        dataType: "string",
-        operator: "eq",
-        value: "零售",
-      },
-    ],
-    displayColumns: "all",
-    summaryColumns: "all",
-    pagingMode: "precise",
-    queryConditionIsNotAllNull: false,
-    valueRangeLimitContidions: [],
-    requiredRanges: [],
-    extraFields: {
-      currentVendor: "",
-      currentTenant: "",
-      currentUser: "",
-      currentOrg: "",
-      currentClient: "9555",
-      currentSchema: "",
-      exportCsv: false,
+    "reportId": "report4f30bbe937914214923903f0bcadea69",
+    "parentReportId": null,
+    "ds": {
+      "name": "总部正式环境"
     },
-    pageSize: 100,
-    page: 1,
-    orderBys: [{ name: "scode", direction: "ASC" }],
-    requestId: "fdde9bd6c25d6d9883f09386c91b004b",
-  },
-}
-
-const categoryRequestConfig: ReportRequestConfig = {
-  latinTC: "1101",
-  payloadSource: {
-    reportId: "report41b213f485474a13b22156157d5d9ab6",
-    parentReportId: "report41b213f485474a13b22156157d5d9ab6",
-    ds: {
-      name: "总部正式环境",
-    },
-    charts: [],
-    conditions: [
+    "charts": [],
+    "conditions": [
       {
-        id: "bgdate",
-        type: "fixed",
-        field: {
-          name: "bgdate",
-        },
-        dataType: "date",
-        operator: "gte",
-        value: "2026-01-18",
+        "id": "时间",
+        "type": "fixed",
+        "field": { "name": "时间" },
+        "dataType": "date",
+        "operator": "eq",
+        "value": "2026-01-20"
       },
-
       {
-        id: "eddate",
-        type: "fixed",
-        field: {
-          name: "eddate",
-        },
-        dataType: "date",
-        operator: "lte",
-        value: "2026-01-18",
+        "id": "stcode",
+        "type": "fixed",
+        "field": { "name": "stcode" },
+        "dataType": "string",
+        "operator": "eq",
+        "value": "1101"
       },
-
       {
-        id: "查询类型",
-        type: "fixed",
-        field: {
-          name: "查询类型",
-        },
-        dataType: "string",
-        operator: "eq",
-        value: "",
-      },
-
-      {
-        id: "store",
-        type: "fixed",
-        field: {
-          name: "store",
-        },
-        dataType: "string",
-        operator: "eq",
-        value: "1101",
-      },
-
-      {
-        id: "大类",
-        type: "fixed",
-        field: {
-          name: "大类",
-        },
-        dataType: "string",
-        operator: "eq",
-        value: "Floral,Fruit,Vegetable",
-      },
-
-      {
-        id: "amoeba",
-        type: "fixed",
-        field: {
-          name: "amoeba",
-        },
-        dataType: "string",
-        operator: "eq",
-        value: "",
-      },
+        "id": "Catcode",
+        "type": "fixed",
+        "field": { "name": "Catcode" },
+        "dataType": "string",
+        "operator": "eq",
+        "value": "10,11,12"
+      }
     ],
-    displayColumns: "all",
-    summaryColumns: "all",
-    pagingMode: "precise",
-    queryConditionIsNotAllNull: false,
-    valueRangeLimitContidions: [],
-    requiredRanges: [],
-    extraFields: {
-      currentVendor: "",
-      currentTenant: "",
-      currentUser: "",
-      currentOrg: "",
-      currentClient: "9555",
-      currentSchema: "",
-      exportCsv: false,
+    "displayColumns": "all",
+    "summaryColumns": "all",
+    "pagingMode": "precise",
+    "queryConditionIsNotAllNull": false,
+    "valueRangeLimitContidions": [],
+    "requiredRanges": [],
+    "extraFields": {
+      "currentVendor": "",
+      "currentTenant": "",
+      "currentUser": "",
+      "currentOrg": "",
+      "currentClient": "9555",
+      "currentSchema": "",
+      "exportCsv": false
     },
-    pageSize: 2000,
-    page: 1,
-    orderBys: [
-      {
-        name: "销售金额",
-        direction: "DESC",
-      },
-    ],
-    requestId: "8054dbc11af035f171edb9371f06446d",
-  },
+    "pageSize": 100,
+    "page": 1,
+    "orderBys": [],
+    "requestId": "1bdd77dee5e5bdabf4eec7d48b9fea3a"
+  }
 }
 
 type ValueTone = "value-normal" | "value-emphasis" | "value-warning" | "value-danger"
@@ -344,19 +235,16 @@ onMounted(async () => {
   isLoading.value = true
   try {
     const res = await fetchReport(reportRequestConfig)
-    const resCate = await fetchReport(categoryRequestConfig)
-    resCate.records.forEach((item: { [x: string]: any }) => {
-      const targetCard = categoryCards.find((card) => card.key === item["大类名称"])
-      if (targetCard) {
-        targetCard.value = `$${item["销售金额"]}`
-      }
-    })
 
-    const netsales = res.records?.[0]?.netsales ?? ""
-    const targetCard = kpiCards.value.find((card) => card.key === "today-store-sales")
-    if (targetCard) {
-      targetCard.value = `$${netsales}`
-    }
+    const grossMarginRate = res.records?.[0]?.grossmarginrate ?? ""
+    const last3DaysShrinkAmount = res.records?.[0]?.last3daysshrinkamount ?? ""
+    const last3DaysShrinkRate = res.records?.[0]?.last3daysshrinkrate ?? ""
+    const todayCategorySales = res.records?.[0]?.todaycategorysales ?? ""
+    const todayStoreSales = res.records?.[0]?.todaystoresales ?? ""
+    const weeklyCategorySales = res.records?.[0]?.weeklycategorysales ?? ""
+    const weeklyShrinkRate = res.records?.[0]?.weeklyshrinkrate ?? ""
+    const weeklyStoreSales = res.records?.[0]?.weeklystoresales ?? ""
+    const categoryInfo = JSON.parse(res.records?.[0]?.catsalesarray)
   } finally {
     isLoading.value = false
   }
