@@ -9,7 +9,7 @@
             </span>
             <NText strong>{{ item.label }}</NText>
           </NSpace>
-          <NText strong :type="item.textType">{{ item.percent }}%</NText>
+          <NText strong :type="item.textType">${{ item.target }}</NText>
         </NFlex>
         <NProgress
           :percentage="item.percent"
@@ -38,6 +38,7 @@ const progressItems = ref<
   key: string
   label: string
   percent: number
+  target: number
   icon: ReturnType<typeof markRaw>
   iconTone: IconTone
   status: ProgressStatus
@@ -48,7 +49,8 @@ const progressItems = ref<
   {
     key: "Fruit",
     label: "Fruit",
-    percent: 75,
+    percent: 0,
+    target: 1000000000000000,
     icon: markRaw(NutritionOutline),
     iconTone: "icon-fruit",
     status: "info",
@@ -58,7 +60,8 @@ const progressItems = ref<
   {
     key: "Vegetable",
     label: "Vegetable",
-    percent: 42,
+    percent: 0,
+    target: 1000000000000000,
     icon: markRaw(LeafOutline),
     iconTone: "icon-vegetable",
     status: "info",
@@ -68,7 +71,8 @@ const progressItems = ref<
   {
     key: "Floral",
     label: "Floral",
-    percent: 90,
+    percent: 0,
+    target: 1000000000000000,
     icon: markRaw(FlowerOutline),
     iconTone: "icon-flower",
     status: "info",
@@ -168,6 +172,13 @@ const isLoading = ref(true)
 
 onMounted(async () => {
   isLoading.value = true
+
+  const categoryTargetMap: { [key: string]: number } = {
+    Fruit: 10000,
+    Vegetable: 10000,
+    Floral: 10000,
+  }
+
   try {
     const res = await fetchReport(reportRequestConfig)
     res.records.forEach((item: { [x: string]: any }) => {
@@ -175,7 +186,8 @@ onMounted(async () => {
         (card) => card.key === item["大类名称"]
       )
       if (targetCard) {
-        targetCard.percent = 90
+        targetCard.percent = item["销售金额"]/categoryTargetMap[item["大类名称"]] * 100
+        targetCard.target = categoryTargetMap[item["大类名称"]]
       }
     })
 
