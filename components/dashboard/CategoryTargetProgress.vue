@@ -9,7 +9,7 @@
             </span>
             <NText strong>{{ item.label }}</NText>
           </NSpace>
-          <NText strong :type="item.textType">${{ item.target }}</NText>
+          <NText strong :type="item.textType">目标金额 ${{ item.target }}</NText>
         </NFlex>
         <NProgress
           :percentage="item.percent"

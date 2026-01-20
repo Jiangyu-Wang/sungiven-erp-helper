@@ -6,10 +6,9 @@
         <CategoryTargetProgress />
       </n-gi>
       <n-gi>
-        <CategoryTargetProgress />
+        <CategoryTopItems />
       </n-gi>
       <n-gi>
-        <CategoryTargetProgress />
       </n-gi>
     </n-grid>
   </div>
@@ -18,6 +17,7 @@
 <script setup lang="ts">
 import KpiSummary from "./dashboard/KpiSummary.vue"
 import CategoryTargetProgress from "./dashboard/CategoryTargetProgress.vue"
+import CategoryTopItems from "./dashboard/CategoryTopItems.vue"
 </script>
 
 <style scoped>
