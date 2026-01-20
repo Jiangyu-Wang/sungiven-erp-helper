@@ -23,11 +23,11 @@
             <NSpace vertical size="small">
               <NText strong>{{ item.name }}</NText>
               <NFlex align="center" size="small" style="line-height: 1;">
-                <NText depth="3">全店: {{ item.total }}</NText>
+                <NText depth="3">全店: ${{ item.total }}</NText>
               </NFlex>
               <NFlex align="center" size="small">
-                <NText depth="3">本店: {{ item.storeCount }}</NText>
-                <NText depth="3">{{ item.storeAmount }}</NText>
+                <NText depth="3">本店: {{ item.storeCount }}件</NText>
+                <NText depth="3">${{ item.storeAmount }}</NText>
                 <NProgress :height="6" :percentage="item.progress" :show-indicator="false" style="width: 80px;" />
                 <NText depth="3">{{ item.progress }}%</NText>
               </NFlex>
