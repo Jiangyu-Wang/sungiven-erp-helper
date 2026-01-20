@@ -5,7 +5,7 @@
         <NIcon color="#16a34a" size="18">
           <TrendingUpOutline />
         </NIcon>
-        <NText strong>全门店热销商品排行</NText>
+        <NText strong>最近三天全门店热销商品</NText>
       </NFlex>
     </template>
     <NSpace vertical size="medium">
@@ -42,6 +42,90 @@
 <script setup lang="ts">
 import { NCard, NFlex, NIcon, NProgress, NSpace, NTag, NText } from "naive-ui"
 import { TrendingUpOutline } from "@vicons/ionicons5"
+
+
+const reportRequestConfig: ReportRequestConfig = 
+{
+  latinTC: "1101",
+  payloadSource: {
+    "reportId": "report5b154481a9f34b909109b56517bcd2f1",
+    "parentReportId": null,
+    "ds": {
+      "name": "总部正式环境"
+    },
+    "charts": [],
+    "conditions": [
+      {
+        "id": "开始时间",
+        "type": "fixed",
+        "field": { "name": "开始时间" },
+        "dataType": "date",
+        "operator": "gte",
+        "value": "2026-01-18"
+      },
+      {
+        "id": "结束时间",
+        "type": "fixed",
+        "field": { "name": "结束时间" },
+        "dataType": "date",
+        "operator": "lte",
+        "value": "2026-01-20"
+      },
+      {
+        "id": "scode",
+        "type": "fixed",
+        "field": { "name": "scode" },
+        "dataType": "string",
+        "operator": "eq",
+        "value": "1101"
+      },
+      {
+        "id": "sscode",
+        "type": "fixed",
+        "field": { "name": "sscode" },
+        "dataType": "string",
+        "operator": "startwith",
+        "value": "10,11,12"
+      },
+      {
+        "id": "flength",
+        "type": "fixed",
+        "field": { "name": "flength" },
+        "dataType": "number",
+        "operator": "eq",
+        "value": 5
+      },
+      {
+        "id": "focus",
+        "type": "fixed",
+        "field": { "name": "focus" },
+        "dataType": "number",
+        "operator": "eq",
+        "value": 5
+      }
+    ],
+    "displayColumns": "all",
+    "summaryColumns": "all",
+    "pagingMode": "precise",
+    "queryConditionIsNotAllNull": false,
+    "valueRangeLimitContidions": [],
+    "requiredRanges": [],
+    "extraFields": {
+      "currentVendor": "",
+      "currentTenant": "",
+      "currentUser": "",
+      "currentOrg": "",
+      "currentClient": "9555",
+      "currentSchema": "",
+      "exportCsv": false
+    },
+    "pageSize": 1000000,
+    "page": 1,
+    "orderBys": [],
+    "requestId": "6dde5e824692352013daa64fcb40574f"
+  }
+}
+
 
 const topItems = [
   {
