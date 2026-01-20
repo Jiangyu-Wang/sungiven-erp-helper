@@ -8,27 +8,34 @@
         <NText strong>热销商品排行</NText>
       </NFlex>
     </template>
-    <NSpace vertical size="large">
-      <NFlex v-for="item in topItems" :key="`${item.rank}-${item.name}`" align="flex-start" justify="space-between">
-        <NFlex align="center" size="small">
-          <NTag type="primary" size="small" round style="min-width: 32px; justify-content: center;">
-            {{ item.rank }}
-          </NTag>
-          <NSpace vertical size="small">
-            <NText strong>{{ item.name }}</NText>
-            <NFlex align="center" size="small" style="line-height: 1;">
-              <NText depth="3">全店: {{ item.total }}</NText>
-              <NText type="success">{{ item.totalChange }}</NText>
-            </NFlex>
-            <NFlex align="center" size="small">
-              <NText depth="3">本店: {{ item.storeCount }}</NText>
-              <NText depth="3">{{ item.storeAmount }}</NText>
-              <NProgress :height="6" :percentage="item.progress" :show-indicator="false" style="width: 80px;" />
-              <NText depth="3">{{ item.progress }}%</NText>
-            </NFlex>
-          </NSpace>
+    <NSpace vertical size="medium">
+      <NCard
+        v-for="item in topItems"
+        :key="`${item.rank}-${item.name}`"
+        size="small"
+        :bordered="true"
+      >
+        <NFlex align="flex-start" justify="space-between">
+          <NFlex align="center" size="small">
+            <NTag type="primary" size="small" round style="min-width: 32px; justify-content: center;">
+              {{ item.rank }}
+            </NTag>
+            <NSpace vertical size="small">
+              <NText strong>{{ item.name }}</NText>
+              <NFlex align="center" size="small" style="line-height: 1;">
+                <NText depth="3">全店: {{ item.total }}</NText>
+                <NText type="success">{{ item.totalChange }}</NText>
+              </NFlex>
+              <NFlex align="center" size="small">
+                <NText depth="3">本店: {{ item.storeCount }}</NText>
+                <NText depth="3">{{ item.storeAmount }}</NText>
+                <NProgress :height="6" :percentage="item.progress" :show-indicator="false" style="width: 80px;" />
+                <NText depth="3">{{ item.progress }}%</NText>
+              </NFlex>
+            </NSpace>
+          </NFlex>
         </NFlex>
-      </NFlex>
+      </NCard>
     </NSpace>
   </NCard>
 </template>
