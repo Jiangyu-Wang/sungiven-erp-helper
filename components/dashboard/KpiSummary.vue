@@ -23,25 +23,7 @@
             <n-text :type="valueToneMap[card.valueTone ?? 'value-normal']" strong>{{ card.value }}</n-text>
           </template>
         </n-card>
-        <n-card
-          size="small"
-          class="kpi-todo"
-          :content-style="{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '8px',
-            height: '100%',
-          }"
-        >
-          <span class="category-icon icon-todo">
-            <n-icon :component="CheckmarkCircleOutline" />
-          </span>
-          <n-text>待办事项</n-text>
-          <n-text strong style="font-size: 24px">7</n-text>
-          <n-text depth="3">项待处理</n-text>
-          <n-button text type="primary">点击查看详情 →</n-button>
-        </n-card>
+        <WriteOffPieChart />
       </div>
       <n-card size="small" title="品类本日销售" style="margin-top: 10px;">
         <n-grid :cols="3" x-gap="12" y-gap="12">
@@ -78,6 +60,7 @@ import {
 } from "@vicons/ionicons5"
 
 import { fetchReport, type ReportRequestConfig } from "@/api/requests"
+import WriteOffPieChart from "@/components/dashboard/WriteOffPieChart.vue"
 
 const reportRequestConfig: ReportRequestConfig = {
   latinTC: "1101",
