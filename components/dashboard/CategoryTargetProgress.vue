@@ -26,6 +26,7 @@ import { NCard, NFlex, NIcon, NProgress, NSpace, NText } from "naive-ui"
 import { FlowerOutline, LeafOutline, NutritionOutline } from "@vicons/ionicons5"
 import { markRaw, onMounted, ref } from "vue"
 import { fetchReport, type ReportRequestConfig } from "@/api/requests"
+import targets1101 from "@/assets/targets/1101Target.json"
 
 type ProgressStatus = "default" | "success" | "info" | "warning" | "error"
 
@@ -170,24 +171,41 @@ const reportRequestConfig: ReportRequestConfig =
 
 const isLoading = ref(true)
 
+
 onMounted(async () => {
   isLoading.value = true
 
-  const categoryTargetMap: { [key: string]: number } = {
+  type CategoryKey = "Fruit" | "Vegetable" | "Floral"
+
+  const categoryTargetMap: Record<CategoryKey, number> = {
     Fruit: 10000,
     Vegetable: 10000,
     Floral: 10000,
   }
 
+  function loadTargetsFromJson(week: number) {
+    (Object.keys(categoryTargetMap) as CategoryKey[]).forEach((key) => {
+      const targetItem = targets1101.categories[key]?.find(
+        (w: any) => w.week === week
+      )
+      categoryTargetMap[key] = targetItem?.target ?? 0
+    })
+  }
+
   try {
+    const currentWeek = 3
+    loadTargetsFromJson(currentWeek)
     const res = await fetchReport(reportRequestConfig)
     res.records.forEach((item: { [x: string]: any }) => {
       const targetCard = progressItems.value.find(
         (card) => card.key === item["大类名称"]
       )
       if (targetCard) {
-        targetCard.percent = item["销售金额"]/categoryTargetMap[item["大类名称"]] * 100
-        targetCard.target = categoryTargetMap[item["大类名称"]]
+        const categoryKey = item["大类名称"] as CategoryKey
+        targetCard.percent = Math.round(item["销售金额"]/categoryTargetMap[categoryKey]*100)
+        console.log();
+        console.log();
+        targetCard.target = categoryTargetMap[categoryKey]
       }
     })
 

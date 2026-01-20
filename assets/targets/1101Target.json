@@ -1,0 +1,4206 @@
+{
+  "store": "1101",
+  "year": 2026,
+  "categories": {
+    "Floral": [
+      {
+        "week": 1,
+        "target": 2800
+      },
+      {
+        "week": 2,
+        "target": 2300
+      },
+      {
+        "week": 3,
+        "target": 2900
+      },
+      {
+        "week": 4,
+        "target": 2000
+      },
+      {
+        "week": 5,
+        "target": 2900
+      },
+      {
+        "week": 6,
+        "target": 3400
+      },
+      {
+        "week": 7,
+        "target": 13100
+      },
+      {
+        "week": 8,
+        "target": 6300
+      },
+      {
+        "week": 9,
+        "target": 2500
+      },
+      {
+        "week": 10,
+        "target": 2900
+      },
+      {
+        "week": 11,
+        "target": 2400
+      },
+      {
+        "week": 12,
+        "target": 2000
+      },
+      {
+        "week": 13,
+        "target": 2000
+      },
+      {
+        "week": 14,
+        "target": 2000
+      },
+      {
+        "week": 15,
+        "target": 2000
+      },
+      {
+        "week": 16,
+        "target": 2600
+      },
+      {
+        "week": 17,
+        "target": 3000
+      },
+      {
+        "week": 18,
+        "target": 2800
+      },
+      {
+        "week": 19,
+        "target": 5200
+      },
+      {
+        "week": 20,
+        "target": 5500
+      },
+      {
+        "week": 21,
+        "target": 2300
+      },
+      {
+        "week": 22,
+        "target": 2100
+      },
+      {
+        "week": 23,
+        "target": 2100
+      },
+      {
+        "week": 24,
+        "target": 2100
+      },
+      {
+        "week": 25,
+        "target": 2200
+      },
+      {
+        "week": 26,
+        "target": 1600
+      },
+      {
+        "week": 27,
+        "target": 1200
+      },
+      {
+        "week": 28,
+        "target": 1800
+      },
+      {
+        "week": 29,
+        "target": 1600
+      },
+      {
+        "week": 30,
+        "target": 1500
+      },
+      {
+        "week": 31,
+        "target": 1500
+      },
+      {
+        "week": 32,
+        "target": 1700
+      },
+      {
+        "week": 33,
+        "target": 1600
+      },
+      {
+        "week": 34,
+        "target": 1700
+      },
+      {
+        "week": 35,
+        "target": 1400
+      },
+      {
+        "week": 36,
+        "target": 1600
+      },
+      {
+        "week": 37,
+        "target": 1700
+      },
+      {
+        "week": 38,
+        "target": 1400
+      },
+      {
+        "week": 39,
+        "target": 1800
+      },
+      {
+        "week": 40,
+        "target": 1200
+      },
+      {
+        "week": 41,
+        "target": 1400
+      },
+      {
+        "week": 42,
+        "target": 1700
+      },
+      {
+        "week": 43,
+        "target": 1700
+      },
+      {
+        "week": 44,
+        "target": 2000
+      },
+      {
+        "week": 45,
+        "target": 1500
+      },
+      {
+        "week": 46,
+        "target": 1900
+      },
+      {
+        "week": 47,
+        "target": 1800
+      },
+      {
+        "week": 48,
+        "target": 1600
+      },
+      {
+        "week": 49,
+        "target": 1700
+      },
+      {
+        "week": 50,
+        "target": 1500
+      },
+      {
+        "week": 51,
+        "target": 1600
+      },
+      {
+        "week": 52,
+        "target": 2900
+      }
+    ],
+    "Fruit": [
+      {
+        "week": 1,
+        "target": 27000
+      },
+      {
+        "week": 2,
+        "target": 23300
+      },
+      {
+        "week": 3,
+        "target": 27500
+      },
+      {
+        "week": 4,
+        "target": 23300
+      },
+      {
+        "week": 5,
+        "target": 26400
+      },
+      {
+        "week": 6,
+        "target": 27500
+      },
+      {
+        "week": 7,
+        "target": 25100
+      },
+      {
+        "week": 8,
+        "target": 30200
+      },
+      {
+        "week": 9,
+        "target": 30500
+      },
+      {
+        "week": 10,
+        "target": 30400
+      },
+      {
+        "week": 11,
+        "target": 26300
+      },
+      {
+        "week": 12,
+        "target": 25400
+      },
+      {
+        "week": 13,
+        "target": 26000
+      },
+      {
+        "week": 14,
+        "target": 29600
+      },
+      {
+        "week": 15,
+        "target": 27800
+      },
+      {
+        "week": 16,
+        "target": 26300
+      },
+      {
+        "week": 17,
+        "target": 25500
+      },
+      {
+        "week": 18,
+        "target": 29000
+      },
+      {
+        "week": 19,
+        "target": 29300
+      },
+      {
+        "week": 20,
+        "target": 30200
+      },
+      {
+        "week": 21,
+        "target": 33100
+      },
+      {
+        "week": 22,
+        "target": 33300
+      },
+      {
+        "week": 23,
+        "target": 35000
+      },
+      {
+        "week": 24,
+        "target": 27700
+      },
+      {
+        "week": 25,
+        "target": 31300
+      },
+      {
+        "week": 26,
+        "target": 25900
+      },
+      {
+        "week": 27,
+        "target": 29500
+      },
+      {
+        "week": 28,
+        "target": 29500
+      },
+      {
+        "week": 29,
+        "target": 30900
+      },
+      {
+        "week": 30,
+        "target": 27900
+      },
+      {
+        "week": 31,
+        "target": 24900
+      },
+      {
+        "week": 32,
+        "target": 23500
+      },
+      {
+        "week": 33,
+        "target": 25300
+      },
+      {
+        "week": 34,
+        "target": 23900
+      },
+      {
+        "week": 35,
+        "target": 24300
+      },
+      {
+        "week": 36,
+        "target": 27900
+      },
+      {
+        "week": 37,
+        "target": 24000
+      },
+      {
+        "week": 38,
+        "target": 23700
+      },
+      {
+        "week": 39,
+        "target": 27400
+      },
+      {
+        "week": 40,
+        "target": 22900
+      },
+      {
+        "week": 41,
+        "target": 21900
+      },
+      {
+        "week": 42,
+        "target": 23400
+      },
+      {
+        "week": 43,
+        "target": 26300
+      },
+      {
+        "week": 44,
+        "target": 28600
+      },
+      {
+        "week": 45,
+        "target": 27400
+      },
+      {
+        "week": 46,
+        "target": 23600
+      },
+      {
+        "week": 47,
+        "target": 20700
+      },
+      {
+        "week": 48,
+        "target": 24300
+      },
+      {
+        "week": 49,
+        "target": 30000
+      },
+      {
+        "week": 50,
+        "target": 28800
+      },
+      {
+        "week": 51,
+        "target": 29100
+      },
+      {
+        "week": 52,
+        "target": 26400
+      }
+    ],
+    "Vegetable": [
+      {
+        "week": 1,
+        "target": 28100
+      },
+      {
+        "week": 2,
+        "target": 27800
+      },
+      {
+        "week": 3,
+        "target": 27600
+      },
+      {
+        "week": 4,
+        "target": 25200
+      },
+      {
+        "week": 5,
+        "target": 28300
+      },
+      {
+        "week": 6,
+        "target": 28100
+      },
+      {
+        "week": 7,
+        "target": 26300
+      },
+      {
+        "week": 8,
+        "target": 29400
+      },
+      {
+        "week": 9,
+        "target": 26400
+      },
+      {
+        "week": 10,
+        "target": 26300
+      },
+      {
+        "week": 11,
+        "target": 25100
+      },
+      {
+        "week": 12,
+        "target": 22900
+      },
+      {
+        "week": 13,
+        "target": 22700
+      },
+      {
+        "week": 14,
+        "target": 22300
+      },
+      {
+        "week": 15,
+        "target": 24800
+      },
+      {
+        "week": 16,
+        "target": 22300
+      },
+      {
+        "week": 17,
+        "target": 21900
+      },
+      {
+        "week": 18,
+        "target": 22300
+      },
+      {
+        "week": 19,
+        "target": 22000
+      },
+      {
+        "week": 20,
+        "target": 21800
+      },
+      {
+        "week": 21,
+        "target": 21200
+      },
+      {
+        "week": 22,
+        "target": 21600
+      },
+      {
+        "week": 23,
+        "target": 20600
+      },
+      {
+        "week": 24,
+        "target": 20600
+      },
+      {
+        "week": 25,
+        "target": 20400
+      },
+      {
+        "week": 26,
+        "target": 19800
+      },
+      {
+        "week": 27,
+        "target": 19300
+      },
+      {
+        "week": 28,
+        "target": 19800
+      },
+      {
+        "week": 29,
+        "target": 19100
+      },
+      {
+        "week": 30,
+        "target": 19300
+      },
+      {
+        "week": 31,
+        "target": 18500
+      },
+      {
+        "week": 32,
+        "target": 18600
+      },
+      {
+        "week": 33,
+        "target": 20300
+      },
+      {
+        "week": 34,
+        "target": 19700
+      },
+      {
+        "week": 35,
+        "target": 19600
+      },
+      {
+        "week": 36,
+        "target": 21700
+      },
+      {
+        "week": 37,
+        "target": 21800
+      },
+      {
+        "week": 38,
+        "target": 21200
+      },
+      {
+        "week": 39,
+        "target": 24600
+      },
+      {
+        "week": 40,
+        "target": 20900
+      },
+      {
+        "week": 41,
+        "target": 21400
+      },
+      {
+        "week": 42,
+        "target": 24400
+      },
+      {
+        "week": 43,
+        "target": 25000
+      },
+      {
+        "week": 44,
+        "target": 24800
+      },
+      {
+        "week": 45,
+        "target": 26000
+      },
+      {
+        "week": 46,
+        "target": 23700
+      },
+      {
+        "week": 47,
+        "target": 23000
+      },
+      {
+        "week": 48,
+        "target": 23200
+      },
+      {
+        "week": 49,
+        "target": 22500
+      },
+      {
+        "week": 50,
+        "target": 22700
+      },
+      {
+        "week": 51,
+        "target": 22400
+      },
+      {
+        "week": 52,
+        "target": 19700
+      }
+    ],
+    "Dairy": [
+      {
+        "week": 1,
+        "target": 7400
+      },
+      {
+        "week": 2,
+        "target": 8100
+      },
+      {
+        "week": 3,
+        "target": 7500
+      },
+      {
+        "week": 4,
+        "target": 6600
+      },
+      {
+        "week": 5,
+        "target": 7200
+      },
+      {
+        "week": 6,
+        "target": 7600
+      },
+      {
+        "week": 7,
+        "target": 6900
+      },
+      {
+        "week": 8,
+        "target": 8400
+      },
+      {
+        "week": 9,
+        "target": 7300
+      },
+      {
+        "week": 10,
+        "target": 7400
+      },
+      {
+        "week": 11,
+        "target": 7400
+      },
+      {
+        "week": 12,
+        "target": 7500
+      },
+      {
+        "week": 13,
+        "target": 7700
+      },
+      {
+        "week": 14,
+        "target": 7800
+      },
+      {
+        "week": 15,
+        "target": 7700
+      },
+      {
+        "week": 16,
+        "target": 7000
+      },
+      {
+        "week": 17,
+        "target": 6500
+      },
+      {
+        "week": 18,
+        "target": 7500
+      },
+      {
+        "week": 19,
+        "target": 6700
+      },
+      {
+        "week": 20,
+        "target": 7100
+      },
+      {
+        "week": 21,
+        "target": 7400
+      },
+      {
+        "week": 22,
+        "target": 6900
+      },
+      {
+        "week": 23,
+        "target": 6600
+      },
+      {
+        "week": 24,
+        "target": 6600
+      },
+      {
+        "week": 25,
+        "target": 7300
+      },
+      {
+        "week": 26,
+        "target": 6800
+      },
+      {
+        "week": 27,
+        "target": 6200
+      },
+      {
+        "week": 28,
+        "target": 6400
+      },
+      {
+        "week": 29,
+        "target": 7000
+      },
+      {
+        "week": 30,
+        "target": 7600
+      },
+      {
+        "week": 31,
+        "target": 6900
+      },
+      {
+        "week": 32,
+        "target": 6600
+      },
+      {
+        "week": 33,
+        "target": 7400
+      },
+      {
+        "week": 34,
+        "target": 7000
+      },
+      {
+        "week": 35,
+        "target": 7000
+      },
+      {
+        "week": 36,
+        "target": 6800
+      },
+      {
+        "week": 37,
+        "target": 6900
+      },
+      {
+        "week": 38,
+        "target": 6100
+      },
+      {
+        "week": 39,
+        "target": 7300
+      },
+      {
+        "week": 40,
+        "target": 7200
+      },
+      {
+        "week": 41,
+        "target": 6900
+      },
+      {
+        "week": 42,
+        "target": 6300
+      },
+      {
+        "week": 43,
+        "target": 7500
+      },
+      {
+        "week": 44,
+        "target": 7300
+      },
+      {
+        "week": 45,
+        "target": 6800
+      },
+      {
+        "week": 46,
+        "target": 6400
+      },
+      {
+        "week": 47,
+        "target": 6700
+      },
+      {
+        "week": 48,
+        "target": 7200
+      },
+      {
+        "week": 49,
+        "target": 7200
+      },
+      {
+        "week": 50,
+        "target": 6600
+      },
+      {
+        "week": 51,
+        "target": 6700
+      },
+      {
+        "week": 52,
+        "target": 6100
+      }
+    ],
+    "Eggs": [
+      {
+        "week": 1,
+        "target": 6300
+      },
+      {
+        "week": 2,
+        "target": 6800
+      },
+      {
+        "week": 3,
+        "target": 6800
+      },
+      {
+        "week": 4,
+        "target": 6100
+      },
+      {
+        "week": 5,
+        "target": 7300
+      },
+      {
+        "week": 6,
+        "target": 6300
+      },
+      {
+        "week": 7,
+        "target": 5900
+      },
+      {
+        "week": 8,
+        "target": 6800
+      },
+      {
+        "week": 9,
+        "target": 5600
+      },
+      {
+        "week": 10,
+        "target": 6300
+      },
+      {
+        "week": 11,
+        "target": 6100
+      },
+      {
+        "week": 12,
+        "target": 6100
+      },
+      {
+        "week": 13,
+        "target": 5600
+      },
+      {
+        "week": 14,
+        "target": 5800
+      },
+      {
+        "week": 15,
+        "target": 5500
+      },
+      {
+        "week": 16,
+        "target": 5400
+      },
+      {
+        "week": 17,
+        "target": 5000
+      },
+      {
+        "week": 18,
+        "target": 5700
+      },
+      {
+        "week": 19,
+        "target": 6300
+      },
+      {
+        "week": 20,
+        "target": 5600
+      },
+      {
+        "week": 21,
+        "target": 5700
+      },
+      {
+        "week": 22,
+        "target": 5100
+      },
+      {
+        "week": 23,
+        "target": 5600
+      },
+      {
+        "week": 24,
+        "target": 5900
+      },
+      {
+        "week": 25,
+        "target": 6000
+      },
+      {
+        "week": 26,
+        "target": 5800
+      },
+      {
+        "week": 27,
+        "target": 5400
+      },
+      {
+        "week": 28,
+        "target": 5800
+      },
+      {
+        "week": 29,
+        "target": 5100
+      },
+      {
+        "week": 30,
+        "target": 5200
+      },
+      {
+        "week": 31,
+        "target": 4900
+      },
+      {
+        "week": 32,
+        "target": 5700
+      },
+      {
+        "week": 33,
+        "target": 5300
+      },
+      {
+        "week": 34,
+        "target": 5400
+      },
+      {
+        "week": 35,
+        "target": 4800
+      },
+      {
+        "week": 36,
+        "target": 5600
+      },
+      {
+        "week": 37,
+        "target": 5800
+      },
+      {
+        "week": 38,
+        "target": 5500
+      },
+      {
+        "week": 39,
+        "target": 5100
+      },
+      {
+        "week": 40,
+        "target": 5500
+      },
+      {
+        "week": 41,
+        "target": 5400
+      },
+      {
+        "week": 42,
+        "target": 5400
+      },
+      {
+        "week": 43,
+        "target": 5200
+      },
+      {
+        "week": 44,
+        "target": 5600
+      },
+      {
+        "week": 45,
+        "target": 5800
+      },
+      {
+        "week": 46,
+        "target": 5900
+      },
+      {
+        "week": 47,
+        "target": 5400
+      },
+      {
+        "week": 48,
+        "target": 5400
+      },
+      {
+        "week": 49,
+        "target": 5600
+      },
+      {
+        "week": 50,
+        "target": 5600
+      },
+      {
+        "week": 51,
+        "target": 5800
+      },
+      {
+        "week": 52,
+        "target": 4400
+      }
+    ],
+    "Planted Based Protein": [
+      {
+        "week": 1,
+        "target": 3500
+      },
+      {
+        "week": 2,
+        "target": 3200
+      },
+      {
+        "week": 3,
+        "target": 3100
+      },
+      {
+        "week": 4,
+        "target": 3000
+      },
+      {
+        "week": 5,
+        "target": 3300
+      },
+      {
+        "week": 6,
+        "target": 3100
+      },
+      {
+        "week": 7,
+        "target": 3000
+      },
+      {
+        "week": 8,
+        "target": 3600
+      },
+      {
+        "week": 9,
+        "target": 3000
+      },
+      {
+        "week": 10,
+        "target": 3800
+      },
+      {
+        "week": 11,
+        "target": 3200
+      },
+      {
+        "week": 12,
+        "target": 3100
+      },
+      {
+        "week": 13,
+        "target": 3000
+      },
+      {
+        "week": 14,
+        "target": 3000
+      },
+      {
+        "week": 15,
+        "target": 3300
+      },
+      {
+        "week": 16,
+        "target": 2800
+      },
+      {
+        "week": 17,
+        "target": 3000
+      },
+      {
+        "week": 18,
+        "target": 3000
+      },
+      {
+        "week": 19,
+        "target": 2900
+      },
+      {
+        "week": 20,
+        "target": 3300
+      },
+      {
+        "week": 21,
+        "target": 2800
+      },
+      {
+        "week": 22,
+        "target": 2900
+      },
+      {
+        "week": 23,
+        "target": 2700
+      },
+      {
+        "week": 24,
+        "target": 2900
+      },
+      {
+        "week": 25,
+        "target": 3100
+      },
+      {
+        "week": 26,
+        "target": 2900
+      },
+      {
+        "week": 27,
+        "target": 2700
+      },
+      {
+        "week": 28,
+        "target": 2700
+      },
+      {
+        "week": 29,
+        "target": 3100
+      },
+      {
+        "week": 30,
+        "target": 2900
+      },
+      {
+        "week": 31,
+        "target": 2600
+      },
+      {
+        "week": 32,
+        "target": 2900
+      },
+      {
+        "week": 33,
+        "target": 3100
+      },
+      {
+        "week": 34,
+        "target": 3300
+      },
+      {
+        "week": 35,
+        "target": 3000
+      },
+      {
+        "week": 36,
+        "target": 3100
+      },
+      {
+        "week": 37,
+        "target": 3200
+      },
+      {
+        "week": 38,
+        "target": 2900
+      },
+      {
+        "week": 39,
+        "target": 3300
+      },
+      {
+        "week": 40,
+        "target": 2800
+      },
+      {
+        "week": 41,
+        "target": 3300
+      },
+      {
+        "week": 42,
+        "target": 3200
+      },
+      {
+        "week": 43,
+        "target": 3400
+      },
+      {
+        "week": 44,
+        "target": 3500
+      },
+      {
+        "week": 45,
+        "target": 3700
+      },
+      {
+        "week": 46,
+        "target": 3200
+      },
+      {
+        "week": 47,
+        "target": 3400
+      },
+      {
+        "week": 48,
+        "target": 3300
+      },
+      {
+        "week": 49,
+        "target": 3100
+      },
+      {
+        "week": 50,
+        "target": 3200
+      },
+      {
+        "week": 51,
+        "target": 3000
+      },
+      {
+        "week": 52,
+        "target": 2600
+      }
+    ],
+    "Meat": [
+      {
+        "week": 1,
+        "target": 25300
+      },
+      {
+        "week": 2,
+        "target": 26400
+      },
+      {
+        "week": 3,
+        "target": 24900
+      },
+      {
+        "week": 4,
+        "target": 22100
+      },
+      {
+        "week": 5,
+        "target": 25100
+      },
+      {
+        "week": 6,
+        "target": 26900
+      },
+      {
+        "week": 7,
+        "target": 24800
+      },
+      {
+        "week": 8,
+        "target": 33000
+      },
+      {
+        "week": 9,
+        "target": 22100
+      },
+      {
+        "week": 10,
+        "target": 23600
+      },
+      {
+        "week": 11,
+        "target": 23200
+      },
+      {
+        "week": 12,
+        "target": 23800
+      },
+      {
+        "week": 13,
+        "target": 23300
+      },
+      {
+        "week": 14,
+        "target": 22800
+      },
+      {
+        "week": 15,
+        "target": 22000
+      },
+      {
+        "week": 16,
+        "target": 20700
+      },
+      {
+        "week": 17,
+        "target": 21100
+      },
+      {
+        "week": 18,
+        "target": 22300
+      },
+      {
+        "week": 19,
+        "target": 21300
+      },
+      {
+        "week": 20,
+        "target": 20200
+      },
+      {
+        "week": 21,
+        "target": 19700
+      },
+      {
+        "week": 22,
+        "target": 21200
+      },
+      {
+        "week": 23,
+        "target": 19900
+      },
+      {
+        "week": 24,
+        "target": 19500
+      },
+      {
+        "week": 25,
+        "target": 19000
+      },
+      {
+        "week": 26,
+        "target": 19100
+      },
+      {
+        "week": 27,
+        "target": 18500
+      },
+      {
+        "week": 28,
+        "target": 17600
+      },
+      {
+        "week": 29,
+        "target": 17000
+      },
+      {
+        "week": 30,
+        "target": 18800
+      },
+      {
+        "week": 31,
+        "target": 20300
+      },
+      {
+        "week": 32,
+        "target": 17000
+      },
+      {
+        "week": 33,
+        "target": 19400
+      },
+      {
+        "week": 34,
+        "target": 19800
+      },
+      {
+        "week": 35,
+        "target": 20200
+      },
+      {
+        "week": 36,
+        "target": 22800
+      },
+      {
+        "week": 37,
+        "target": 21900
+      },
+      {
+        "week": 38,
+        "target": 21900
+      },
+      {
+        "week": 39,
+        "target": 24100
+      },
+      {
+        "week": 40,
+        "target": 20400
+      },
+      {
+        "week": 41,
+        "target": 20800
+      },
+      {
+        "week": 42,
+        "target": 22900
+      },
+      {
+        "week": 43,
+        "target": 23200
+      },
+      {
+        "week": 44,
+        "target": 26100
+      },
+      {
+        "week": 45,
+        "target": 27400
+      },
+      {
+        "week": 46,
+        "target": 24000
+      },
+      {
+        "week": 47,
+        "target": 26200
+      },
+      {
+        "week": 48,
+        "target": 25300
+      },
+      {
+        "week": 49,
+        "target": 25300
+      },
+      {
+        "week": 50,
+        "target": 24300
+      },
+      {
+        "week": 51,
+        "target": 23600
+      },
+      {
+        "week": 52,
+        "target": 23900
+      }
+    ],
+    "Fresh Seafood": [
+      {
+        "week": 1,
+        "target": 3900
+      },
+      {
+        "week": 2,
+        "target": 3500
+      },
+      {
+        "week": 3,
+        "target": 3200
+      },
+      {
+        "week": 4,
+        "target": 2800
+      },
+      {
+        "week": 5,
+        "target": 3100
+      },
+      {
+        "week": 6,
+        "target": 3400
+      },
+      {
+        "week": 7,
+        "target": 2800
+      },
+      {
+        "week": 8,
+        "target": 5600
+      },
+      {
+        "week": 9,
+        "target": 3000
+      },
+      {
+        "week": 10,
+        "target": 3200
+      },
+      {
+        "week": 11,
+        "target": 3300
+      },
+      {
+        "week": 12,
+        "target": 3500
+      },
+      {
+        "week": 13,
+        "target": 3000
+      },
+      {
+        "week": 14,
+        "target": 3800
+      },
+      {
+        "week": 15,
+        "target": 3500
+      },
+      {
+        "week": 16,
+        "target": 3800
+      },
+      {
+        "week": 17,
+        "target": 4000
+      },
+      {
+        "week": 18,
+        "target": 3800
+      },
+      {
+        "week": 19,
+        "target": 3100
+      },
+      {
+        "week": 20,
+        "target": 16100
+      },
+      {
+        "week": 21,
+        "target": 27700
+      },
+      {
+        "week": 22,
+        "target": 26700
+      },
+      {
+        "week": 23,
+        "target": 17400
+      },
+      {
+        "week": 24,
+        "target": 3100
+      },
+      {
+        "week": 25,
+        "target": 5100
+      },
+      {
+        "week": 26,
+        "target": 2900
+      },
+      {
+        "week": 27,
+        "target": 3300
+      },
+      {
+        "week": 28,
+        "target": 3600
+      },
+      {
+        "week": 29,
+        "target": 3400
+      },
+      {
+        "week": 30,
+        "target": 3500
+      },
+      {
+        "week": 31,
+        "target": 3700
+      },
+      {
+        "week": 32,
+        "target": 3500
+      },
+      {
+        "week": 33,
+        "target": 3700
+      },
+      {
+        "week": 34,
+        "target": 2900
+      },
+      {
+        "week": 35,
+        "target": 3000
+      },
+      {
+        "week": 36,
+        "target": 3300
+      },
+      {
+        "week": 37,
+        "target": 3600
+      },
+      {
+        "week": 38,
+        "target": 3400
+      },
+      {
+        "week": 39,
+        "target": 5400
+      },
+      {
+        "week": 40,
+        "target": 3600
+      },
+      {
+        "week": 41,
+        "target": 4100
+      },
+      {
+        "week": 42,
+        "target": 3900
+      },
+      {
+        "week": 43,
+        "target": 3900
+      },
+      {
+        "week": 44,
+        "target": 3700
+      },
+      {
+        "week": 45,
+        "target": 3900
+      },
+      {
+        "week": 46,
+        "target": 3900
+      },
+      {
+        "week": 47,
+        "target": 4100
+      },
+      {
+        "week": 48,
+        "target": 4400
+      },
+      {
+        "week": 49,
+        "target": 4100
+      },
+      {
+        "week": 50,
+        "target": 4300
+      },
+      {
+        "week": 51,
+        "target": 4100
+      },
+      {
+        "week": 52,
+        "target": 4400
+      }
+    ],
+    "Frozen Seafood": [
+      {
+        "week": 1,
+        "target": 6800
+      },
+      {
+        "week": 2,
+        "target": 6100
+      },
+      {
+        "week": 3,
+        "target": 6000
+      },
+      {
+        "week": 4,
+        "target": 6800
+      },
+      {
+        "week": 5,
+        "target": 6200
+      },
+      {
+        "week": 6,
+        "target": 6900
+      },
+      {
+        "week": 7,
+        "target": 6800
+      },
+      {
+        "week": 8,
+        "target": 7800
+      },
+      {
+        "week": 9,
+        "target": 5800
+      },
+      {
+        "week": 10,
+        "target": 5200
+      },
+      {
+        "week": 11,
+        "target": 5400
+      },
+      {
+        "week": 12,
+        "target": 5300
+      },
+      {
+        "week": 13,
+        "target": 5400
+      },
+      {
+        "week": 14,
+        "target": 5100
+      },
+      {
+        "week": 15,
+        "target": 6400
+      },
+      {
+        "week": 16,
+        "target": 5600
+      },
+      {
+        "week": 17,
+        "target": 5100
+      },
+      {
+        "week": 18,
+        "target": 5700
+      },
+      {
+        "week": 19,
+        "target": 5100
+      },
+      {
+        "week": 20,
+        "target": 4800
+      },
+      {
+        "week": 21,
+        "target": 5200
+      },
+      {
+        "week": 22,
+        "target": 5400
+      },
+      {
+        "week": 23,
+        "target": 4900
+      },
+      {
+        "week": 24,
+        "target": 5100
+      },
+      {
+        "week": 25,
+        "target": 4500
+      },
+      {
+        "week": 26,
+        "target": 4900
+      },
+      {
+        "week": 27,
+        "target": 4600
+      },
+      {
+        "week": 28,
+        "target": 5200
+      },
+      {
+        "week": 29,
+        "target": 6200
+      },
+      {
+        "week": 30,
+        "target": 7600
+      },
+      {
+        "week": 31,
+        "target": 5800
+      },
+      {
+        "week": 32,
+        "target": 5100
+      },
+      {
+        "week": 33,
+        "target": 6900
+      },
+      {
+        "week": 34,
+        "target": 6700
+      },
+      {
+        "week": 35,
+        "target": 5300
+      },
+      {
+        "week": 36,
+        "target": 6200
+      },
+      {
+        "week": 37,
+        "target": 5900
+      },
+      {
+        "week": 38,
+        "target": 6100
+      },
+      {
+        "week": 39,
+        "target": 5600
+      },
+      {
+        "week": 40,
+        "target": 6100
+      },
+      {
+        "week": 41,
+        "target": 6300
+      },
+      {
+        "week": 42,
+        "target": 5500
+      },
+      {
+        "week": 43,
+        "target": 5600
+      },
+      {
+        "week": 44,
+        "target": 6300
+      },
+      {
+        "week": 45,
+        "target": 6300
+      },
+      {
+        "week": 46,
+        "target": 5300
+      },
+      {
+        "week": 47,
+        "target": 6400
+      },
+      {
+        "week": 48,
+        "target": 6500
+      },
+      {
+        "week": 49,
+        "target": 6100
+      },
+      {
+        "week": 50,
+        "target": 5700
+      },
+      {
+        "week": 51,
+        "target": 6100
+      },
+      {
+        "week": 52,
+        "target": 6300
+      }
+    ],
+    "RTC": [
+      {
+        "week": 1,
+        "target": 6000
+      },
+      {
+        "week": 2,
+        "target": 6300
+      },
+      {
+        "week": 3,
+        "target": 5300
+      },
+      {
+        "week": 4,
+        "target": 5000
+      },
+      {
+        "week": 5,
+        "target": 5200
+      },
+      {
+        "week": 6,
+        "target": 5600
+      },
+      {
+        "week": 7,
+        "target": 5900
+      },
+      {
+        "week": 8,
+        "target": 7500
+      },
+      {
+        "week": 9,
+        "target": 5400
+      },
+      {
+        "week": 10,
+        "target": 6200
+      },
+      {
+        "week": 11,
+        "target": 5200
+      },
+      {
+        "week": 12,
+        "target": 5300
+      },
+      {
+        "week": 13,
+        "target": 5800
+      },
+      {
+        "week": 14,
+        "target": 6500
+      },
+      {
+        "week": 15,
+        "target": 6000
+      },
+      {
+        "week": 16,
+        "target": 5200
+      },
+      {
+        "week": 17,
+        "target": 5200
+      },
+      {
+        "week": 18,
+        "target": 5600
+      },
+      {
+        "week": 19,
+        "target": 5200
+      },
+      {
+        "week": 20,
+        "target": 5500
+      },
+      {
+        "week": 21,
+        "target": 5400
+      },
+      {
+        "week": 22,
+        "target": 5700
+      },
+      {
+        "week": 23,
+        "target": 5300
+      },
+      {
+        "week": 24,
+        "target": 5200
+      },
+      {
+        "week": 25,
+        "target": 5200
+      },
+      {
+        "week": 26,
+        "target": 5200
+      },
+      {
+        "week": 27,
+        "target": 4600
+      },
+      {
+        "week": 28,
+        "target": 4400
+      },
+      {
+        "week": 29,
+        "target": 4700
+      },
+      {
+        "week": 30,
+        "target": 4900
+      },
+      {
+        "week": 31,
+        "target": 4900
+      },
+      {
+        "week": 32,
+        "target": 4500
+      },
+      {
+        "week": 33,
+        "target": 4900
+      },
+      {
+        "week": 34,
+        "target": 4800
+      },
+      {
+        "week": 35,
+        "target": 4800
+      },
+      {
+        "week": 36,
+        "target": 4800
+      },
+      {
+        "week": 37,
+        "target": 5100
+      },
+      {
+        "week": 38,
+        "target": 4700
+      },
+      {
+        "week": 39,
+        "target": 5900
+      },
+      {
+        "week": 40,
+        "target": 5500
+      },
+      {
+        "week": 41,
+        "target": 4900
+      },
+      {
+        "week": 42,
+        "target": 5100
+      },
+      {
+        "week": 43,
+        "target": 5000
+      },
+      {
+        "week": 44,
+        "target": 5000
+      },
+      {
+        "week": 45,
+        "target": 5600
+      },
+      {
+        "week": 46,
+        "target": 5000
+      },
+      {
+        "week": 47,
+        "target": 5400
+      },
+      {
+        "week": 48,
+        "target": 5200
+      },
+      {
+        "week": 49,
+        "target": 5100
+      },
+      {
+        "week": 50,
+        "target": 5300
+      },
+      {
+        "week": 51,
+        "target": 5200
+      },
+      {
+        "week": 52,
+        "target": 4800
+      }
+    ],
+    "RTE-Cold": [
+      {
+        "week": 1,
+        "target": 9700
+      },
+      {
+        "week": 2,
+        "target": 9500
+      },
+      {
+        "week": 3,
+        "target": 7600
+      },
+      {
+        "week": 4,
+        "target": 8600
+      },
+      {
+        "week": 5,
+        "target": 8900
+      },
+      {
+        "week": 6,
+        "target": 9100
+      },
+      {
+        "week": 7,
+        "target": 9000
+      },
+      {
+        "week": 8,
+        "target": 15800
+      },
+      {
+        "week": 9,
+        "target": 7900
+      },
+      {
+        "week": 10,
+        "target": 7800
+      },
+      {
+        "week": 11,
+        "target": 7100
+      },
+      {
+        "week": 12,
+        "target": 7800
+      },
+      {
+        "week": 13,
+        "target": 8000
+      },
+      {
+        "week": 14,
+        "target": 7600
+      },
+      {
+        "week": 15,
+        "target": 8300
+      },
+      {
+        "week": 16,
+        "target": 7600
+      },
+      {
+        "week": 17,
+        "target": 7200
+      },
+      {
+        "week": 18,
+        "target": 8300
+      },
+      {
+        "week": 19,
+        "target": 7000
+      },
+      {
+        "week": 20,
+        "target": 7600
+      },
+      {
+        "week": 21,
+        "target": 7200
+      },
+      {
+        "week": 22,
+        "target": 7000
+      },
+      {
+        "week": 23,
+        "target": 7900
+      },
+      {
+        "week": 24,
+        "target": 6600
+      },
+      {
+        "week": 25,
+        "target": 7800
+      },
+      {
+        "week": 26,
+        "target": 7400
+      },
+      {
+        "week": 27,
+        "target": 7200
+      },
+      {
+        "week": 28,
+        "target": 8100
+      },
+      {
+        "week": 29,
+        "target": 7900
+      },
+      {
+        "week": 30,
+        "target": 7600
+      },
+      {
+        "week": 31,
+        "target": 7900
+      },
+      {
+        "week": 32,
+        "target": 7100
+      },
+      {
+        "week": 33,
+        "target": 6600
+      },
+      {
+        "week": 34,
+        "target": 7500
+      },
+      {
+        "week": 35,
+        "target": 8200
+      },
+      {
+        "week": 36,
+        "target": 12100
+      },
+      {
+        "week": 37,
+        "target": 10700
+      },
+      {
+        "week": 38,
+        "target": 10600
+      },
+      {
+        "week": 39,
+        "target": 13500
+      },
+      {
+        "week": 40,
+        "target": 8000
+      },
+      {
+        "week": 41,
+        "target": 10400
+      },
+      {
+        "week": 42,
+        "target": 10600
+      },
+      {
+        "week": 43,
+        "target": 10700
+      },
+      {
+        "week": 44,
+        "target": 10800
+      },
+      {
+        "week": 45,
+        "target": 10800
+      },
+      {
+        "week": 46,
+        "target": 10300
+      },
+      {
+        "week": 47,
+        "target": 9900
+      },
+      {
+        "week": 48,
+        "target": 8700
+      },
+      {
+        "week": 49,
+        "target": 9400
+      },
+      {
+        "week": 50,
+        "target": 11100
+      },
+      {
+        "week": 51,
+        "target": 10000
+      },
+      {
+        "week": 52,
+        "target": 10000
+      }
+    ],
+    "RTE-Hot": [
+      {
+        "week": 1,
+        "target": 8400
+      },
+      {
+        "week": 2,
+        "target": 6900
+      },
+      {
+        "week": 3,
+        "target": 7500
+      },
+      {
+        "week": 4,
+        "target": 6300
+      },
+      {
+        "week": 5,
+        "target": 8000
+      },
+      {
+        "week": 6,
+        "target": 8200
+      },
+      {
+        "week": 7,
+        "target": 7800
+      },
+      {
+        "week": 8,
+        "target": 8300
+      },
+      {
+        "week": 9,
+        "target": 8100
+      },
+      {
+        "week": 10,
+        "target": 7700
+      },
+      {
+        "week": 11,
+        "target": 8500
+      },
+      {
+        "week": 12,
+        "target": 6900
+      },
+      {
+        "week": 13,
+        "target": 6900
+      },
+      {
+        "week": 14,
+        "target": 7300
+      },
+      {
+        "week": 15,
+        "target": 7600
+      },
+      {
+        "week": 16,
+        "target": 6900
+      },
+      {
+        "week": 17,
+        "target": 6100
+      },
+      {
+        "week": 18,
+        "target": 7100
+      },
+      {
+        "week": 19,
+        "target": 6600
+      },
+      {
+        "week": 20,
+        "target": 6800
+      },
+      {
+        "week": 21,
+        "target": 6800
+      },
+      {
+        "week": 22,
+        "target": 7500
+      },
+      {
+        "week": 23,
+        "target": 7500
+      },
+      {
+        "week": 24,
+        "target": 7400
+      },
+      {
+        "week": 25,
+        "target": 7600
+      },
+      {
+        "week": 26,
+        "target": 7300
+      },
+      {
+        "week": 27,
+        "target": 6800
+      },
+      {
+        "week": 28,
+        "target": 6900
+      },
+      {
+        "week": 29,
+        "target": 7000
+      },
+      {
+        "week": 30,
+        "target": 6500
+      },
+      {
+        "week": 31,
+        "target": 6600
+      },
+      {
+        "week": 32,
+        "target": 6500
+      },
+      {
+        "week": 33,
+        "target": 7300
+      },
+      {
+        "week": 34,
+        "target": 7100
+      },
+      {
+        "week": 35,
+        "target": 6500
+      },
+      {
+        "week": 36,
+        "target": 7000
+      },
+      {
+        "week": 37,
+        "target": 7300
+      },
+      {
+        "week": 38,
+        "target": 6300
+      },
+      {
+        "week": 39,
+        "target": 7200
+      },
+      {
+        "week": 40,
+        "target": 7000
+      },
+      {
+        "week": 41,
+        "target": 6900
+      },
+      {
+        "week": 42,
+        "target": 6500
+      },
+      {
+        "week": 43,
+        "target": 7200
+      },
+      {
+        "week": 44,
+        "target": 7100
+      },
+      {
+        "week": 45,
+        "target": 7000
+      },
+      {
+        "week": 46,
+        "target": 7100
+      },
+      {
+        "week": 47,
+        "target": 7000
+      },
+      {
+        "week": 48,
+        "target": 8100
+      },
+      {
+        "week": 49,
+        "target": 8300
+      },
+      {
+        "week": 50,
+        "target": 8100
+      },
+      {
+        "week": 51,
+        "target": 7300
+      },
+      {
+        "week": 52,
+        "target": 5400
+      }
+    ],
+    "Bakery": [
+      {
+        "week": 1,
+        "target": 8500
+      },
+      {
+        "week": 2,
+        "target": 7800
+      },
+      {
+        "week": 3,
+        "target": 7800
+      },
+      {
+        "week": 4,
+        "target": 6000
+      },
+      {
+        "week": 5,
+        "target": 6800
+      },
+      {
+        "week": 6,
+        "target": 6900
+      },
+      {
+        "week": 7,
+        "target": 6900
+      },
+      {
+        "week": 8,
+        "target": 8800
+      },
+      {
+        "week": 9,
+        "target": 8100
+      },
+      {
+        "week": 10,
+        "target": 7700
+      },
+      {
+        "week": 11,
+        "target": 7500
+      },
+      {
+        "week": 12,
+        "target": 7800
+      },
+      {
+        "week": 13,
+        "target": 7900
+      },
+      {
+        "week": 14,
+        "target": 8100
+      },
+      {
+        "week": 15,
+        "target": 8600
+      },
+      {
+        "week": 16,
+        "target": 7500
+      },
+      {
+        "week": 17,
+        "target": 8100
+      },
+      {
+        "week": 18,
+        "target": 9400
+      },
+      {
+        "week": 19,
+        "target": 9700
+      },
+      {
+        "week": 20,
+        "target": 10100
+      },
+      {
+        "week": 21,
+        "target": 10800
+      },
+      {
+        "week": 22,
+        "target": 10800
+      },
+      {
+        "week": 23,
+        "target": 10200
+      },
+      {
+        "week": 24,
+        "target": 10000
+      },
+      {
+        "week": 25,
+        "target": 10300
+      },
+      {
+        "week": 26,
+        "target": 10000
+      },
+      {
+        "week": 27,
+        "target": 9100
+      },
+      {
+        "week": 28,
+        "target": 9400
+      },
+      {
+        "week": 29,
+        "target": 9300
+      },
+      {
+        "week": 30,
+        "target": 9000
+      },
+      {
+        "week": 31,
+        "target": 9700
+      },
+      {
+        "week": 32,
+        "target": 8400
+      },
+      {
+        "week": 33,
+        "target": 8800
+      },
+      {
+        "week": 34,
+        "target": 9300
+      },
+      {
+        "week": 35,
+        "target": 9100
+      },
+      {
+        "week": 36,
+        "target": 8900
+      },
+      {
+        "week": 37,
+        "target": 9100
+      },
+      {
+        "week": 38,
+        "target": 8500
+      },
+      {
+        "week": 39,
+        "target": 8000
+      },
+      {
+        "week": 40,
+        "target": 10100
+      },
+      {
+        "week": 41,
+        "target": 9800
+      },
+      {
+        "week": 42,
+        "target": 7800
+      },
+      {
+        "week": 43,
+        "target": 8800
+      },
+      {
+        "week": 44,
+        "target": 8900
+      },
+      {
+        "week": 45,
+        "target": 9000
+      },
+      {
+        "week": 46,
+        "target": 7700
+      },
+      {
+        "week": 47,
+        "target": 9100
+      },
+      {
+        "week": 48,
+        "target": 9400
+      },
+      {
+        "week": 49,
+        "target": 10600
+      },
+      {
+        "week": 50,
+        "target": 9600
+      },
+      {
+        "week": 51,
+        "target": 9100
+      },
+      {
+        "week": 52,
+        "target": 8400
+      }
+    ],
+    "Frozen": [
+      {
+        "week": 1,
+        "target": 11500
+      },
+      {
+        "week": 2,
+        "target": 9900
+      },
+      {
+        "week": 3,
+        "target": 11200
+      },
+      {
+        "week": 4,
+        "target": 9500
+      },
+      {
+        "week": 5,
+        "target": 9100
+      },
+      {
+        "week": 6,
+        "target": 10300
+      },
+      {
+        "week": 7,
+        "target": 11100
+      },
+      {
+        "week": 8,
+        "target": 13100
+      },
+      {
+        "week": 9,
+        "target": 9700
+      },
+      {
+        "week": 10,
+        "target": 9500
+      },
+      {
+        "week": 11,
+        "target": 10600
+      },
+      {
+        "week": 12,
+        "target": 9700
+      },
+      {
+        "week": 13,
+        "target": 9500
+      },
+      {
+        "week": 14,
+        "target": 9000
+      },
+      {
+        "week": 15,
+        "target": 9900
+      },
+      {
+        "week": 16,
+        "target": 8000
+      },
+      {
+        "week": 17,
+        "target": 8200
+      },
+      {
+        "week": 18,
+        "target": 9800
+      },
+      {
+        "week": 19,
+        "target": 8900
+      },
+      {
+        "week": 20,
+        "target": 11800
+      },
+      {
+        "week": 21,
+        "target": 8200
+      },
+      {
+        "week": 22,
+        "target": 9700
+      },
+      {
+        "week": 23,
+        "target": 8400
+      },
+      {
+        "week": 24,
+        "target": 8400
+      },
+      {
+        "week": 25,
+        "target": 8100
+      },
+      {
+        "week": 26,
+        "target": 8200
+      },
+      {
+        "week": 27,
+        "target": 7600
+      },
+      {
+        "week": 28,
+        "target": 8100
+      },
+      {
+        "week": 29,
+        "target": 8500
+      },
+      {
+        "week": 30,
+        "target": 9300
+      },
+      {
+        "week": 31,
+        "target": 8100
+      },
+      {
+        "week": 32,
+        "target": 9200
+      },
+      {
+        "week": 33,
+        "target": 7900
+      },
+      {
+        "week": 34,
+        "target": 8000
+      },
+      {
+        "week": 35,
+        "target": 7300
+      },
+      {
+        "week": 36,
+        "target": 8900
+      },
+      {
+        "week": 37,
+        "target": 9400
+      },
+      {
+        "week": 38,
+        "target": 8900
+      },
+      {
+        "week": 39,
+        "target": 9900
+      },
+      {
+        "week": 40,
+        "target": 8700
+      },
+      {
+        "week": 41,
+        "target": 10100
+      },
+      {
+        "week": 42,
+        "target": 8500
+      },
+      {
+        "week": 43,
+        "target": 10100
+      },
+      {
+        "week": 44,
+        "target": 10200
+      },
+      {
+        "week": 45,
+        "target": 9800
+      },
+      {
+        "week": 46,
+        "target": 8500
+      },
+      {
+        "week": 47,
+        "target": 8700
+      },
+      {
+        "week": 48,
+        "target": 7800
+      },
+      {
+        "week": 49,
+        "target": 8900
+      },
+      {
+        "week": 50,
+        "target": 9300
+      },
+      {
+        "week": 51,
+        "target": 9600
+      },
+      {
+        "week": 52,
+        "target": 8400
+      }
+    ],
+    "Grain&Oil": [
+      {
+        "week": 1,
+        "target": 6300
+      },
+      {
+        "week": 2,
+        "target": 5900
+      },
+      {
+        "week": 3,
+        "target": 6600
+      },
+      {
+        "week": 4,
+        "target": 4100
+      },
+      {
+        "week": 5,
+        "target": 5600
+      },
+      {
+        "week": 6,
+        "target": 5700
+      },
+      {
+        "week": 7,
+        "target": 5500
+      },
+      {
+        "week": 8,
+        "target": 7200
+      },
+      {
+        "week": 9,
+        "target": 5900
+      },
+      {
+        "week": 10,
+        "target": 5900
+      },
+      {
+        "week": 11,
+        "target": 5900
+      },
+      {
+        "week": 12,
+        "target": 6400
+      },
+      {
+        "week": 13,
+        "target": 6100
+      },
+      {
+        "week": 14,
+        "target": 6600
+      },
+      {
+        "week": 15,
+        "target": 7000
+      },
+      {
+        "week": 16,
+        "target": 6000
+      },
+      {
+        "week": 17,
+        "target": 5400
+      },
+      {
+        "week": 18,
+        "target": 5300
+      },
+      {
+        "week": 19,
+        "target": 4800
+      },
+      {
+        "week": 20,
+        "target": 5500
+      },
+      {
+        "week": 21,
+        "target": 5900
+      },
+      {
+        "week": 22,
+        "target": 6900
+      },
+      {
+        "week": 23,
+        "target": 5600
+      },
+      {
+        "week": 24,
+        "target": 5100
+      },
+      {
+        "week": 25,
+        "target": 5400
+      },
+      {
+        "week": 26,
+        "target": 6200
+      },
+      {
+        "week": 27,
+        "target": 5700
+      },
+      {
+        "week": 28,
+        "target": 5800
+      },
+      {
+        "week": 29,
+        "target": 6900
+      },
+      {
+        "week": 30,
+        "target": 6400
+      },
+      {
+        "week": 31,
+        "target": 5900
+      },
+      {
+        "week": 32,
+        "target": 6200
+      },
+      {
+        "week": 33,
+        "target": 5600
+      },
+      {
+        "week": 34,
+        "target": 5900
+      },
+      {
+        "week": 35,
+        "target": 5000
+      },
+      {
+        "week": 36,
+        "target": 6500
+      },
+      {
+        "week": 37,
+        "target": 5800
+      },
+      {
+        "week": 38,
+        "target": 5500
+      },
+      {
+        "week": 39,
+        "target": 7000
+      },
+      {
+        "week": 40,
+        "target": 6100
+      },
+      {
+        "week": 41,
+        "target": 5900
+      },
+      {
+        "week": 42,
+        "target": 6100
+      },
+      {
+        "week": 43,
+        "target": 6400
+      },
+      {
+        "week": 44,
+        "target": 5800
+      },
+      {
+        "week": 45,
+        "target": 6500
+      },
+      {
+        "week": 46,
+        "target": 6500
+      },
+      {
+        "week": 47,
+        "target": 5900
+      },
+      {
+        "week": 48,
+        "target": 5400
+      },
+      {
+        "week": 49,
+        "target": 5900
+      },
+      {
+        "week": 50,
+        "target": 6200
+      },
+      {
+        "week": 51,
+        "target": 5600
+      },
+      {
+        "week": 52,
+        "target": 4700
+      }
+    ],
+    "Auxiliary Foods": [
+      {
+        "week": 1,
+        "target": 4300
+      },
+      {
+        "week": 2,
+        "target": 4800
+      },
+      {
+        "week": 3,
+        "target": 4000
+      },
+      {
+        "week": 4,
+        "target": 3400
+      },
+      {
+        "week": 5,
+        "target": 4200
+      },
+      {
+        "week": 6,
+        "target": 4100
+      },
+      {
+        "week": 7,
+        "target": 4900
+      },
+      {
+        "week": 8,
+        "target": 5800
+      },
+      {
+        "week": 9,
+        "target": 4000
+      },
+      {
+        "week": 10,
+        "target": 3900
+      },
+      {
+        "week": 11,
+        "target": 4200
+      },
+      {
+        "week": 12,
+        "target": 4100
+      },
+      {
+        "week": 13,
+        "target": 3600
+      },
+      {
+        "week": 14,
+        "target": 4900
+      },
+      {
+        "week": 15,
+        "target": 3900
+      },
+      {
+        "week": 16,
+        "target": 3600
+      },
+      {
+        "week": 17,
+        "target": 3500
+      },
+      {
+        "week": 18,
+        "target": 3500
+      },
+      {
+        "week": 19,
+        "target": 3900
+      },
+      {
+        "week": 20,
+        "target": 4100
+      },
+      {
+        "week": 21,
+        "target": 3100
+      },
+      {
+        "week": 22,
+        "target": 3900
+      },
+      {
+        "week": 23,
+        "target": 5100
+      },
+      {
+        "week": 24,
+        "target": 3600
+      },
+      {
+        "week": 25,
+        "target": 3700
+      },
+      {
+        "week": 26,
+        "target": 3600
+      },
+      {
+        "week": 27,
+        "target": 3300
+      },
+      {
+        "week": 28,
+        "target": 2700
+      },
+      {
+        "week": 29,
+        "target": 3000
+      },
+      {
+        "week": 30,
+        "target": 3400
+      },
+      {
+        "week": 31,
+        "target": 2900
+      },
+      {
+        "week": 32,
+        "target": 2900
+      },
+      {
+        "week": 33,
+        "target": 3200
+      },
+      {
+        "week": 34,
+        "target": 3400
+      },
+      {
+        "week": 35,
+        "target": 3100
+      },
+      {
+        "week": 36,
+        "target": 4000
+      },
+      {
+        "week": 37,
+        "target": 4000
+      },
+      {
+        "week": 38,
+        "target": 4300
+      },
+      {
+        "week": 39,
+        "target": 4400
+      },
+      {
+        "week": 40,
+        "target": 3600
+      },
+      {
+        "week": 41,
+        "target": 3700
+      },
+      {
+        "week": 42,
+        "target": 4300
+      },
+      {
+        "week": 43,
+        "target": 4200
+      },
+      {
+        "week": 44,
+        "target": 4200
+      },
+      {
+        "week": 45,
+        "target": 4100
+      },
+      {
+        "week": 46,
+        "target": 4000
+      },
+      {
+        "week": 47,
+        "target": 4300
+      },
+      {
+        "week": 48,
+        "target": 3700
+      },
+      {
+        "week": 49,
+        "target": 4100
+      },
+      {
+        "week": 50,
+        "target": 4400
+      },
+      {
+        "week": 51,
+        "target": 4400
+      },
+      {
+        "week": 52,
+        "target": 4700
+      }
+    ],
+    "Condiments": [
+      {
+        "week": 1,
+        "target": 6200
+      },
+      {
+        "week": 2,
+        "target": 6100
+      },
+      {
+        "week": 3,
+        "target": 5700
+      },
+      {
+        "week": 4,
+        "target": 4700
+      },
+      {
+        "week": 5,
+        "target": 5600
+      },
+      {
+        "week": 6,
+        "target": 5200
+      },
+      {
+        "week": 7,
+        "target": 5200
+      },
+      {
+        "week": 8,
+        "target": 6600
+      },
+      {
+        "week": 9,
+        "target": 5200
+      },
+      {
+        "week": 10,
+        "target": 5500
+      },
+      {
+        "week": 11,
+        "target": 5500
+      },
+      {
+        "week": 12,
+        "target": 5000
+      },
+      {
+        "week": 13,
+        "target": 5100
+      },
+      {
+        "week": 14,
+        "target": 4800
+      },
+      {
+        "week": 15,
+        "target": 5400
+      },
+      {
+        "week": 16,
+        "target": 4200
+      },
+      {
+        "week": 17,
+        "target": 4700
+      },
+      {
+        "week": 18,
+        "target": 5100
+      },
+      {
+        "week": 19,
+        "target": 4900
+      },
+      {
+        "week": 20,
+        "target": 4800
+      },
+      {
+        "week": 21,
+        "target": 4500
+      },
+      {
+        "week": 22,
+        "target": 4300
+      },
+      {
+        "week": 23,
+        "target": 4400
+      },
+      {
+        "week": 24,
+        "target": 4300
+      },
+      {
+        "week": 25,
+        "target": 4100
+      },
+      {
+        "week": 26,
+        "target": 4000
+      },
+      {
+        "week": 27,
+        "target": 4500
+      },
+      {
+        "week": 28,
+        "target": 4600
+      },
+      {
+        "week": 29,
+        "target": 4800
+      },
+      {
+        "week": 30,
+        "target": 4900
+      },
+      {
+        "week": 31,
+        "target": 4800
+      },
+      {
+        "week": 32,
+        "target": 4200
+      },
+      {
+        "week": 33,
+        "target": 4200
+      },
+      {
+        "week": 34,
+        "target": 4900
+      },
+      {
+        "week": 35,
+        "target": 4400
+      },
+      {
+        "week": 36,
+        "target": 5200
+      },
+      {
+        "week": 37,
+        "target": 5500
+      },
+      {
+        "week": 38,
+        "target": 5000
+      },
+      {
+        "week": 39,
+        "target": 5200
+      },
+      {
+        "week": 40,
+        "target": 4900
+      },
+      {
+        "week": 41,
+        "target": 4700
+      },
+      {
+        "week": 42,
+        "target": 5200
+      },
+      {
+        "week": 43,
+        "target": 5200
+      },
+      {
+        "week": 44,
+        "target": 5300
+      },
+      {
+        "week": 45,
+        "target": 5900
+      },
+      {
+        "week": 46,
+        "target": 5800
+      },
+      {
+        "week": 47,
+        "target": 5800
+      },
+      {
+        "week": 48,
+        "target": 5400
+      },
+      {
+        "week": 49,
+        "target": 5400
+      },
+      {
+        "week": 50,
+        "target": 4900
+      },
+      {
+        "week": 51,
+        "target": 5000
+      },
+      {
+        "week": 52,
+        "target": 5200
+      }
+    ],
+    "Beverage": [
+      {
+        "week": 1,
+        "target": 4900
+      },
+      {
+        "week": 2,
+        "target": 3800
+      },
+      {
+        "week": 3,
+        "target": 5600
+      },
+      {
+        "week": 4,
+        "target": 4100
+      },
+      {
+        "week": 5,
+        "target": 4200
+      },
+      {
+        "week": 6,
+        "target": 3800
+      },
+      {
+        "week": 7,
+        "target": 4000
+      },
+      {
+        "week": 8,
+        "target": 5500
+      },
+      {
+        "week": 9,
+        "target": 4800
+      },
+      {
+        "week": 10,
+        "target": 5100
+      },
+      {
+        "week": 11,
+        "target": 5700
+      },
+      {
+        "week": 12,
+        "target": 5300
+      },
+      {
+        "week": 13,
+        "target": 4800
+      },
+      {
+        "week": 14,
+        "target": 4500
+      },
+      {
+        "week": 15,
+        "target": 5100
+      },
+      {
+        "week": 16,
+        "target": 4900
+      },
+      {
+        "week": 17,
+        "target": 5100
+      },
+      {
+        "week": 18,
+        "target": 5600
+      },
+      {
+        "week": 19,
+        "target": 5200
+      },
+      {
+        "week": 20,
+        "target": 4700
+      },
+      {
+        "week": 21,
+        "target": 4900
+      },
+      {
+        "week": 22,
+        "target": 4700
+      },
+      {
+        "week": 23,
+        "target": 5000
+      },
+      {
+        "week": 24,
+        "target": 6000
+      },
+      {
+        "week": 25,
+        "target": 5500
+      },
+      {
+        "week": 26,
+        "target": 5300
+      },
+      {
+        "week": 27,
+        "target": 5300
+      },
+      {
+        "week": 28,
+        "target": 4900
+      },
+      {
+        "week": 29,
+        "target": 5000
+      },
+      {
+        "week": 30,
+        "target": 5600
+      },
+      {
+        "week": 31,
+        "target": 6000
+      },
+      {
+        "week": 32,
+        "target": 5600
+      },
+      {
+        "week": 33,
+        "target": 5100
+      },
+      {
+        "week": 34,
+        "target": 5700
+      },
+      {
+        "week": 35,
+        "target": 5700
+      },
+      {
+        "week": 36,
+        "target": 5900
+      },
+      {
+        "week": 37,
+        "target": 5400
+      },
+      {
+        "week": 38,
+        "target": 4700
+      },
+      {
+        "week": 39,
+        "target": 5800
+      },
+      {
+        "week": 40,
+        "target": 6100
+      },
+      {
+        "week": 41,
+        "target": 6000
+      },
+      {
+        "week": 42,
+        "target": 4300
+      },
+      {
+        "week": 43,
+        "target": 5500
+      },
+      {
+        "week": 44,
+        "target": 4800
+      },
+      {
+        "week": 45,
+        "target": 4500
+      },
+      {
+        "week": 46,
+        "target": 4800
+      },
+      {
+        "week": 47,
+        "target": 5200
+      },
+      {
+        "week": 48,
+        "target": 5400
+      },
+      {
+        "week": 49,
+        "target": 5900
+      },
+      {
+        "week": 50,
+        "target": 4900
+      },
+      {
+        "week": 51,
+        "target": 4500
+      },
+      {
+        "week": 52,
+        "target": 4300
+      }
+    ],
+    "Snacks": [
+      {
+        "week": 1,
+        "target": 10700
+      },
+      {
+        "week": 2,
+        "target": 10700
+      },
+      {
+        "week": 3,
+        "target": 9600
+      },
+      {
+        "week": 4,
+        "target": 7600
+      },
+      {
+        "week": 5,
+        "target": 9200
+      },
+      {
+        "week": 6,
+        "target": 11000
+      },
+      {
+        "week": 7,
+        "target": 12100
+      },
+      {
+        "week": 8,
+        "target": 18300
+      },
+      {
+        "week": 9,
+        "target": 9500
+      },
+      {
+        "week": 10,
+        "target": 10200
+      },
+      {
+        "week": 11,
+        "target": 9600
+      },
+      {
+        "week": 12,
+        "target": 10700
+      },
+      {
+        "week": 13,
+        "target": 11400
+      },
+      {
+        "week": 14,
+        "target": 10100
+      },
+      {
+        "week": 15,
+        "target": 11800
+      },
+      {
+        "week": 16,
+        "target": 10900
+      },
+      {
+        "week": 17,
+        "target": 9700
+      },
+      {
+        "week": 18,
+        "target": 10200
+      },
+      {
+        "week": 19,
+        "target": 9600
+      },
+      {
+        "week": 20,
+        "target": 9700
+      },
+      {
+        "week": 21,
+        "target": 9200
+      },
+      {
+        "week": 22,
+        "target": 9500
+      },
+      {
+        "week": 23,
+        "target": 9400
+      },
+      {
+        "week": 24,
+        "target": 8700
+      },
+      {
+        "week": 25,
+        "target": 9500
+      },
+      {
+        "week": 26,
+        "target": 9300
+      },
+      {
+        "week": 27,
+        "target": 8200
+      },
+      {
+        "week": 28,
+        "target": 8100
+      },
+      {
+        "week": 29,
+        "target": 9200
+      },
+      {
+        "week": 30,
+        "target": 8600
+      },
+      {
+        "week": 31,
+        "target": 8600
+      },
+      {
+        "week": 32,
+        "target": 8600
+      },
+      {
+        "week": 33,
+        "target": 9100
+      },
+      {
+        "week": 34,
+        "target": 9200
+      },
+      {
+        "week": 35,
+        "target": 8800
+      },
+      {
+        "week": 36,
+        "target": 11900
+      },
+      {
+        "week": 37,
+        "target": 12800
+      },
+      {
+        "week": 38,
+        "target": 12400
+      },
+      {
+        "week": 39,
+        "target": 17000
+      },
+      {
+        "week": 40,
+        "target": 9500
+      },
+      {
+        "week": 41,
+        "target": 11500
+      },
+      {
+        "week": 42,
+        "target": 9900
+      },
+      {
+        "week": 43,
+        "target": 9700
+      },
+      {
+        "week": 44,
+        "target": 9900
+      },
+      {
+        "week": 45,
+        "target": 9200
+      },
+      {
+        "week": 46,
+        "target": 9500
+      },
+      {
+        "week": 47,
+        "target": 10700
+      },
+      {
+        "week": 48,
+        "target": 11500
+      },
+      {
+        "week": 49,
+        "target": 10900
+      },
+      {
+        "week": 50,
+        "target": 10600
+      },
+      {
+        "week": 51,
+        "target": 11500
+      },
+      {
+        "week": 52,
+        "target": 9900
+      }
+    ],
+    "Non-Food": [
+      {
+        "week": 1,
+        "target": 2400
+      },
+      {
+        "week": 2,
+        "target": 2800
+      },
+      {
+        "week": 3,
+        "target": 2600
+      },
+      {
+        "week": 4,
+        "target": 2800
+      },
+      {
+        "week": 5,
+        "target": 3400
+      },
+      {
+        "week": 6,
+        "target": 3900
+      },
+      {
+        "week": 7,
+        "target": 3900
+      },
+      {
+        "week": 8,
+        "target": 4000
+      },
+      {
+        "week": 9,
+        "target": 2200
+      },
+      {
+        "week": 10,
+        "target": 2400
+      },
+      {
+        "week": 11,
+        "target": 2800
+      },
+      {
+        "week": 12,
+        "target": 2400
+      },
+      {
+        "week": 13,
+        "target": 2200
+      },
+      {
+        "week": 14,
+        "target": 2400
+      },
+      {
+        "week": 15,
+        "target": 2400
+      },
+      {
+        "week": 16,
+        "target": 2700
+      },
+      {
+        "week": 17,
+        "target": 2700
+      },
+      {
+        "week": 18,
+        "target": 3000
+      },
+      {
+        "week": 19,
+        "target": 3300
+      },
+      {
+        "week": 20,
+        "target": 2800
+      },
+      {
+        "week": 21,
+        "target": 2900
+      },
+      {
+        "week": 22,
+        "target": 2800
+      },
+      {
+        "week": 23,
+        "target": 2400
+      },
+      {
+        "week": 24,
+        "target": 3200
+      },
+      {
+        "week": 25,
+        "target": 2900
+      },
+      {
+        "week": 26,
+        "target": 2800
+      },
+      {
+        "week": 27,
+        "target": 3000
+      },
+      {
+        "week": 28,
+        "target": 2600
+      },
+      {
+        "week": 29,
+        "target": 2300
+      },
+      {
+        "week": 30,
+        "target": 2500
+      },
+      {
+        "week": 31,
+        "target": 2500
+      },
+      {
+        "week": 32,
+        "target": 2200
+      },
+      {
+        "week": 33,
+        "target": 2300
+      },
+      {
+        "week": 34,
+        "target": 2800
+      },
+      {
+        "week": 35,
+        "target": 2500
+      },
+      {
+        "week": 36,
+        "target": 2800
+      },
+      {
+        "week": 37,
+        "target": 3100
+      },
+      {
+        "week": 38,
+        "target": 2900
+      },
+      {
+        "week": 39,
+        "target": 2500
+      },
+      {
+        "week": 40,
+        "target": 2900
+      },
+      {
+        "week": 41,
+        "target": 2600
+      },
+      {
+        "week": 42,
+        "target": 3000
+      },
+      {
+        "week": 43,
+        "target": 2400
+      },
+      {
+        "week": 44,
+        "target": 3100
+      },
+      {
+        "week": 45,
+        "target": 2800
+      },
+      {
+        "week": 46,
+        "target": 2900
+      },
+      {
+        "week": 47,
+        "target": 3300
+      },
+      {
+        "week": 48,
+        "target": 2200
+      },
+      {
+        "week": 49,
+        "target": 2900
+      },
+      {
+        "week": 50,
+        "target": 2900
+      },
+      {
+        "week": 51,
+        "target": 3400
+      },
+      {
+        "week": 52,
+        "target": 3500
+      }
+    ]
+  }
+}
