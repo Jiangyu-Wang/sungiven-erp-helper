@@ -45,7 +45,7 @@
                 <n-skeleton height="18px" width="60%" />
               </template>
               <template v-else>
-                <n-text strong>{{ category.value }}</n-text>
+                <n-text strong>${{ category.value }}</n-text>
               </template>
             </n-card>
           </n-gi>
@@ -72,6 +72,7 @@ import {
 
 import { fetchReport, type ReportRequestConfig } from "@/api/requests"
 import WriteOffPieChart from "@/components/dashboard/WriteOffPieChart.vue"
+import moment from "moment"
 
 const reportRequestConfig: ReportRequestConfig = {
   latinTC: "1101",
@@ -89,7 +90,7 @@ const reportRequestConfig: ReportRequestConfig = {
         "field": { "name": "时间" },
         "dataType": "date",
         "operator": "eq",
-        "value": "2026-01-20"
+        "value": moment().format("YYYY-MM-DD")
       },
       {
         "id": "stcode",
@@ -195,7 +196,7 @@ const kpiCards = ref<Array<{
   },
   {
     key: "daily-loss-rate",
-    title: "日损耗率",
+    title: "三日损耗率",
     value: "3.8%",
     valueTone: "value-warning",
     icon: markRaw(TrendingDownOutline),
@@ -238,12 +239,7 @@ onMounted(async () => {
   try {
     const res = await fetchReport(reportRequestConfig)
 
-    const record =
-      res?.records?.[0] ??
-      res?.data?.records?.[0] ??
-      res?.data?.[0] ??
-      res?.[0] ??
-      {}
+    const record = res?.records?.[0];
 
     const updateCardValue = (key: string, value: string) => {
       const target = kpiCards.value.find((card) => card.key === key)
@@ -252,35 +248,32 @@ onMounted(async () => {
       }
     }
 
-    updateCardValue("week-store-sales", record?.weeklystoresales ?? "--")
-    updateCardValue("week-category-sales", record?.weeklycategorysales ?? "--")
-    updateCardValue("today-store-sales", record?.todaystoresales ?? "--")
-    updateCardValue("today-category-sales", record?.todaycategorysales ?? "--")
-    updateCardValue("margin", record?.grossmarginrate ?? "--")
-    updateCardValue("daily-loss-rate", record?.last3daysshrinkrate ?? "--")
-    updateCardValue("weekly-loss-rate", record?.weeklyshrinkrate ?? "--")
-    updateCardValue("loss-amount", record?.last3daysshrinkamount ?? "--")
+    updateCardValue("week-store-sales", "$"+(record?.weeklystoresales ?? "--"))
+    updateCardValue("week-category-sales", "$"+(record?.weeklycategorysales ?? "--"))
+    updateCardValue("today-store-sales", "$"+(record?.todaystoresales ?? "--"))
+    updateCardValue("today-category-sales", "$"+(record?.todaycategorysales ?? "--"))
+    updateCardValue(
+      "margin", 
+      record?.grossmarginrate != null ? String((record.grossmarginrate * 100).toFixed(2)) + "%" : "--"
+    )
+    updateCardValue(
+      "daily-loss-rate",
+      record?.last3daysshrinkrate != null ? String((record.last3daysshrinkrate * 100).toFixed(2)) + "%" : "--"
+    )
+    updateCardValue(
+      "weekly-loss-rate", 
+      record?.weeklyshrinkrate != null ? String((record.weeklyshrinkrate * 100).toFixed(2)) + "%" : "--"
+    )
+    updateCardValue("loss-amount", "$"+(record?.last3daysshrinkamount ?? "--"))
 
-    const categorySource = record?.catsalesarray
-    if (typeof categorySource === "string" && categorySource.trim()) {
-      const parsedCategories = JSON.parse(categorySource)
-      if (Array.isArray(parsedCategories)) {
-        const nextCards = parsedCategories.slice(0, 3).map((item, index) => {
-          const fallbackTitle = `分类${index + 1}`
-          const rawName = item?.name ?? fallbackTitle
-          const displayTitle =
-            typeof rawName === "string" ? rawName.toUpperCase() : String(rawName)
-          return {
-            key: String(item?.catCode ?? rawName ?? fallbackTitle),
-            title: displayTitle,
-            value: item?.sales ?? "--",
-          }
-        })
-        if (nextCards.length) {
-          categoryCards.value = nextCards
-        }
-      }
-    }
+    const categorySource = JSON.parse(record?.catsalesarray.value)
+    console.log(categorySource);
+    categoryCards.value = categorySource.map((item: any) => ({
+      key: item.catCode,
+      title: item.name,
+      value: item.sales,
+    }))
+    
   } finally {
     isLoading.value = false
   }

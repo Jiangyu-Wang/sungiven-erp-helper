@@ -27,6 +27,7 @@ import { FlowerOutline, LeafOutline, NutritionOutline } from "@vicons/ionicons5"
 import { markRaw, onMounted, ref } from "vue"
 import { fetchReport, type ReportRequestConfig } from "@/api/requests"
 import targets1101 from "@/assets/targets/1101Target.json"
+import moment from "moment"
 
 type ProgressStatus = "default" | "success" | "info" | "warning" | "error"
 
@@ -99,7 +100,7 @@ const reportRequestConfig: ReportRequestConfig =
         "field": { "name": "bgdate" },
         "dataType": "date",
         "operator": "gte",
-        "value": "2026-01-18"
+        "value": moment().day(0).format("YYYY-MM-DD")
       },
       {
         "id": "eddate",
@@ -107,7 +108,7 @@ const reportRequestConfig: ReportRequestConfig =
         "field": { "name": "eddate" },
         "dataType": "date",
         "operator": "lte",
-        "value": "2026-01-19"
+        "value": moment().format("YYYY-MM-DD")
       },
       {
         "id": "查询类型",

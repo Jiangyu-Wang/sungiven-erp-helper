@@ -15,6 +15,7 @@ import { onBeforeUnmount, onMounted, ref, shallowRef } from "vue"
 import { NSpace, NText } from "naive-ui"
 import * as echarts from "echarts"
 import { fetchReport, type ReportRequestConfig } from "@/api/requests"
+import moment from "moment"
 
 const chartRef = ref<HTMLDivElement | null>(null)
 const chartInstance = shallowRef<echarts.ECharts | null>(null)
@@ -87,7 +88,7 @@ const reportRequestConfig: ReportRequestConfig =
         },
         "dataType": "date",
         "operator": "gte",
-        "value": "2026-01-17"
+        "value": moment().subtract(3, "day").format("YYYY-MM-DD")
         },
         {
         "id": "PIEDATE",
@@ -97,7 +98,7 @@ const reportRequestConfig: ReportRequestConfig =
         },
         "dataType": "date",
         "operator": "lte",
-        "value": "2026-01-19"
+        "value": moment().subtract(1, "day").format("YYYY-MM-DD")
         },
         {
         "id": "PINUM",

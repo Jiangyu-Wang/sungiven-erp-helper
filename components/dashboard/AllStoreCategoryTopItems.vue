@@ -44,6 +44,7 @@ import { NCard, NFlex, NIcon, NProgress, NSpace, NTag, NText } from "naive-ui"
 import { TrendingUpOutline } from "@vicons/ionicons5"
 import { onMounted, ref } from "vue"
 import { fetchReport, type ReportRequestConfig } from "@/api/requests"
+import moment from "moment"
 
 const reportRequestConfig: ReportRequestConfig = 
 {
@@ -62,7 +63,7 @@ const reportRequestConfig: ReportRequestConfig =
         "field": { "name": "开始时间" },
         "dataType": "date",
         "operator": "gte",
-        "value": "2026-01-18"
+        "value": moment().subtract(2, "day").format("YYYY-MM-DD")
       },
       {
         "id": "结束时间",
@@ -70,7 +71,7 @@ const reportRequestConfig: ReportRequestConfig =
         "field": { "name": "结束时间" },
         "dataType": "date",
         "operator": "lte",
-        "value": "2026-01-20"
+        "value": moment().format("YYYY-MM-DD")
       },
       {
         "id": "scode",
