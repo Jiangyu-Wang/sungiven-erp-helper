@@ -28,6 +28,7 @@ import { markRaw, onMounted, ref } from "vue"
 import { fetchReport, type ReportRequestConfig } from "@/api/requests"
 import targets1101 from "@/assets/targets/1101Target.json"
 import moment from "moment"
+import { getStoreCode } from "@/utils/sgContext"
 
 type ProgressStatus = "default" | "success" | "info" | "warning" | "error"
 
@@ -85,7 +86,7 @@ const progressItems = ref<
 
 const reportRequestConfig: ReportRequestConfig = 
 {
-  latinTC: "1101",
+  latinTC: "9999",
   payloadSource: {
     "reportId": "report41b213f485474a13b22156157d5d9ab6",
     "parentReportId": "report41b213f485474a13b22156157d5d9ab6",
@@ -124,7 +125,7 @@ const reportRequestConfig: ReportRequestConfig =
         "field": { "name": "store" },
         "dataType": "string",
         "operator": "eq",
-        "value": "1101"
+        "value": "9999"
       },
       {
         "id": "大类",
@@ -177,6 +178,10 @@ onMounted(async () => {
   isLoading.value = true
 
   type CategoryKey = "Fruit" | "Vegetable" | "Floral"
+
+  const storeCode = await getStoreCode();
+  reportRequestConfig.latinTC = storeCode;
+  reportRequestConfig.payloadSource.conditions[3].value = storeCode;
 
   const categoryTargetMap: Record<CategoryKey, number> = {
     Fruit: 10000,

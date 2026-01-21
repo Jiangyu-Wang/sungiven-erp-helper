@@ -16,6 +16,7 @@ import { NSpace, NText } from "naive-ui"
 import * as echarts from "echarts"
 import { fetchReport, type ReportRequestConfig } from "@/api/requests"
 import moment from "moment"
+import { getStoreCode } from "@/utils/sgContext"
 
 const chartRef = ref<HTMLDivElement | null>(null)
 const chartInstance = shallowRef<echarts.ECharts | null>(null)
@@ -71,7 +72,7 @@ const resizeChart = () => {
 
 const reportRequestConfig: ReportRequestConfig = 
 {
-  latinTC: "1101",
+  latinTC: "9999",
   payloadSource: {
     "reportId": "report547a512342f1495f981897b8a397b58a",
     "parentReportId": "report547a512342f1495f981897b8a397b58a",
@@ -225,6 +226,9 @@ function calcLossReasonRatio(records: RecordItem[]): ResultItem[] {
 }
 
 onMounted(async () => {
+  const storeCode = await getStoreCode();
+  reportRequestConfig.latinTC = storeCode;
+
   const res = await fetchReport(reportRequestConfig)
   const records = Array.isArray(res?.records) ? res.records : []
   pieData.value = calcLossReasonRatio(records)

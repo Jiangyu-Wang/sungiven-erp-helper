@@ -73,9 +73,10 @@ import {
 import { fetchReport, type ReportRequestConfig } from "@/api/requests"
 import WriteOffPieChart from "@/components/dashboard/WriteOffPieChart.vue"
 import moment from "moment"
+import { getStoreCode } from "@/utils/sgContext"
 
 const reportRequestConfig: ReportRequestConfig = {
-  latinTC: "1101",
+  latinTC: "9999",
   payloadSource: {
     "reportId": "report4f30bbe937914214923903f0bcadea69",
     "parentReportId": null,
@@ -98,7 +99,7 @@ const reportRequestConfig: ReportRequestConfig = {
         "field": { "name": "stcode" },
         "dataType": "string",
         "operator": "eq",
-        "value": "1101"
+        "value": "9999"
       },
       {
         "id": "Catcode",
@@ -236,6 +237,11 @@ const isLoading = ref(true)
 
 onMounted(async () => {
   isLoading.value = true
+
+  const storeCode = await getStoreCode();
+  reportRequestConfig.latinTC = storeCode;
+  reportRequestConfig.payloadSource.conditions[1].value = storeCode;
+
   try {
     const res = await fetchReport(reportRequestConfig)
 
