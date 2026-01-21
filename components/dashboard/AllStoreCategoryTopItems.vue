@@ -45,10 +45,11 @@ import { TrendingUpOutline } from "@vicons/ionicons5"
 import { onMounted, ref } from "vue"
 import { fetchReport, type ReportRequestConfig } from "@/api/requests"
 import moment from "moment"
+import { getStoreCode } from "@/utils/sgContext"
 
 const reportRequestConfig: ReportRequestConfig = 
 {
-  latinTC: "1101",
+  latinTC: "9999",
   payloadSource: {
     "reportId": "report5b154481a9f34b909109b56517bcd2f1",
     "parentReportId": null,
@@ -79,7 +80,7 @@ const reportRequestConfig: ReportRequestConfig =
         "field": { "name": "scode" },
         "dataType": "string",
         "operator": "eq",
-        "value": "1101"
+        "value": "9999"
       },
       {
         "id": "sscode",
@@ -141,6 +142,9 @@ type TopItem = {
 const topItems = ref<TopItem[]>([])
 
 onMounted(async () => {
+  const storeCode = await getStoreCode();
+  reportRequestConfig.latinTC = storeCode;
+  reportRequestConfig.payloadSource.conditions[2].value = storeCode;
   const res = await fetchReport(reportRequestConfig)
   const records = Array.isArray(res?.records) ? res.records : []
   topItems.value = records.map((record: Record<string, unknown>, index: number) => {

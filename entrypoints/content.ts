@@ -67,6 +67,8 @@ export default defineContentScript({
 
     // 插到 iframe 前面
     parent.insertBefore(root, iframe)
+    const prev = root.previousElementSibling as HTMLElement | null
+    if (prev) prev.style.display = "none"
 
     // mount Vue
     createApp(Index).mount(root)
