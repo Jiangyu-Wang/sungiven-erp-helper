@@ -267,7 +267,6 @@ onMounted(async () => {
     updateCardValue("loss-amount", "$"+(record?.last3daysshrinkamount ?? "--"))
 
     const categorySource = JSON.parse(record?.catsalesarray.value)
-    console.log(categorySource);
     categoryCards.value = categorySource.map((item: any) => ({
       key: item.catCode,
       title: item.name,
